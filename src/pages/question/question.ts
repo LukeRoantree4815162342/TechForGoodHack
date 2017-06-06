@@ -21,22 +21,71 @@ export class QuestionPage {
     'items': [
       {
         backgroundImage: 'assets/images/avatar-large/5.jpg',
-        title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the 1',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+        title: 'Express Yourself',
+        description: 'I find it easy to express myself in writing',
         button: 'Next',
         skip: 'Skip'
       },
       {
         backgroundImage: 'assets/images/avatar-large/6.jpg',
-        title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the 2',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+        title: 'Data',
+        description: 'I am good at collecting, collating, classifying and summarising data',
         button: 'Next',
         skip: 'Skip'
       },
       {
         backgroundImage: 'assets/images/avatar-large/7.jpg',
-        title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the 3',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+        title: 'Motivation',
+        description: 'I am able to motivate and direct others',
+        button: 'Finish',
+        skip: 'Skip'
+      },
+      {
+        backgroundImage: 'assets/images/avatar-large/7.jpg',
+        title: 'Tasks',
+        description: 'I have a methodical approach to tasks',
+        button: 'Finish',
+        skip: 'Skip'
+      },
+      {
+        backgroundImage: 'assets/images/avatar-large/7.jpg',
+        title: 'Complexity',
+        description: 'I am able to assess and summarise complex, detailed information',
+        button: 'Finish',
+        skip: 'Skip'
+      },
+      {
+        backgroundImage: 'assets/images/avatar-large/7.jpg',
+        title: 'Speaking',
+        description: 'I find it easy to express my views when speaking',
+        button: 'Finish',
+        skip: 'Skip'
+      },
+      {
+        backgroundImage: 'assets/images/avatar-large/7.jpg',
+        title: 'Discuss',
+        description: 'I am able to discuss issues and reach agreement when disagreeing',
+        button: 'Finish',
+        skip: 'Skip'
+      },
+      {
+        backgroundImage: 'assets/images/avatar-large/7.jpg',
+        title: 'Leadership',
+        description: 'People tend to look to me for leadership.',
+        button: 'Finish',
+        skip: 'Skip'
+      },
+      {
+        backgroundImage: 'assets/images/avatar-large/7.jpg',
+        title: 'Numbers',
+        description: 'I do not have problems understanding numerical data. ',
+        button: 'Finish',
+        skip: 'Skip'
+      },
+      {
+        backgroundImage: 'assets/images/avatar-large/7.jpg',
+        title: 'Articulate?',
+        description: 'People think of me as articulate',
         button: 'Finish',
         skip: 'Skip'
       }
