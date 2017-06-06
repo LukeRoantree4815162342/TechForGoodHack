@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { Slides } from 'ionic-angular';
 
 /**
@@ -37,49 +37,49 @@ export class QuestionPage {
         backgroundImage: 'assets/images/avatar-large/7.jpg',
         title: 'Motivation',
         description: 'I am able to motivate and direct others',
-        button: 'Finish',
+        button: 'Next',
         skip: 'Skip'
       },
       {
         backgroundImage: 'assets/images/avatar-large/7.jpg',
         title: 'Tasks',
         description: 'I have a methodical approach to tasks',
-        button: 'Finish',
+        button: 'Next',
         skip: 'Skip'
       },
       {
         backgroundImage: 'assets/images/avatar-large/7.jpg',
         title: 'Complexity',
         description: 'I am able to assess and summarise complex, detailed information',
-        button: 'Finish',
+        button: 'Next',
         skip: 'Skip'
       },
       {
         backgroundImage: 'assets/images/avatar-large/7.jpg',
         title: 'Speaking',
         description: 'I find it easy to express my views when speaking',
-        button: 'Finish',
+        button: 'Next',
         skip: 'Skip'
       },
       {
         backgroundImage: 'assets/images/avatar-large/7.jpg',
         title: 'Discuss',
         description: 'I am able to discuss issues and reach agreement when disagreeing',
-        button: 'Finish',
+        button: 'Next',
         skip: 'Skip'
       },
       {
         backgroundImage: 'assets/images/avatar-large/7.jpg',
         title: 'Leadership',
         description: 'People tend to look to me for leadership.',
-        button: 'Finish',
+        button: 'Next',
         skip: 'Skip'
       },
       {
         backgroundImage: 'assets/images/avatar-large/7.jpg',
         title: 'Numbers',
         description: 'I do not have problems understanding numerical data. ',
-        button: 'Finish',
+        button: 'Next',
         skip: 'Skip'
       },
       {
@@ -95,12 +95,17 @@ export class QuestionPage {
   @ViewChild('wizardSlider') slider: Slides;
 
   constructor() { }
-
+init: boolean;
+ngOnInit(){
+  this.init=true;
+}
   changeSlide(index: number): void {
+    if(this.init){
     if (index > 0) {
       this.slider.slideNext(300);
     } else {
       this.slider.slidePrev(300);
+    }
     }
   }
 
