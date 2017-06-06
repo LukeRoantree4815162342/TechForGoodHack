@@ -13,6 +13,7 @@ import { FriendsPage } from '../pages/friends/friends';
 import { ProfilePage } from '../pages/profile/profile';
 import { ExperiencesPage } from '../pages/experiences/experiences';
 import { MockDataProvider } from '../providers/mock-data/mock-data';
+import { QuestionPage } from "../pages/question/question";
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MockDataProvider } from '../providers/mock-data/mock-data';
     MainPage,
     SkillsPage,
     ProgressPage,
+    QuestionPage,
     FriendsPage,
     ProfilePage,
     ExperiencesPage
@@ -36,6 +38,7 @@ import { MockDataProvider } from '../providers/mock-data/mock-data';
     MainPage,
     SkillsPage,
     ProgressPage,
+    QuestionPage,
     FriendsPage,
     ProfilePage,
     ExperiencesPage

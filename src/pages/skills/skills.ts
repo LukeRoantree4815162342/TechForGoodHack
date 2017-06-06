@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { QuestionPage } from "../question/question";
 
 import { ExperiencesPage } from '../experiences/experiences';
 import { MockDataProvider } from '../../providers/mock-data/mock-data'; 
@@ -32,4 +33,9 @@ export class SkillsPage {
   ShowExperiences(skill){
     this.navCtrl.push(ExperiencesPage, skill);
   }
+
+  startQuestion(){
+    this.navCtrl.push(QuestionPage);
+  }
+
 }
