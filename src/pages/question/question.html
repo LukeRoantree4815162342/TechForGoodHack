@@ -1,0 +1,63 @@
+<!--
+  Generated template for the QuestionPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>question</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <!--Theme Wizard Big Image -->
+
+  <!--Content-->
+  <!--Theme Wizard Big Image -->
+  <button skip button-clear clear ion-button text-right>
+    {{data.btnSkip}}
+</button>
+  <ion-slides #wizardSlider *ngIf="data.items.length" (ionSlideDidChange)="slideHasChanged()" pager="true">
+    <ion-slide background-size *ngFor="let item of data.items;" [ngStyle]="{'background-image': 'url(' + item.backgroundImage + ')'}">
+      <div wizard-description text-left>
+        <h1 wizard-title>{{item.title}}</h1>
+        <h3 wizard-body-text>{{item.description}}</h3>
+        <!--<ion-input wizard-answer required type="text" [(ngModel)]="item.answer"></ion-input>-->
+        <ion-list radio-group [(ngModel)]="item.answer">
+          <ion-item>
+            <ion-label>Disagree</ion-label>
+            <ion-radio value="0" checked></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Neutral</ion-label>
+            <ion-radio value="1"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Agree A Little</ion-label>
+            <ion-radio value="2"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Agree Moderately</ion-label>
+            <ion-radio value="3"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Strongly Agree</ion-label>
+            <ion-radio value="4"></ion-radio>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-slide>
+  </ion-slides>
+  <!--Button section-->
+  <button navigation text-center button-clear clear ion-button (click)="changeSlide(1)" *ngIf="show('next')">
+    {{data.btnNext}}
+</button>
+  <button navigation text-center button-clear clear ion-button (click)="onEvent('onFinish')" *ngIf="show('finish')">
+    {{data.btnFinish}}
+</button>
+
+</ion-content>

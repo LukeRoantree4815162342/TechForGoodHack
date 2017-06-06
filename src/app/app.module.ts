@@ -11,6 +11,7 @@ import { SkillsPage } from '../pages/skills/skills';
 import { ProgressPage } from '../pages/progress/progress';
 import { FriendsPage } from '../pages/friends/friends';
 import { ProfilePage } from '../pages/profile/profile';
+import { QuestionPage } from "../pages/question/question";
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ProfilePage } from '../pages/profile/profile';
     MainPage,
     SkillsPage,
     ProgressPage,
+    QuestionPage,
     FriendsPage,
     ProfilePage
   ],
@@ -33,6 +35,7 @@ import { ProfilePage } from '../pages/profile/profile';
     MainPage,
     SkillsPage,
     ProgressPage,
+    QuestionPage,
     FriendsPage,
     ProfilePage
   ],

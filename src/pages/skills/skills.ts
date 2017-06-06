@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { QuestionPage } from "../question/question";
 
 /**
  * Generated class for the SkillsPage page.
@@ -19,6 +20,10 @@ export class SkillsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SkillsPage');
+  }
+
+  startQuestion(){
+    this.navCtrl.push(QuestionPage);
   }
 
 }
