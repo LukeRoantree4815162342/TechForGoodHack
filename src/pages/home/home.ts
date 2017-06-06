@@ -14,7 +14,7 @@ export class HomePage {
   }
 
   Login(){
-    this.navCtrl.push(MainPage);
+    this.navCtrl.push(MainPage,1);
   }
 
 }

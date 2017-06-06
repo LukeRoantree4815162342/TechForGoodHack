@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { SkillsPage } from '../skills/skills';
 import { ProgressPage } from '../progress/progress';
 import { FriendsPage } from '../friends/friends';
 import { ProfilePage } from '../profile/profile';
+
+import { MockDataProvider } from '../../providers/mock-data/mock-data';
 /**
  * Generated class for the MainPage tabs.
  *
@@ -18,12 +20,16 @@ import { ProfilePage } from '../profile/profile';
 @IonicPage()
 export class MainPage {
 
+  private user;
+
   skillsRoot = SkillsPage;
   progressRoot = ProgressPage;
   friendsRoot = FriendsPage;
   profileRoot = ProfilePage;
 
 
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public data : MockDataProvider ) {
+    this.user = this.data.getUser(this.navParams.data);
+  }
 
 }

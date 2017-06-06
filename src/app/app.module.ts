@@ -11,6 +11,8 @@ import { SkillsPage } from '../pages/skills/skills';
 import { ProgressPage } from '../pages/progress/progress';
 import { FriendsPage } from '../pages/friends/friends';
 import { ProfilePage } from '../pages/profile/profile';
+import { ExperiencesPage } from '../pages/experiences/experiences';
+import { MockDataProvider } from '../providers/mock-data/mock-data';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { ProfilePage } from '../pages/profile/profile';
     SkillsPage,
     ProgressPage,
     FriendsPage,
-    ProfilePage
+    ProfilePage,
+    ExperiencesPage
   ],
   imports: [
     BrowserModule,
@@ -34,12 +37,14 @@ import { ProfilePage } from '../pages/profile/profile';
     SkillsPage,
     ProgressPage,
     FriendsPage,
-    ProfilePage
+    ProfilePage,
+    ExperiencesPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    MockDataProvider
   ]
 })
 export class AppModule {}
