@@ -22,7 +22,7 @@
   <ion-slides #wizardSlider *ngIf="data.items.length" (ionSlideDidChange)="slideHasChanged()" pager="true">
     <ion-slide background-size *ngFor="let item of data.items;" [ngStyle]="{'background-image': 'url(' + item.backgroundImage + ')'}">
       <div wizard-description text-left>
-        <h1 wizard-title>{{item.title}}</h1>
+        <h1 wizard-title item-title>{{item.title}}</h1>
         <h2 wizard-body-text>{{item.description}}</h2>
         <!--<ion-input wizard-answer required type="text" [(ngModel)]="item.answer"></ion-input>-->
         <button ion-button color="secondary" (click)="item.yes=true">Yes</button>

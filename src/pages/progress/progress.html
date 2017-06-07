@@ -17,12 +17,12 @@
 
 
   <div *ngIf="!user.goal">
-    <h3>Getting Started</h3>
-    <p>Before you get started developing your skills you need to define a goal. So think big and find a job you would like to be working as in the future. Think of your DREAM JOB!</p>
+    <h3 item-title>Getting Started</h3>
+    <p item-subtitle>Before you get started developing your skills you need to define a goal. So think big and find a job you would like to be working as in the future. Think of your DREAM JOB!</p>
     
     <div> 
       <ion-label>
-        <b>Your dream job</b>
+        <b item-title>Your dream job</b>
       </ion-label>
       <ion-item>
         <ion-input placeholder="Enter your dream job" clearInput [(ngModel)]="goalUrl"></ion-input>
