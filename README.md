@@ -4,7 +4,7 @@ Deploy sub folder to heroku:
 heroku git:remote -a engagehack
 npm run build:www
 Nav to root folder
-git subtree push --prefix src/www heroku master
+git subtree push --prefix www heroku master
 
 ## How to use this template
 
