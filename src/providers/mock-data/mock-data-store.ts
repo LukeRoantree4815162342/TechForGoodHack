@@ -5,7 +5,7 @@ export let DATA = {
         'btnSkip': 'Skip',
         'items': [
             {
-                backgroundImage: 'assets/images/avatar-large/5.jpg',
+                backgroundImage: 'assets/images/question_images/TeamSports.jpg',
                 title: 'Team Sports',
                 description: 'Have you played a team sport?',
                 skills:['teamwork'],
@@ -13,47 +13,47 @@ export let DATA = {
                 skip: 'Skip'
             },
             {
-                backgroundImage: 'assets/images/avatar-large/6.jpg',
+                backgroundImage: 'assets/images/question_images/IndividualSport.jpg',
                 title: 'Individual Sport',
                 description: 'Have you played an individual sport?',
                 button: 'Next',
                 skip: 'Skip'
             },
             {
-                backgroundImage: 'assets/images/avatar-large/7.jpg',
+                backgroundImage: 'assets/images/question_images/Volunteering.jpg',
                 title: 'Volunteer',
                 description: 'Have you done any volunteering work?',
                 button: 'Next',
                 skip: 'Skip'
             },
             {
-                backgroundImage: 'assets/images/avatar-large/7.jpg',
+                backgroundImage: 'assets/images/question_images/WorkExperience.jpg',
                 title: 'Work Experience',
                 description: 'Do you have any work experience?',
                 button: 'Next',
                 skip: 'Skip'
             },
             {
-                backgroundImage: 'assets/images/avatar-large/7.jpg',
+                backgroundImage: 'assets/images/question_images/ForeignLanguage.jpg',
                 title: 'Languages',
                 description: 'Do you know any other languages?',
                 button: 'Next',
                 skip: 'Skip'
             },
             {
-                backgroundImage: 'assets/images/avatar-large/7.jpg',
+                backgroundImage: 'assets/images/question_images/PublicSpeaking.jpg',
                 title: 'Presentations',
                 description: 'Have you done any presentations?',
                 button: 'Next',
                 skip: 'Skip'
             },
             {
-                backgroundImage: 'assets/images/avatar-large/7.jpg',
+                backgroundImage: 'assets/images/question_images/Hobbies.jpg',
                 title: 'Hobbies?',
                 description: 'Do you have any hobbies?',
                 button: 'Next',
                 skip: 'Skip'
-            }
+            }   
         ]
     },
     "users": [
