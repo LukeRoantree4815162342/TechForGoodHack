@@ -71,8 +71,8 @@ export let DATA = {
             {
                 backgroundImage: 'assets/images/question_images/Education.jpg',
                 title: 'Education',
-                description: 'Do you have a GCSE certification or above? (specify highest qualification)',
-                skill: 9,
+                description: 'Do you have GCSE English & Maths?',
+                skill: 11,
                 yes: false,
                 no: false,
                 button: 'Next',
@@ -229,19 +229,78 @@ export let DATA = {
         {
             "id": 10,
             "name": "Presentation"
+        },
+        {
+            "id": 11,
+            "name": "Literacy & Numeracy"
+        },
+        {
+            "id": 12,
+            "name": "Technical"
+        },
+        {
+            "id": 13,
+            "name": "Social Responsibility"
         }
     ],
     "activities": [
         {
             "id": 1,
-            "name": "Belfast Sports Club",
-            "url": "someRandomLink",
+            "name": "BCSDN",
+            "url" : "http://www.bcsdn.org/",
+            "description": "Belfast Community Sports Development Network (BCSDN) is the main community sports development organisation in Belfast and has successfully been delivering physical activity programmes for the past ten years. BCSDN is a registered charity using sport to inspire and educate people to make a positive change in their lives.",
             "skillsGained": [
                 {
-                    "id": 2
+                    "id": 1,
+                    "experience": "Played the role of an effective unit in the team, and tailored my responsibilities to match the teams need through sport at BCSDN"
                 },
                 {
-                    "id": 3
+                    "id": 4,
+                    "experience": "Overcoming physical challenges through regular sport sessions while managing a healthy lifestyle at BDCSN"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Belfast Metropolitan College",
+            "url" : "https://www.belfastmet.ac.uk/part-time/essential-skills/",
+            "description": "It costs nothing to get your Maths, English and ICT qualifications at Belfast Met.\n Essential Skills are the most important and useful skills we all need to succeed in education, work and everyday life. At Belfast Met, you can get qualifications in English, Maths and ICT while you are completing your course. \n Our Essential Skills programme means that learning in these key areas takes place alongside your full-time study. We offer Essential Skills in Literacy and Numeracy from Entry Level 1 through to Level 2, and ICT at Levels 1 and 2.",
+            "skillsGained": [
+                {
+                    "id": 2,
+                    "experience": "Meeting new people from various backgrounds and sharing knowledge with others throughout the courses offered at Belfast Metropolitan college."
+                },
+                {
+                    "id": 11,
+                    "experience": "Gaining qualification for Essential skills in literacy at Belfast Metropolitan college"
+                },
+                {
+                    "id": 11,
+                    "experience": "Gaining qualification for Essential skills in Numeracy at Belfast Metropolitan college"
+                },
+                {
+                    "id": 12,
+                    "experience": "Learning how to use a computer and gaining essential ICT skills at Belfast Metropolitan college"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Include youth",
+            "url" : "http://youngcitizens.volunteernow.co.uk/why-volunteer/what-can-i-do",
+            "description": "BelfastVolunteering is not only about what you can give back to your community, but also what you get out of it, including building great skills and training that you can use on your CV as well as for job and UCAS applications. \n Volunteering is also fun, and you can choose to do the things that interest you, and meet new people in the process or volunteer with your friends. You can do anything from helping run a local sport club to being a DJ or film maker; you can help clean up our beeches or represent the views of other young people in your local forum; you can even volunteer to help run some of your favourite music and arts festivals and venues!",
+            "skillsGained": [
+                {
+                    "id": 5,
+                    "experience": "Going out of your way to reach out to and help those in need through volunteer now"
+                },
+                {
+                    "id": 7,
+                    "experience": "Dealing with any unexpected situations that can occur when dealing with members of the public in a professional manner through volunteer now."
+                },
+                {
+                    "id": 13,
+                    "experience": "Acknowledging the importance of giving back to society through volunteer now"
                 }
             ]
         }
@@ -264,6 +323,12 @@ export let DATA = {
                 },
                 {
                     "skillId" : 10
+                },
+                {
+                    "skillId" : 11
+                },
+                {
+                    "skillId" : 13
                 }
             ]
         }
