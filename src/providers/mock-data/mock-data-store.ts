@@ -16,6 +16,7 @@ export let DATA = {
                 backgroundImage: 'assets/images/avatar-large/6.jpg',
                 title: 'Individual Sport',
                 description: 'Have you played an individual sport?',
+                skills:['focus'],
                 button: 'Next',
                 skip: 'Skip'
             },
@@ -23,6 +24,7 @@ export let DATA = {
                 backgroundImage: 'assets/images/avatar-large/7.jpg',
                 title: 'Volunteer',
                 description: 'Have you done any volunteering work?',
+                skills:['volunteering'],
                 button: 'Next',
                 skip: 'Skip'
             },
@@ -30,6 +32,7 @@ export let DATA = {
                 backgroundImage: 'assets/images/avatar-large/7.jpg',
                 title: 'Work Experience',
                 description: 'Do you have any work experience?',
+                skills:['teamwork'],
                 button: 'Next',
                 skip: 'Skip'
             },
@@ -37,6 +40,7 @@ export let DATA = {
                 backgroundImage: 'assets/images/avatar-large/7.jpg',
                 title: 'Languages',
                 description: 'Do you know any other languages?',
+                skills:['languages'],
                 button: 'Next',
                 skip: 'Skip'
             },
@@ -44,6 +48,7 @@ export let DATA = {
                 backgroundImage: 'assets/images/avatar-large/7.jpg',
                 title: 'Presentations',
                 description: 'Have you done any presentations?',
+                skills:['presentation'],
                 button: 'Next',
                 skip: 'Skip'
             },
@@ -51,6 +56,7 @@ export let DATA = {
                 backgroundImage: 'assets/images/avatar-large/7.jpg',
                 title: 'Hobbies?',
                 description: 'Do you have any hobbies?',
+                skills:['teamwork'],
                 button: 'Next',
                 skip: 'Skip'
             }
