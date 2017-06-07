@@ -17,7 +17,7 @@ export class MockDataProvider {
     this.data = DATA;
   }
 
-  getUser(userId){
+  getUser(userId) {
     var user = this.data.users.filter(user => user.id == userId)[0];
     user.currentSkills.map(skill => {
       skill.object = this.getSkill(skill.skillId);
@@ -26,16 +26,25 @@ export class MockDataProvider {
     return user;
   }
 
-  getSkill(skillId){
+  getSkill(skillId) {
     return this.data.skills.filter(skill => skill.id == skillId)[0];
   }
 
-  getActivity(activityId){
+  getActivity(activityId) {
     return this.data.activities.filter(activity => activity.id == activityId)[0];
   }
 
-  getQuestions(){
+  getQuestions() {
     return this.data.questions;
+  }
+  saveQuestions(answeredQuestions) {
+    this.data.users[0].currentSkills = answeredQuestions.filter(q => q.yes).map(q => {
+      return { skillId: q.skill, experiences: [{ story: q.experience }] };
+    });
+    this.data.users[0].currentSkills.map(skill => {
+      skill.object = this.getSkill(skill.skillId);
+      return skill
+    });
   }
 
 }

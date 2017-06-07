@@ -21,7 +21,7 @@ export class QuestionPage {
 
   constructor(private navCtrl: NavController, private dataP: MockDataProvider) {
     this.data = this.dataP.getQuestions();
-   }
+  }
   ngOnInit() {
 
   }
@@ -57,8 +57,9 @@ export class QuestionPage {
     }
     console.log(event);
   }
-  onFinish(){
+  onFinish() {
     console.log('finished');
+    this.dataP.saveQuestions(this.data.items);
     this.navCtrl.pop();
   }
 
