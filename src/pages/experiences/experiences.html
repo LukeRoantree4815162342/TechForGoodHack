@@ -15,12 +15,22 @@
 
 <ion-content padding>
 
-<ion-card *ngFor="let experience of skill.experiences">
+  <ion-card *ngFor="let experience of skill.experiences">
 
-  <ion-card-content>
-    {{experience.story}}
-  </ion-card-content>
+    <ion-card-content>
+      <ion-item>
+        <ion-row>
+          {{experience.story}}
+        </ion-row>
+        <ion-row>
+          <button style="background: limegreen" item-end  ion-button small color="success">
+        <ion-icon name="checkmark-circle">Validated By John Cuddidhy (Youth Worker)</ion-icon>
+      </button>
+        </ion-row>
 
-</ion-card>
+      </ion-item>
+    </ion-card-content>
+
+  </ion-card>
 
 </ion-content>
