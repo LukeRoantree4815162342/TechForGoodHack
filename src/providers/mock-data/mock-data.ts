@@ -37,13 +37,41 @@ export class MockDataProvider {
   getQuestions() {
     return this.data.questions;
   }
-  saveQuestions(answeredQuestions) {
-    this.data.users[0].currentSkills = answeredQuestions.filter(q => q.yes).map(q => {
-      return { skillId: q.skill, experiences: [{ story: q.experience }] };
+  saveQuestions(userId, answeredQuestions) {
+
+    answeredQuestions.filter(q => q.yes).map(q => {
+      this.addSkill(userId,q.skill,q.experience);
     });
-    this.data.users[0].currentSkills.map(skill => {
-      skill.object = this.getSkill(skill.skillId);
-      return skill
+
+  }
+
+  addSkill(userId, skillId, story){
+    var user = this.getUser(userId);
+
+    if(user.currentSkills.filter(skill => skill.skillId == skillId).length == 0){
+      console.log("if was true");
+      user.currentSkills = user.currentSkills.concat({skillId: skillId, experiences: [{ story: story }]});
+    }
+    else{
+      console.log("if was false");
+
+      user.currentSkills = user.currentSkills.map(skill => {
+        if(skill.skillId == skillId){
+          skill.experiences = skill.experiences.concat({story:story});
+        }
+        return skill;
+      })
+    }
+
+    this.updateUser(userId,user);
+  }
+
+  updateUser(userId,newUser){
+    this.data.users = this.data.users.map(user => {
+      if(user.id == userId){
+        user = newUser;
+      }
+      return user;
     });
   }
 

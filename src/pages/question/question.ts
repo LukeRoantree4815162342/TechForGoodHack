@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Slides } from 'ionic-angular';
 import { MockDataProvider } from "../../providers/mock-data/mock-data";
 
@@ -19,7 +19,9 @@ export class QuestionPage {
   @Input() events: any;
   @ViewChild('wizardSlider') slider: Slides;
 
-  constructor(private navCtrl: NavController, private dataP: MockDataProvider) {
+  private userId;
+  constructor(private navCtrl: NavController, private navParams: NavParams,private dataP: MockDataProvider) {
+    this.userId = this.navParams.data;
     this.data = this.dataP.getQuestions();
   }
   ngOnInit() {
@@ -59,7 +61,7 @@ export class QuestionPage {
   }
   onFinish() {
     console.log('finished');
-    this.dataP.saveQuestions(this.data.items);
+    this.dataP.saveQuestions(this.userId,this.data.items);
     this.navCtrl.pop();
   }
 

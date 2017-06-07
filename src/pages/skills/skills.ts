@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { QuestionPage } from "../question/question";
 
 import { ExperiencesPage } from '../experiences/experiences';
-import { MockDataProvider } from '../../providers/mock-data/mock-data'; 
 /**
  * Generated class for the SkillsPage page.
  *
@@ -18,7 +17,7 @@ import { MockDataProvider } from '../../providers/mock-data/mock-data';
 export class SkillsPage {
 
   private user;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public data: MockDataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController) {
     this.user = this.navParams.data;
     console.log(this.user);
   }
@@ -27,15 +26,49 @@ export class SkillsPage {
     console.log('ionViewDidLoad SkillsPage');
   }
 
-  AddSkill(skillId, experience){
-    // this.data.addSkill(this.user.id, skillId, experience);
+  AddSkill(){
+   let actionSheet = this.actionSheetCtrl.create({
+     title: 'Add a skill via:',
+     buttons: [
+       {
+         text: 'Skills questionnaire',
+         icon: 'list-box',
+         handler: () => {
+          this.navCtrl.push(QuestionPage, this.user.id);
+         }
+       },
+       {
+         text: 'AI enhanced skills finder',
+         icon : 'ionitron',
+         handler: () => {
+           console.log('AI option chosen');
+         }
+       },
+       {
+         text: 'Manual Input',
+         icon: 'create',
+         handler: () => {
+           console.log('Archive clicked');
+         }
+       },
+       {
+         text: 'Cancel',
+         role : 'cancel',
+         icon: 'close',
+         handler: () => {
+           console.log('Cancel clicked');
+         }
+       }
+     ]
+   });
+   actionSheet.present();
   }
   ShowExperiences(skill){
     this.navCtrl.push(ExperiencesPage, skill);
   }
 
   startQuestion(){
-    this.navCtrl.push(QuestionPage);
+    this.navCtrl.push(QuestionPage, this.user.id);
   }
 
 }
