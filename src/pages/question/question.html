@@ -28,8 +28,7 @@
         <button ion-button color="secondary" (click)="item.yes=true">Yes</button>
         <button ion-button color="danger" (click)="changeSlide(1);item.yes=false">No</button>
         <div *ngIf="item.yes">
-          List your experiences..
-          <ion-input wizard-answer [(ngModel)]="item.experience"></ion-input>
+          <ion-input wizard-answer [(ngModel)]="item.experience" placeholder="What is your experience?"></ion-input>
         </div>
       </div>
     </ion-slide>
