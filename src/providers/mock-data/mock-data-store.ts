@@ -52,7 +52,7 @@ export let DATA = {
             {
                 backgroundImage: 'assets/images/question_images/PublicSpeaking.jpg',
                 title: 'Presentations',
-                description: 'Have you done any presentations?',
+                description: 'Have you given any presentations before?',
                 skill: 10,
                 yes: false,
                 button: 'Next',
