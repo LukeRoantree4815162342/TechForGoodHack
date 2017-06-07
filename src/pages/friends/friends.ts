@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the FriendsPage page.
@@ -7,7 +7,6 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
 @Component({
   selector: 'page-friends',
   templateUrl: 'friends.html',
@@ -34,7 +33,7 @@ export class FriendsPage {
     alert.present();
   }
   endorse() {
-    let skillToBeEndorsed = '';
+    //let skillToBeEndorsed = '';
     let alert = this.alertCtrl.create({
       title: 'Endorse',
       inputs: [

@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { Slides } from 'ionic-angular';
 import { MockDataProvider } from "../../providers/mock-data/mock-data";
 

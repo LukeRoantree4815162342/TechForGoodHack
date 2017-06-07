@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
+import { NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { QuestionPage } from "../question/question";
 
 import { ExperiencesPage } from '../experiences/experiences';
@@ -9,7 +9,6 @@ import { ExperiencesPage } from '../experiences/experiences';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
 @Component({
   selector: 'page-skills',
   templateUrl: 'skills.html',

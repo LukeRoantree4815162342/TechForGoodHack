@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { SkillsPage } from '../skills/skills';
 import { ProgressPage } from '../progress/progress';
@@ -17,7 +17,6 @@ import { MockDataProvider } from '../../providers/mock-data/mock-data';
   selector: 'page-main',
   templateUrl: 'main.html'
 })
-@IonicPage()
 export class MainPage {
 
   private user;
