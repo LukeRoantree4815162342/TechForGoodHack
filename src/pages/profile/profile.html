@@ -8,6 +8,11 @@
 
   <ion-navbar>
     <ion-title>Your Profile</ion-title>
+    <ion-buttons end>
+      <button ion-button color="danger">
+        Log out
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -15,5 +20,35 @@
 
 <ion-content padding>
 
-  
+
+    <div class="personal-info" text-center>
+      <img src="../../assets/profiles/face4.jpeg">
+      <h3>Joe Bloggs</h3>
+    </div>
+
+    <div class="stats-content">
+      <h4>Your Stats</h4>
+      <ion-grid text-center>
+        <ion-row>
+          <ion-col col-6 id="skills">
+            <h1>4</h1>
+            Skills
+          </ion-col>
+          <ion-col col-6 id="experiences">
+            <h1>17</h1>
+            Experiences
+          </ion-col>
+          <ion-col col-6 id="friends">
+            <h1>10</h1>
+            Friends
+          </ion-col>
+          <ion-col col-6 id="activities">
+            <h1>2</h1>
+            <p>Activities</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+
 </ion-content>

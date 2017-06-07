@@ -33,7 +33,7 @@ export let DATA = {
                 },
                 {
                     "skillId" : 5,
-                    "experiences" : [
+                    "experiences" : [   
                         {
                             "story" : "Taught myself web development"
                         }
