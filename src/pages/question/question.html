@@ -23,7 +23,7 @@
     <ion-slide background-size *ngFor="let item of data.items;" [ngStyle]="{'background-image': 'url(' + item.backgroundImage + ')'}">
       <div wizard-description text-left>
         <h1 wizard-title>{{item.title}}</h1>
-        <h3 wizard-body-text>{{item.description}}</h3>
+        <h2 wizard-body-text>{{item.description}}</h2>
         <!--<ion-input wizard-answer required type="text" [(ngModel)]="item.answer"></ion-input>-->
         <button ion-button color="secondary" (click)="item.yes=true">Yes</button>
         <button ion-button color="danger" (click)="changeSlide(1);item.yes=false">No</button>
