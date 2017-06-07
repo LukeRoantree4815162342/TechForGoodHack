@@ -74,6 +74,7 @@ export let DATA = {
         {
             "id": 1,
             "name": "Simon Mcgregor",
+            "src" : "../../assets/profiles/face3.jpg",
             "friends": [
                 {
                     "friendId": 2
@@ -126,6 +127,7 @@ export let DATA = {
         }, {
             "id": 2,
             "name": "Thomas Wayne",
+            "src" : "../../assets/profiles/face4.jpeg",
             "friends": [
                 {
                     "friendId": 1
@@ -150,6 +152,7 @@ export let DATA = {
         }, {
             "id": 3,
             "name": "David Blaine",
+            "src" : "../../assets/profiles/face1.jpg",
             "friends": [
                 {
                     "friendId": 1
