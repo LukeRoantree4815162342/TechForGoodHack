@@ -17,7 +17,7 @@ page-question {
     border-radius: 4px;
     position: relative;
     overflow: hidden;
-    // @include darkening-blend-mode;
+    @include darkening-blend-mode;
   }
 
   [default-button] {
@@ -41,6 +41,7 @@ page-question {
 
     ion-slide {
     background-size: 100% 100%;
+    padding:20px;
     background-repeat:no-repeat;
   }
 
