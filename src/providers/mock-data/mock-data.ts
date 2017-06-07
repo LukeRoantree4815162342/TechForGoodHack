@@ -18,12 +18,32 @@ export class MockDataProvider {
   }
 
   getUser(userId) {
+
+    console.log('getting latest user!');
     var user = this.data.users.filter(user => user.id == userId)[0];
     user.currentSkills.map(skill => {
       skill.object = this.getSkill(skill.skillId);
-      return skill
+      return skill;
     });
+    user.friends.map(friend => {
+      friend.object = this.getFriend(friend.friendId);
+      return friend;
+    });
+
+    if(user.goal != null){
+      user.goal.skills.map(skill => {
+        skill.object = this.getSkill(skill.skillId);
+        skill.obtained = user.currentSkills.filter(currentskill => currentskill.skillId == skill.skillId).length != 0;
+        return skill;
+      });
+    }
+
     return user;
+  }
+
+  //the reason I am not using getUser instead is that if i use getUser when finding a friend, i will end up in an infinite loop
+  getFriend(userId){
+    return this.data.users.filter(user => user.id == userId)[0];
   }
 
   getSkill(skillId) {
@@ -39,10 +59,11 @@ export class MockDataProvider {
   }
   saveQuestions(userId, answeredQuestions) {
 
+
     answeredQuestions.filter(q => q.yes).map(q => {
       this.addSkill(userId,q.skill,q.experience);
     });
-
+    this.getUser(userId);//dont remove line, breaks the method (for some crazy reason...)
   }
 
   addSkill(userId, skillId, story){
@@ -74,5 +95,21 @@ export class MockDataProvider {
       return user;
     });
   }
+
+  saveGoal(userId, newGoal){
+    this.getUser(userId).goal = this.data.goals.filter(goal => goal.title==newGoal)[0];
+
+    console.log(this.getUser(userId));
+    var user = this.data.users.filter(user => user.id == userId)[0];
+
+    user.goal.skills.map(skill => {
+      skill.object = this.getSkill(skill.skillId);
+      skill.obtained = this.getUser(userId).currentSkills.filter(currentskill => currentskill.skillId == skill.skillId).length != 0;
+      return skill;
+    });
+  }
+
+
+  
 
 }

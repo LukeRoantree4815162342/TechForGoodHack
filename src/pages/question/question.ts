@@ -64,5 +64,5 @@ export class QuestionPage {
     this.dataP.saveQuestions(this.userId,this.data.items);
     this.navCtrl.pop();
   }
-
+  
 }

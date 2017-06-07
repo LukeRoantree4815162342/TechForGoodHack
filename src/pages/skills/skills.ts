@@ -19,7 +19,6 @@ export class SkillsPage {
   private user;
   constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController) {
     this.user = this.navParams.data;
-    console.log(this.user);
   }
 
   ionViewDidLoad() {
@@ -69,6 +68,18 @@ export class SkillsPage {
 
   startQuestion(){
     this.navCtrl.push(QuestionPage, this.user.id);
+  }
+
+  GetSkillLevel(level){
+    if(level < 3){
+      return "weak";
+    }
+    else if(level <5){
+      return "medium";
+    }
+    else{
+      return "strong";
+    }
   }
 
 }

@@ -15,7 +15,11 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 
 export class FriendsPage {
 
+  private user;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+    this.user = this.navParams.data;
+
+    console.log(this.user);
   }
 
   ionViewDidLoad() {

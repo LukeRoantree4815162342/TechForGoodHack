@@ -17,7 +17,7 @@ export let DATA = {
                 backgroundImage: 'assets/images/question_images/IndividualSport.jpg',
                 title: 'Individual Sport',
                 description: 'Have you played an individual sport?',
-                skill: 2,
+                skill: 4,
                 yes: false,
                 button: 'Next',
                 skip: 'Skip'
@@ -26,7 +26,7 @@ export let DATA = {
                 backgroundImage: 'assets/images/question_images/Volunteering.jpg',
                 title: 'Volunteer',
                 description: 'Have you done any volunteering work?',
-                skill: 3,
+                skill: 5,
                 yes: false,
                 button: 'Next',
                 skip: 'Skip'
@@ -35,7 +35,7 @@ export let DATA = {
                 backgroundImage: 'assets/images/question_images/WorkExperience.jpg',
                 title: 'Work Experience',
                 description: 'Do you have any work experience?',
-                skill: 4,
+                skill: 3,
                 yes: false,
                 button: 'Next',
                 skip: 'Skip'
@@ -44,7 +44,7 @@ export let DATA = {
                 backgroundImage: 'assets/images/question_images/ForeignLanguage.jpg',
                 title: 'Languages',
                 description: 'Do you know any other languages?',
-                skill: 5,
+                skill: 8,
                 yes: false,
                 button: 'Next',
                 skip: 'Skip'
@@ -53,7 +53,7 @@ export let DATA = {
                 backgroundImage: 'assets/images/question_images/PublicSpeaking.jpg',
                 title: 'Presentations',
                 description: 'Have you done any presentations?',
-                skill: 5,
+                skill: 10,
                 yes: false,
                 button: 'Next',
                 skip: 'Skip'
@@ -61,8 +61,38 @@ export let DATA = {
             {
                 backgroundImage: 'assets/images/question_images/Hobbies.jpg',
                 title: 'Hobbies?',
-                description: 'Do you have any hobbies?',
+                description: 'Do you have any self taught hobbies?',
                 skill: 5,
+                yes: false,
+                no: false,
+                button: 'Next',
+                skip: 'Skip'
+            },
+            {
+                backgroundImage: 'assets/images/question_images/Education.jpg',
+                title: 'Education',
+                description: 'Do you have a GCSE certification or above? (specify highest qualification)',
+                skill: 9,
+                yes: false,
+                no: false,
+                button: 'Next',
+                skip: 'Skip'
+            },
+            {
+                backgroundImage: 'assets/images/question_images/Leadership.jpg',
+                title: 'Leadership',
+                description: 'Have you ever been leader of a team in a sport or at school?',
+                skill: 3,
+                yes: false,
+                no: false,
+                button: 'Next',
+                skip: 'Skip'
+            },
+            {
+                backgroundImage: 'assets/images/question_images/Discipline.jpg',
+                title: 'Discipline',
+                description: 'Was there ever a difficult task which took you a long time to accomplish?',
+                skill: 4,
                 yes: false,
                 no: false,
                 button: 'Next',
@@ -84,45 +114,19 @@ export let DATA = {
                 }
             ],
             "currentSkills": [
-                // {
-                //     "skillId": 1,
-                //     "experiences": [
-                //         {
-                //             "story": "Played in my local football team for 2 months"
-                //         },
-                //         {
-                //             "story": "Completed several team projects as part of my science GCSE"
-                //         }
-                //     ]
-                // },
-                // {
-                //     "skillId": 4,
-                //     "experiences": [
-                //         {
-                //             "story": "Was the treasurer of the computer science society at my school"
-                //         }
-                //     ]
-                // },
-                // {
-                //     "skillId": 5,
-                //     "experiences": [
-                //         {
-                //             "story": "Taught myself web development"
-                //         }
-                //     ]
-                // }
             ],
-            "goal": {
-                "url": "randomjob",
-                "requiredSkills": [
-                    {
-                        "skillId": 2
-                    },
-                    {
-                        "skills": 3
-                    }
-                ]
-            },
+            "goal": null,
+            // {
+            //     "title": "randomjob",
+            //     "skills": [
+            //         {
+            //             "skillId": 2
+            //         },
+            //         {
+            //             "skillId": 3
+            //         }
+            //     ]
+            // },
             "activities": []
         }, {
             "id": 2,
@@ -138,8 +142,8 @@ export let DATA = {
             ],
             "currentSkills": [],
             "goal": {
-                "url": "randomjob",
-                "requiredSkills": [
+                "title": "randomjob",
+                "skills": [
                     {
                         "skillId": 2
                     },
@@ -172,8 +176,8 @@ export let DATA = {
                 }
             ],
             "goal": {
-                "url": "otherjob",
-                "requiredSkills": [
+                "title": "otherjob",
+                "skills": [
                     {
                         "skillId": 1
                     },
@@ -200,17 +204,37 @@ export let DATA = {
         },
         {
             "id": 4,
-            "name": "Management"
+            "name": "Discipline"
         },
         {
             "id": 5,
             "name": "Initiative"
+        },
+        {
+            "id": 6,
+            "name": "Creativity"
+        },
+        {
+            "id": 7,
+            "name": "Problem-Solving"
+        },
+        {
+            "id": 8,
+            "name": "Adaptability"
+        },
+        {
+            "id": 9,
+            "name": "Education"
+        },
+        {
+            "id": 10,
+            "name": "Presentation"
         }
     ],
     "activities": [
         {
             "id": 1,
-            "name": "sports club",
+            "name": "Belfast Sports Club",
             "url": "someRandomLink",
             "skillsGained": [
                 {
@@ -218,6 +242,28 @@ export let DATA = {
                 },
                 {
                     "id": 3
+                }
+            ]
+        }
+    ],
+    "goals": [
+        {
+            "title" : "teacher",
+            "skills": [
+                {
+                    "skillId" : 2
+                },
+                {
+                    "skillId" : 3
+                },
+                {
+                    "skillId" : 4
+                },
+                {
+                    "skillId" : 6
+                },
+                {
+                    "skillId" : 10
                 }
             ]
         }

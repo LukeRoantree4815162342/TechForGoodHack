@@ -15,8 +15,9 @@ import { MockDataProvider } from '../../providers/mock-data/mock-data';
 })
 export class ProgressPage {
 
+  private goalUrl = "";
   private user;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public data:MockDataProvider) {
     this.user = this.navParams.data;
   }
 
@@ -24,4 +25,17 @@ export class ProgressPage {
     console.log('ionViewDidLoad ProgressPage');
   }
 
+  SaveGoal(){
+    this.data.saveGoal(this.user.id, this.goalUrl);
+  }
+  GetRemainingSkillsCount(){
+    var count = 0;
+    this.user.goal.skills.map(skill => {
+      if(!skill.obtained){
+        count++;
+      }
+    });
+
+    return count;
+  }
 }

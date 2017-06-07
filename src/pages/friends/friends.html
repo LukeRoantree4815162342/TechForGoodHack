@@ -21,13 +21,13 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item>
+    <ion-item *ngFor="let friend of user.friends">
       <ion-thumbnail item-start>
-        <img src="../../assets/profiles/face1.jpg">
+        <img src={{friend.object.src}}>
       </ion-thumbnail>
-      <h2>Jack Pito</h2>
-      <p>Has 15 skills</p>
-      <button ion-button clear item-end (click)="endorse()">Endorse</button>
+      <h2>{{friend.object.name}}</h2>
+      <p>Has {{friend.object.currentSkills.length}} skills</p>
+          <button ion-button clear item-end (click)="endorse()">Endorse</button>
     </ion-item>
   </ion-list>
 </ion-content>
