@@ -16,7 +16,7 @@
 
   <!--Content-->
   <!--Theme Wizard Big Image -->
-  <button skip button-clear clear ion-button text-right>
+  <button skip (click)="changeSlide(1)" button-clear clear ion-button text-right>
     {{data.btnSkip}}
 </button>
   <ion-slides #wizardSlider *ngIf="data.items.length" (ionSlideDidChange)="slideHasChanged()" pager="true">
