@@ -9,6 +9,7 @@ export let DATA = {
                 title: 'Team Sports',
                 description: 'Have you played a team sport?',
                 skills:['teamwork'],
+                yes:false,
                 button: 'Next',
                 skip: 'Skip'
             },
@@ -17,6 +18,7 @@ export let DATA = {
                 title: 'Individual Sport',
                 description: 'Have you played an individual sport?',
                 skills:['focus'],
+                yes:false,
                 button: 'Next',
                 skip: 'Skip'
             },
@@ -25,6 +27,7 @@ export let DATA = {
                 title: 'Volunteer',
                 description: 'Have you done any volunteering work?',
                 skills:['volunteering'],
+                yes:false,
                 button: 'Next',
                 skip: 'Skip'
             },
@@ -33,6 +36,7 @@ export let DATA = {
                 title: 'Work Experience',
                 description: 'Do you have any work experience?',
                 skills:['teamwork'],
+                yes:false,
                 button: 'Next',
                 skip: 'Skip'
             },
@@ -41,6 +45,7 @@ export let DATA = {
                 title: 'Languages',
                 description: 'Do you know any other languages?',
                 skills:['languages'],
+                yes: false,
                 button: 'Next',
                 skip: 'Skip'
             },
@@ -49,6 +54,8 @@ export let DATA = {
                 title: 'Presentations',
                 description: 'Have you done any presentations?',
                 skills:['presentation'],
+                yes:false,
+                no: false,
                 button: 'Next',
                 skip: 'Skip'
             },
@@ -57,6 +64,8 @@ export let DATA = {
                 title: 'Hobbies?',
                 description: 'Do you have any hobbies?',
                 skills:['teamwork'],
+                yes:false,
+                no: false,
                 button: 'Next',
                 skip: 'Skip'
             }
