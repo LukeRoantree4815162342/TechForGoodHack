@@ -16,28 +16,24 @@
     </ion-buttons>
 
   </ion-navbar>
-  
-
 </ion-header>
-
-
 <ion-content padding>
-<ion-list>
-  <ion-list-header>
-    Skills Obtained
-  </ion-list-header>
-  <ion-card *ngIf="!user.currentSkills.length">
-    <ion-card-content>
-    <i>You currently do not have any skills listed here, try our skills questionnaire to help you understand what skills you most likely possess!</i>
-    
-    <button ion-button block outline (click)="startQuestion()">Start questionnaire</button>
-    </ion-card-content>
-  </ion-card>
+  <ion-list>
+    <ion-list-header>
+      Skills Obtained
+    </ion-list-header>
+    <ion-card *ngIf="!user.currentSkills.length">
+      <ion-card-content>
+        <i>You currently do not have any skills listed here, try our skills questionnaire to help you understand what skills you most likely possess!</i>
 
-  <button ion-item icon-right *ngFor="let skill of user.currentSkills" (click)="ShowExperiences(skill)">
+        <button ion-button block outline (click)="startQuestion()">Start questionnaire</button>
+      </ion-card-content>
+    </ion-card>
+
+    <button ion-item icon-right *ngFor="let skill of user.currentSkills" (click)="ShowExperiences(skill)">
     {{skill.object.name}} ({{skill.experiences.length}} examples)
   </button>
 
 
-</ion-list>
+  </ion-list>
 </ion-content>

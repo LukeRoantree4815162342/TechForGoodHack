@@ -35,13 +35,27 @@ page-question {
   }
 
   ion-slides {
-    height: 88%;
+    height: 60%;
     margin-top: 20px;
   }
 
+    ion-slide {
+    background-size: 100% 100%;
+    background-repeat:no-repeat;
+  }
+
+  
+
   [wizard-title] {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: whitesmoke;
     z-index: 2;
     position: relative;
+  }
+  [wizard-body-text] {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: whitesmoke;
+
   }
 
   .swiper-pagination {
