@@ -1,6 +1,34 @@
 /******/ (function(modules) { // webpackBootstrap
+/******/ 	// install a JSONP callback for chunk loading
+/******/ 	var parentJsonpFunction = window["webpackJsonp"];
+/******/ 	window["webpackJsonp"] = function webpackJsonpCallback(chunkIds, moreModules, executeModules) {
+/******/ 		// add "moreModules" to the modules object,
+/******/ 		// then flag all "chunkIds" as loaded and fire callback
+/******/ 		var moduleId, chunkId, i = 0, resolves = [], result;
+/******/ 		for(;i < chunkIds.length; i++) {
+/******/ 			chunkId = chunkIds[i];
+/******/ 			if(installedChunks[chunkId])
+/******/ 				resolves.push(installedChunks[chunkId][0]);
+/******/ 			installedChunks[chunkId] = 0;
+/******/ 		}
+/******/ 		for(moduleId in moreModules) {
+/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
+/******/ 				modules[moduleId] = moreModules[moduleId];
+/******/ 			}
+/******/ 		}
+/******/ 		if(parentJsonpFunction) parentJsonpFunction(chunkIds, moreModules, executeModules);
+/******/ 		while(resolves.length)
+/******/ 			resolves.shift()();
+/******/
+/******/ 	};
+/******/
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
+/******/
+/******/ 	// objects to store loaded and loading chunks
+/******/ 	var installedChunks = {
+/******/ 		0: 0
+/******/ 	};
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -26,6 +54,49 @@
 /******/ 		return module.exports;
 /******/ 	}
 /******/
+/******/ 	// This file contains only the entry chunk.
+/******/ 	// The chunk loading function for additional chunks
+/******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
+/******/ 		if(installedChunks[chunkId] === 0)
+/******/ 			return Promise.resolve();
+/******/
+/******/ 		// an Promise means "currently loading".
+/******/ 		if(installedChunks[chunkId]) {
+/******/ 			return installedChunks[chunkId][2];
+/******/ 		}
+/******/ 		// start chunk loading
+/******/ 		var head = document.getElementsByTagName('head')[0];
+/******/ 		var script = document.createElement('script');
+/******/ 		script.type = 'text/javascript';
+/******/ 		script.charset = 'utf-8';
+/******/ 		script.async = true;
+/******/ 		script.timeout = 120000;
+/******/
+/******/ 		if (__webpack_require__.nc) {
+/******/ 			script.setAttribute("nonce", __webpack_require__.nc);
+/******/ 		}
+/******/ 		script.src = __webpack_require__.p + "" + chunkId + ".main.js";
+/******/ 		var timeout = setTimeout(onScriptComplete, 120000);
+/******/ 		script.onerror = script.onload = onScriptComplete;
+/******/ 		function onScriptComplete() {
+/******/ 			// avoid mem leaks in IE.
+/******/ 			script.onerror = script.onload = null;
+/******/ 			clearTimeout(timeout);
+/******/ 			var chunk = installedChunks[chunkId];
+/******/ 			if(chunk !== 0) {
+/******/ 				if(chunk) chunk[1](new Error('Loading chunk ' + chunkId + ' failed.'));
+/******/ 				installedChunks[chunkId] = undefined;
+/******/ 			}
+/******/ 		};
+/******/
+/******/ 		var promise = new Promise(function(resolve, reject) {
+/******/ 			installedChunks[chunkId] = [resolve, reject];
+/******/ 		});
+/******/ 		installedChunks[chunkId][2] = promise;
+/******/
+/******/ 		head.appendChild(script);
+/******/ 		return promise;
+/******/ 	};
 /******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
@@ -61,6 +132,9 @@
 /******/
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "build/";
+/******/
+/******/ 	// on error function for async loading
+/******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 271);
@@ -26285,13 +26359,13 @@ ReactiveFormsModule.ctorParameters = function () { return []; };
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_action_sheet_action_sheet__ = __webpack_require__(50);
 /* unused harmony reexport ActionSheet */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_action_sheet_action_sheet_controller__ = __webpack_require__(112);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_3__components_action_sheet_action_sheet_controller__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_3__components_action_sheet_action_sheet_controller__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_action_sheet_action_sheet_component__ = __webpack_require__(49);
 /* unused harmony reexport ActionSheetCmp */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_alert_alert__ = __webpack_require__(52);
 /* unused harmony reexport Alert */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_alert_alert_controller__ = __webpack_require__(113);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_6__components_alert_alert_controller__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_6__components_alert_alert_controller__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_alert_alert_component__ = __webpack_require__(51);
 /* unused harmony reexport AlertCmp */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_app_app__ = __webpack_require__(6);
@@ -26369,7 +26443,7 @@ ReactiveFormsModule.ctorParameters = function () { return []; };
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__components_loading_loading__ = __webpack_require__(138);
 /* unused harmony reexport Loading */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__components_loading_loading_controller__ = __webpack_require__(137);
-/* unused harmony reexport LoadingController */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_45__components_loading_loading_controller__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__components_loading_loading_component__ = __webpack_require__(65);
 /* unused harmony reexport LoadingCmp */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__components_menu_menu__ = __webpack_require__(141);
@@ -26451,7 +26525,7 @@ ReactiveFormsModule.ctorParameters = function () { return []; };
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_85__components_slides_slide__ = __webpack_require__(159);
 /* unused harmony reexport Slide */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_86__components_slides_slides__ = __webpack_require__(81);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_86__components_slides_slides__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_86__components_slides_slides__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_87__components_spinner_spinner__ = __webpack_require__(162);
 /* unused harmony reexport Spinner */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_88__components_split_pane_split_pane__ = __webpack_require__(34);
@@ -26470,7 +26544,7 @@ ReactiveFormsModule.ctorParameters = function () { return []; };
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_94__components_toast_toast_component__ = __webpack_require__(88);
 /* unused harmony reexport ToastCmp */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_95__components_toast_toast_controller__ = __webpack_require__(166);
-/* unused harmony reexport ToastController */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_95__components_toast_toast_controller__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_96__components_toggle_toggle__ = __webpack_require__(168);
 /* unused harmony reexport Toggle */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_97__components_toolbar_toolbar_footer__ = __webpack_require__(170);
@@ -26504,20 +26578,20 @@ ReactiveFormsModule.ctorParameters = function () { return []; };
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_110__platform_dom_controller__ = __webpack_require__(8);
 /* unused harmony reexport DomController */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_111__platform_platform__ = __webpack_require__(3);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_111__platform_platform__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_111__platform_platform__["a"]; });
 /* unused harmony reexport setupPlatform */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_112__tap_click_haptic__ = __webpack_require__(36);
 /* unused harmony reexport Haptic */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_113__navigation_deep_linker__ = __webpack_require__(15);
 /* unused harmony reexport DeepLinker */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_114__navigation_ionic_page__ = __webpack_require__(236);
-/* unused harmony reexport IonicPage */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_114__navigation_ionic_page__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_115__navigation_nav_controller__ = __webpack_require__(20);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_115__navigation_nav_controller__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_115__navigation_nav_controller__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_116__navigation_nav_controller_base__ = __webpack_require__(46);
 /* unused harmony reexport NavControllerBase */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_117__navigation_nav_params__ = __webpack_require__(16);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_117__navigation_nav_params__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_117__navigation_nav_params__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_118__navigation_nav_util__ = __webpack_require__(22);
 /* unused harmony reexport DeepLinkMetadata */
 /* unused harmony reexport DeepLinkMetadataFactory */
@@ -26577,7 +26651,7 @@ ReactiveFormsModule.ctorParameters = function () { return []; };
 /* unused harmony reexport IonicGestureConfig */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_138__module__ = __webpack_require__(235);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_138__module__["a"]; });
-/* unused harmony reexport IonicPageModule */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_138__module__["b"]; });
 /* unused harmony reexport provideLocationStrategy */
 
 
@@ -37655,7 +37729,6 @@ var MockDataProvider = (function () {
     }
     MockDataProvider.prototype.getUser = function (userId) {
         var _this = this;
-        console.log('getting latest user!');
         var user = this.data.users.filter(function (user) { return user.id == userId; })[0];
         user.currentSkills.map(function (skill) {
             skill.object = _this.getSkill(skill.skillId);
@@ -37729,6 +37802,38 @@ var MockDataProvider = (function () {
             skill.obtained = _this.getUser(userId).currentSkills.filter(function (currentskill) { return currentskill.skillId == skill.skillId; }).length != 0;
             return skill;
         });
+    };
+    MockDataProvider.prototype.getActivities = function (skillId) {
+        var _this = this;
+        var activities = this.data.activities.filter(function (activity) {
+            var count = 0;
+            activity.skillsGained.map(function (skill) {
+                if (skill.id == skillId) {
+                    count++;
+                }
+            });
+            return count > 0;
+        });
+        console.log('at this point');
+        console.log(activities);
+        activities = activities.map(function (activity) {
+            activity.skillsGained = activity.skillsGained.map(function (skill) {
+                skill.object = _this.getSkill(skill.id);
+                return skill;
+            });
+            return activity;
+        });
+        return activities;
+    };
+    MockDataProvider.prototype.AddActivity = function (activityId, userId) {
+        var _this = this;
+        var user = this.data.users.filter(function (user) { return user.id == userId; })[0];
+        var activity = this.data.activities.filter(function (activity) { return activity.id == activityId; })[0];
+        user.activities = user.activities.concat({ activityId: activity.id });
+        activity.skillsGained.map(function (skill) {
+            _this.addSkill(userId, skill.id, skill.experience);
+        });
+        this.getUser(userId);
     };
     return MockDataProvider;
 }());
@@ -55876,9 +55981,9 @@ var ExperiencesPage = (function () {
 }());
 ExperiencesPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-experiences',template:/*ion-inline-start:"E:\projects\TechForGoodHack\src\pages\experiences\experiences.html"*/'<!--\n\n  Generated template for the ExperiencesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>{{skill.object.name}} Stories</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <ion-card *ngFor="let experience of skill.experiences">\n\n\n\n    <ion-card-content>\n\n      <ion-item>\n\n        <ion-row>\n\n          {{experience.story}}\n\n        </ion-row>\n\n        <ion-row>\n\n          <button style="background: limegreen" item-end  ion-button small color="success">\n\n        <ion-icon name="checkmark-circle">Validated By John Cuddidhy (Youth Worker)</ion-icon>\n\n      </button>\n\n        </ion-row>\n\n\n\n      </ion-item>\n\n    </ion-card-content>\n\n\n\n  </ion-card>\n\n\n\n</ion-content>'/*ion-inline-end:"E:\projects\TechForGoodHack\src\pages\experiences\experiences.html"*/,
+        selector: 'page-experiences',template:/*ion-inline-start:"/Users/helmi/Documents/Personal Projects/TechForGoodHack/src/pages/experiences/experiences.html"*/'<!--\n  Generated template for the ExperiencesPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{skill.object.name}} Stories</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <ion-card *ngFor="let experience of skill.experiences">\n\n    <ion-card-content>\n      <p>{{experience.story}}</p>\n      <button style="background: limegreen" item-end  ion-button small color="success">\n        <ion-icon name="checkmark-circle">Validated</ion-icon>\n      </button>\n        \n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>'/*ion-inline-end:"/Users/helmi/Documents/Personal Projects/TechForGoodHack/src/pages/experiences/experiences.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
 ], ExperiencesPage);
 
 //# sourceMappingURL=experiences.js.map
@@ -55973,9 +56078,9 @@ var FriendsPage = (function () {
 }());
 FriendsPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-friends',template:/*ion-inline-start:"E:\projects\TechForGoodHack\src\pages\friends\friends.html"*/'<!--\n\n  Generated template for the FriendsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Friends list</ion-title>\n\n\n\n    <ion-buttons end>\n\n      <button ion-button icon-only>\n\n        <ion-icon name="add"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n  <ion-list>\n\n    <ion-item *ngFor="let friend of user.friends">\n\n      <ion-thumbnail item-start>\n\n        <img src={{friend.object.src}}>\n\n      </ion-thumbnail>\n\n      <h2>{{friend.object.name}}</h2>\n\n      <p>Has {{friend.object.currentSkills.length}} skills</p>\n\n          <button ion-button clear item-end (click)="endorse()">Endorse</button>\n\n    </ion-item>\n\n  </ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"E:\projects\TechForGoodHack\src\pages\friends\friends.html"*/,
+        selector: 'page-friends',template:/*ion-inline-start:"/Users/helmi/Documents/Personal Projects/TechForGoodHack/src/pages/friends/friends.html"*/'<!--\n  Generated template for the FriendsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Friends list</ion-title>\n\n    <ion-buttons end>\n      <button ion-button icon-only>\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-list>\n    <ion-item *ngFor="let friend of user.friends">\n      <ion-thumbnail item-start>\n        <img src={{friend.object.src}}>\n      </ion-thumbnail>\n      <h2>{{friend.object.name}}</h2>\n      <p>Has {{friend.object.currentSkills.length}} skills</p>\n          <button ion-button clear item-end (click)="endorse()">Endorse</button>\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/helmi/Documents/Personal Projects/TechForGoodHack/src/pages/friends/friends.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* AlertController */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* AlertController */]])
 ], FriendsPage);
 
 //# sourceMappingURL=friends.js.map
@@ -56012,9 +56117,9 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"E:\projects\TechForGoodHack\src\pages\home\home.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      APPNAME\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<!-- Themes Login + logo -->\n\n<ion-grid>\n\n  <ion-row wrap padding>\n\n    <ion-col col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>\n\n      <button ion-button button-clear clear (click)="onEvent(\'onSkip\')">Skip</button>\n\n      <!---Logo-->\n\n      <ion-thumbnail>\n\n        <img [src]="">\n\n      </ion-thumbnail>\n\n      <!---Input field username-->\n\n      <ion-item no-padding color="accent">\n\n        <ion-label color="secondary" floating>Username</ion-label>\n\n        <ion-input required type="text" [(ngModel)]="username"></ion-input>\n\n      </ion-item>\n\n      <!---Input field password-->\n\n      <ion-item no-padding color="accent">\n\n        <ion-label color="secondary" floating>Password</ion-label>\n\n        <ion-input required type="password" [(ngModel)]="password"></ion-input>\n\n      </ion-item>\n\n      <!---Login button-->\n\n    </ion-col>\n\n    <ion-col col-6>\n\n      <button ion-button block default-button (click)="Login()">Login</button>\n\n    </ion-col>\n\n    <ion-col col-6>\n\n      <!---Register button-->\n\n      <button ion-button block default-button (click)="onEvent(\'onRegister\')">Register</button>\n\n    </ion-col>\n\n    <!---Share Section-->\n\n    <ion-col col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6 social>\n\n      <!---Facebook button-->\n\n      <button ion-button color="facebook" block (click)="onEvent(\'onFacebook\')">Facebook</button>\n\n      <!---Twitter button-->\n\n      <button ion-button color="twitter" block (click)="onEvent(\'onTwitter\')">Twitter</button>\n\n      <!---Google button-->\n\n      <button ion-button color="google" block (click)="onEvent(\'onGoogle\')">Google</button>\n\n      <!---Pinterest button-->\n\n      <button ion-button color="pinterest" block (click)="onEvent(\'onPinterest\')">Pinterest</button>\n\n    </ion-col><!---End Share Section-->\n\n  </ion-row>\n\n  </ion-grid>'/*ion-inline-end:"E:\projects\TechForGoodHack\src\pages\home\home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"/Users/helmi/Documents/Personal Projects/TechForGoodHack/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      What\'s my potential\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<!-- Themes Login + logo -->\n<ion-grid>\n  <ion-row wrap padding>\n    <ion-col col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>\n      <button ion-button button-clear clear (click)="onEvent(\'onSkip\')">Skip</button>\n      <!---Logo-->\n      <ion-thumbnail>\n        <img [src]="">\n      </ion-thumbnail>\n      <!---Input field username-->\n      <ion-item no-padding color="accent">\n        <ion-label color="secondary" floating>Username</ion-label>\n        <ion-input required type="text" [(ngModel)]="username"></ion-input>\n      </ion-item>\n      <!---Input field password-->\n      <ion-item no-padding color="accent">\n        <ion-label color="secondary" floating>Password</ion-label>\n        <ion-input required type="password" [(ngModel)]="password"></ion-input>\n      </ion-item>\n      <!---Login button-->\n    </ion-col>\n    <ion-col col-6>\n      <button ion-button block default-button (click)="Login()">Login</button>\n    </ion-col>\n    <ion-col col-6>\n      <!---Register button-->\n      <button ion-button block default-button (click)="onEvent(\'onRegister\')">Register</button>\n    </ion-col>\n    <!---Share Section-->\n    <ion-col col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6 social>\n      <!---Facebook button-->\n      <button ion-button color="facebook" block (click)="onEvent(\'onFacebook\')">Facebook</button>\n      <!---Twitter button-->\n      <button ion-button color="twitter" block (click)="onEvent(\'onTwitter\')">Twitter</button>\n      <!---Google button-->\n      <button ion-button color="google" block (click)="onEvent(\'onGoogle\')">Google</button>\n      <!---Pinterest button-->\n      <button ion-button color="pinterest" block (click)="onEvent(\'onPinterest\')">Pinterest</button>\n    </ion-col><!---End Share Section-->\n  </ion-row>\n  </ion-grid>'/*ion-inline-end:"/Users/helmi/Documents/Personal Projects/TechForGoodHack/src/pages/home/home.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
 ], HomePage);
 
 //# sourceMappingURL=home.js.map
@@ -56069,9 +56174,9 @@ var MainPage = (function () {
 }());
 MainPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-main',template:/*ion-inline-start:"E:\projects\TechForGoodHack\src\pages\main\main.html"*/'<ion-tabs>\n\n    <ion-tab [root]="skillsRoot" [rootParams]="user"  tabTitle="Skills" tabIcon="checkmark-circle"></ion-tab>\n\n    <ion-tab [root]="progressRoot" [rootParams]="user" tabTitle="Progress" tabIcon="clipboard"></ion-tab>\n\n    <ion-tab [root]="friendsRoot" [rootParams]="user" tabTitle="Friends" tabIcon="people"></ion-tab>\n\n    <ion-tab [root]="profileRoot" [rootParams]="user" tabTitle="Profile" tabIcon="contact"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"E:\projects\TechForGoodHack\src\pages\main\main.html"*/
+        selector: 'page-main',template:/*ion-inline-start:"/Users/helmi/Documents/Personal Projects/TechForGoodHack/src/pages/main/main.html"*/'<ion-tabs>\n    <ion-tab [root]="skillsRoot" [rootParams]="user"  tabTitle="Skills" tabIcon="checkmark-circle"></ion-tab>\n    <ion-tab [root]="progressRoot" [rootParams]="user" tabTitle="Progress" tabIcon="clipboard"></ion-tab>\n    <ion-tab [root]="friendsRoot" [rootParams]="user" tabTitle="Friends" tabIcon="people"></ion-tab>\n    <ion-tab [root]="profileRoot" [rootParams]="user" tabTitle="Profile" tabIcon="contact"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/Users/helmi/Documents/Personal Projects/TechForGoodHack/src/pages/main/main.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */], __WEBPACK_IMPORTED_MODULE_6__providers_mock_data_mock_data__["a" /* MockDataProvider */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_6__providers_mock_data_mock_data__["a" /* MockDataProvider */]])
 ], MainPage);
 
 //# sourceMappingURL=main.js.map
@@ -56105,9 +56210,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * on Ionic pages and navigation.
  */
 var ProfilePage = (function () {
-    function ProfilePage(navCtrl, navParams) {
+    function ProfilePage(navCtrl, navParams, alertCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.alertCtrl = alertCtrl;
         this.user = this.navParams.data;
         console.log(this.user);
         this.numberOfExperiences = this.GetNumberOfExperiences();
@@ -56122,13 +56228,36 @@ var ProfilePage = (function () {
         });
         return count;
     };
+    ProfilePage.prototype.LogOut = function () {
+        var _this = this;
+        var alert = this.alertCtrl.create({
+            title: 'Confirm',
+            message: 'Are you sure you want to log out?',
+            buttons: [
+                {
+                    text: 'Cancel',
+                    role: 'cancel',
+                    handler: function () {
+                        console.log('Cancel clicked');
+                    }
+                },
+                {
+                    text: 'Log out',
+                    handler: function () {
+                        _this.navCtrl.parent.parent.pop();
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
     return ProfilePage;
 }());
 ProfilePage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-profile',template:/*ion-inline-start:"E:\projects\TechForGoodHack\src\pages\profile\profile.html"*/'<!--\n\n  Generated template for the ProfilePage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Your Profile</ion-title>\n\n    <ion-buttons end>\n\n      <button ion-button color="danger">\n\n        Log out\n\n      </button>\n\n    </ion-buttons>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n\n\n    <div class="personal-info" text-center>\n\n      <img src={{user.src}}>\n\n      <h3 item-title>{{user.name}}</h3>\n\n    </div>\n\n<br/>\n\n    <div class="stats-content">\n\n      <h4 item-subtitle>Your Stats</h4>\n\n      <ion-grid text-center>\n\n        <ion-row>\n\n          <ion-col col-6 id="skills">\n\n            <h1>{{user.currentSkills.length}}</h1>\n\n            Skills\n\n          </ion-col>\n\n          <ion-col col-6 id="experiences">\n\n            <h1>{{GetNumberOfExperiences()}}</h1>\n\n            Experiences\n\n          </ion-col>\n\n          <ion-col col-6 id="friends">\n\n            <h1>{{user.friends.length}}</h1>\n\n            Friends\n\n          </ion-col>\n\n          <ion-col col-6 id="activities">\n\n            <h1>{{user.activities.length}}</h1>\n\n            <p>Activities</p>\n\n          </ion-col>\n\n        </ion-row>\n\n      </ion-grid>\n\n    </div>\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"E:\projects\TechForGoodHack\src\pages\profile\profile.html"*/,
+        selector: 'page-profile',template:/*ion-inline-start:"/Users/helmi/Documents/Personal Projects/TechForGoodHack/src/pages/profile/profile.html"*/'<!--\n  Generated template for the ProfilePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Your Profile</ion-title>\n    <ion-buttons end>\n      <button ion-button color="danger" (click)="LogOut()">\n        Log out\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n\n    <div class="personal-info" text-center>\n      <img src={{user.src}}>\n      <h3 item-title>{{user.name}}</h3>\n    </div>\n<br/>\n    <div class="stats-content">\n      <ion-grid text-center>\n        <ion-row>\n          <ion-col col-6 id="skills">\n            <h1>{{user.currentSkills.length}}</h1>\n            Skills\n          </ion-col>\n          <ion-col col-6 id="experiences">\n            <h1>{{GetNumberOfExperiences()}}</h1>\n            Experiences\n          </ion-col>\n          <ion-col col-6 id="friends">\n            <h1>{{user.friends.length}}</h1>\n            Friends\n          </ion-col>\n          <ion-col col-6 id="activities">\n            <h1>{{user.activities.length}}</h1>\n            <p>Activities</p>\n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    </div>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/helmi/Documents/Personal Projects/TechForGoodHack/src/pages/profile/profile.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* AlertController */]])
 ], ProfilePage);
 
 //# sourceMappingURL=profile.js.map
@@ -56140,7 +56269,8 @@ ProfilePage = __decorate([
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_mock_data_mock_data__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__activity_activity__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_mock_data_mock_data__ = __webpack_require__(38);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProgressPage; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -56154,6 +56284,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the ProgressPage page.
  *
@@ -56161,10 +56292,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * on Ionic pages and navigation.
  */
 var ProgressPage = (function () {
-    function ProgressPage(navCtrl, navParams, data) {
+    function ProgressPage(navCtrl, navParams, data, loadingCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.data = data;
+        this.loadingCtrl = loadingCtrl;
         this.goalUrl = "";
         this.user = this.navParams.data;
     }
@@ -56172,7 +56304,16 @@ var ProgressPage = (function () {
         console.log('ionViewDidLoad ProgressPage');
     };
     ProgressPage.prototype.SaveGoal = function () {
-        this.data.saveGoal(this.user.id, this.goalUrl);
+        //Add loader
+        var _this = this;
+        var loading = this.loadingCtrl.create({
+            content: 'Finding skills required...',
+            duration: 3000
+        });
+        loading.onDidDismiss(function () {
+            _this.data.saveGoal(_this.user.id, _this.goalUrl);
+        });
+        loading.present();
     };
     ProgressPage.prototype.GetRemainingSkillsCount = function () {
         var count = 0;
@@ -56183,13 +56324,16 @@ var ProgressPage = (function () {
         });
         return count;
     };
+    ProgressPage.prototype.GetActivities = function (skillId) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__activity_activity__["a" /* ActivityPage */], { skillId: skillId, userId: this.user.id });
+    };
     return ProgressPage;
 }());
 ProgressPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-progress',template:/*ion-inline-start:"E:\projects\TechForGoodHack\src\pages\progress\progress.html"*/'<!--\n\n  Generated template for the ProgressPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Progress</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n\n\n  <div *ngIf="!user.goal">\n\n    <h3 item-title>Getting Started</h3>\n\n    <p item-subtitle>Before you get started developing your skills you need to define a goal. So think big and find a job you would like to be working as in the future. Think of your DREAM JOB!</p>\n\n    \n\n    <div> \n\n      <ion-label>\n\n        <b item-title>Your dream job</b>\n\n      </ion-label>\n\n      <ion-item>\n\n        <ion-input placeholder="Enter your dream job" clearInput [(ngModel)]="goalUrl"></ion-input>\n\n      </ion-item>\n\n      <button ion-button block (click)="SaveGoal()">\n\n        Find Skills needed\n\n      </button>\n\n    </div>\n\n  </div>\n\n\n\n  \n\n  <div *ngIf="user.goal">\n\n    <div text-center>\n\n      <h2>You are on your way to becoming a {{user.goal.title}}</h2>\n\n      <p>Curret progress: 3/6 skills obtained</p>\n\n      <br/>\n\n    </div>\n\n  \n\n    <ion-list>\n\n      <ion-list-header>\n\n        Skills required <i>({{GetRemainingSkillsCount()}} out of {{user.goal.skills.length}} Remaining)</i>\n\n      </ion-list-header>\n\n      <ion-item icon-right *ngFor="let skill of user.goal.skills">\n\n        <h2>{{skill.object.name}}</h2>\n\n        <p>{{skill.obtained ? "Achieved":"Needed"}}</p> \n\n        <button ion-button clear item-end *ngIf="!skill.obtained">\n\n          Get skill\n\n        </button>\n\n        <button ion-button clear item-end *ngIf="skill.obtained">\n\n          Develop\n\n        </button>\n\n      </ion-item>\n\n    </ion-list>\n\n  </div>\n\n  \n\n</ion-content>\n\n'/*ion-inline-end:"E:\projects\TechForGoodHack\src\pages\progress\progress.html"*/,
+        selector: 'page-progress',template:/*ion-inline-start:"/Users/helmi/Documents/Personal Projects/TechForGoodHack/src/pages/progress/progress.html"*/'<!--\n  Generated template for the ProgressPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Progress</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n\n  <div *ngIf="!user.goal">\n    <h3 item-title>Getting Started</h3>\n    <p item-title>Before you get started developing your skills you need to define a goal. So think big and find a job you would like to be working as in the future. Think of your DREAM JOB!</p>\n    \n    <div> \n      <ion-label>\n        <b item-title>What do you want to become?</b>\n      </ion-label>\n      <ion-item>\n        <ion-input placeholder="Enter your dream job" clearInput [(ngModel)]="goalUrl"></ion-input>\n      </ion-item>\n      <button ion-button block (click)="SaveGoal()">\n        Find Skills needed\n      </button>\n    </div>\n  </div>\n\n  \n  <div *ngIf="user.goal">\n    <div text-center>\n      <h2 item-title>You are on your way to becoming a {{user.goal.title}}</h2>\n      <p item-title>Curret progress: {{GetRemainingSkillsCount()}}/{{user.goal.skills.length}} skills remaining</p>\n      <br/>\n    </div>\n  \n    <ion-list>\n      <ion-item icon-right *ngFor="let skill of user.goal.skills">\n        <h2>{{skill.object.name}}</h2>\n        <p>{{skill.obtained ? "Achieved":"Needed"}}</p> \n        <button ion-button clear item-end *ngIf="!skill.obtained" (click)="GetActivities(skill.skillId)">\n          Get skill\n        </button>\n        <button ion-button clear item-end *ngIf="skill.obtained" (click)="GetActivities(skill.skillId)">\n          Develop\n        </button>\n      </ion-item>\n    </ion-list>\n  </div>\n  \n</ion-content>\n'/*ion-inline-end:"/Users/helmi/Documents/Personal Projects/TechForGoodHack/src/pages/progress/progress.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_mock_data_mock_data__["a" /* MockDataProvider */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_3__providers_mock_data_mock_data__["a" /* MockDataProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* LoadingController */]])
 ], ProgressPage);
 
 //# sourceMappingURL=progress.js.map
@@ -56223,10 +56367,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * on Ionic pages and navigation.
  */
 var QuestionPage = (function () {
-    function QuestionPage(navCtrl, navParams, dataP) {
+    function QuestionPage(navCtrl, navParams, dataP, loadingCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.dataP = dataP;
+        this.loadingCtrl = loadingCtrl;
         this.userId = this.navParams.data;
         this.data = this.dataP.getQuestions();
     }
@@ -56266,9 +56411,17 @@ var QuestionPage = (function () {
         console.log(event);
     };
     QuestionPage.prototype.onFinish = function () {
+        var _this = this;
         console.log('finished');
-        this.dataP.saveQuestions(this.userId, this.data.items);
-        this.navCtrl.pop();
+        var loading = this.loadingCtrl.create({
+            content: 'Calculating results...',
+            duration: 3000
+        });
+        loading.onDidDismiss(function () {
+            _this.dataP.saveQuestions(_this.userId, _this.data.items);
+            _this.navCtrl.pop();
+        });
+        loading.present();
     };
     return QuestionPage;
 }());
@@ -56282,13 +56435,13 @@ __decorate([
 ], QuestionPage.prototype, "events", void 0);
 __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_9" /* ViewChild */])('wizardSlider'),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Slides */])
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Slides */])
 ], QuestionPage.prototype, "slider", void 0);
 QuestionPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-question',template:/*ion-inline-start:"E:\projects\TechForGoodHack\src\pages\question\question.html"*/'<!--\n\n  Generated template for the QuestionPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Skills Questionnaire</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n<ion-content>\n\n  <!--Theme Wizard Big Image -->\n\n\n\n  <!--Content-->\n\n  <!--Theme Wizard Big Image -->\n\n  <button skip (click)="changeSlide(1)" button-clear clear ion-button text-right>\n\n    {{data.btnSkip}}\n\n</button>\n\n  <ion-slides #wizardSlider *ngIf="data.items.length" (ionSlideDidChange)="slideHasChanged()" pager="true">\n\n    <ion-slide background-size *ngFor="let item of data.items;" [ngStyle]="{\'background-image\': \'url(\' + item.backgroundImage + \')\'}">\n\n      <div wizard-description text-left>\n\n        <h1 wizard-title item-title>{{item.title}}</h1>\n\n        <h2 wizard-body-text>{{item.description}}</h2>\n\n        <!--<ion-input wizard-answer required type="text" [(ngModel)]="item.answer"></ion-input>-->\n\n        <button ion-button color="secondary" (click)="item.yes=true">Yes</button>\n\n        <button ion-button color="danger" (click)="changeSlide(1);item.yes=false">No</button>\n\n        <div *ngIf="item.yes">\n\n          <ion-input wizard-answer [(ngModel)]="item.experience" placeholder="What is your experience?"></ion-input>\n\n        </div>\n\n      </div>\n\n    </ion-slide>\n\n  </ion-slides>\n\n  <!--Button section-->\n\n  <button navigation text-center button-clear clear ion-button (click)="changeSlide(1)" *ngIf="show(\'next\')">\n\n    {{data.btnNext}}\n\n</button>\n\n  <button navigation text-center button-clear clear ion-button (click)="onFinish()" *ngIf="show(\'finish\')">\n\n    {{data.btnFinish}}\n\n</button>\n\n\n\n</ion-content>'/*ion-inline-end:"E:\projects\TechForGoodHack\src\pages\question\question.html"*/,
+        selector: 'page-question',template:/*ion-inline-start:"/Users/helmi/Documents/Personal Projects/TechForGoodHack/src/pages/question/question.html"*/'<!--\n  Generated template for the QuestionPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Skills Questionnaire</ion-title>\n  </ion-navbar>\n\n</ion-header>\n<ion-content>\n  <!--Theme Wizard Big Image -->\n\n  <!--Content-->\n  <!--Theme Wizard Big Image -->\n  <button skip (click)="changeSlide(1)" button-clear clear ion-button text-right>\n    {{data.btnSkip}}\n</button>\n  <ion-slides #wizardSlider *ngIf="data.items.length" (ionSlideDidChange)="slideHasChanged()" pager="true">\n    <ion-slide background-size *ngFor="let item of data.items;" [ngStyle]="{\'background-image\': \'url(\' + item.backgroundImage + \')\'}">\n      <div wizard-description text-left>\n        <h1 wizard-title item-title>{{item.title}}</h1>\n        <h2 wizard-body-text>{{item.description}}</h2>\n        <!--<ion-input wizard-answer required type="text" [(ngModel)]="item.answer"></ion-input>-->\n        <button ion-button color="secondary" (click)="item.yes=true">Yes</button>\n        <button ion-button color="danger" (click)="changeSlide(1);item.yes=false">No</button>\n        <div *ngIf="item.yes">\n          <ion-input wizard-answer [(ngModel)]="item.experience" placeholder="What is your experience?"></ion-input>\n        </div>\n      </div>\n    </ion-slide>\n  </ion-slides>\n  <!--Button section-->\n  <button navigation text-center button-clear clear ion-button (click)="changeSlide(1)" *ngIf="show(\'next\')">\n    {{data.btnNext}}\n</button>\n  <button navigation text-center button-clear clear ion-button (click)="onFinish()" *ngIf="show(\'finish\')">\n    {{data.btnFinish}}\n</button>\n\n</ion-content>'/*ion-inline-end:"/Users/helmi/Documents/Personal Projects/TechForGoodHack/src/pages/question/question.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_mock_data_mock_data__["a" /* MockDataProvider */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_mock_data_mock_data__["a" /* MockDataProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* LoadingController */]])
 ], QuestionPage);
 
 //# sourceMappingURL=question.js.map
@@ -56391,9 +56544,9 @@ var SkillsPage = (function () {
 }());
 SkillsPage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-skills',template:/*ion-inline-start:"E:\projects\TechForGoodHack\src\pages\skills\skills.html"*/'<!--\n\n  Generated template for the SkillsPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Your Skills</ion-title>\n\n\n\n    <ion-buttons end>\n\n      <button ion-button icon-only (click)="AddSkill()">\n\n        <ion-icon name="add"></ion-icon>\n\n      </button>\n\n    </ion-buttons>\n\n\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n\n\n\n\n\n  <ion-card *ngIf="!user.currentSkills.length">\n\n    <ion-card-content>\n\n      <i>You currently do not have any skills listed here, try our skills questionnaire to help you understand what skills you most likely possess!</i>\n\n\n\n      <button ion-button block outline (click)="startQuestion()">Start questionnaire</button>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-list *ngIf="user.currentSkills.length">\n\n    <ion-list-header>\n\n      Skills Obtained\n\n    </ion-list-header>\n\n\n\n    <ion-item *ngFor="let skill of user.currentSkills">\n\n      <h2>{{skill.object.name}}</h2>\n\n      <p>Skill level: {{GetSkillLevel(skill.experiences.length)}}</p>\n\n      <button ion-button clear item-end (click)="ShowExperiences(skill)">Stories</button>\n\n    </ion-item>\n\n\n\n\n\n  </ion-list>\n\n  <a ion-button href="assets/profiles/startercv.docx" download block >\n\n    <ion-icon name="document">Generate CV</ion-icon>\n\n  </a>\n\n</ion-content>'/*ion-inline-end:"E:\projects\TechForGoodHack\src\pages\skills\skills.html"*/,
+        selector: 'page-skills',template:/*ion-inline-start:"/Users/helmi/Documents/Personal Projects/TechForGoodHack/src/pages/skills/skills.html"*/'<!--\n  Generated template for the SkillsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Your Skills</ion-title>\n\n    <ion-buttons end>\n      <button ion-button icon-only (click)="AddSkill()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n\n  </ion-navbar>\n</ion-header>\n<ion-content padding>\n\n\n  <ion-card *ngIf="!user.currentSkills.length">\n    <ion-card-content>\n      <i>You currently do not have any skills listed here, try our skills questionnaire to help you understand what skills you most likely possess!</i>\n\n      <button ion-button block outline (click)="startQuestion()">Start questionnaire</button>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-list *ngIf="user.currentSkills.length">\n    <ion-list-header>\n      Skills Obtained\n    </ion-list-header>\n\n    <ion-item *ngFor="let skill of user.currentSkills">\n      <h2>{{skill.object.name}}</h2>\n      <p>Skill level: {{GetSkillLevel(skill.experiences.length)}}</p>\n      <button ion-button clear item-end (click)="ShowExperiences(skill)">Stories</button>\n    </ion-item>\n\n\n  </ion-list>\n  <a ion-button href="assets/profiles/startercv.docx" download block *ngIf="user.currentSkills.length >2">\n    <ion-icon name="document">Generate CV</ion-icon>\n  </a>\n</ion-content>'/*ion-inline-end:"/Users/helmi/Documents/Personal Projects/TechForGoodHack/src/pages/skills/skills.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* ActionSheetController */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* ActionSheetController */]])
 ], SkillsPage);
 
 //# sourceMappingURL=skills.js.map
@@ -75024,15 +75177,26 @@ module.exports = g;
 
 /***/ }),
 /* 202 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-function webpackEmptyContext(req) {
-	throw new Error("Cannot find module '" + req + "'.");
-}
-webpackEmptyContext.keys = function() { return []; };
-webpackEmptyContext.resolve = webpackEmptyContext;
-module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 202;
+var map = {
+	"../pages/activity/activity.module": [
+		272,
+		1
+	]
+};
+function webpackAsyncContext(req) {
+	var ids = map[req];	if(!ids)
+		return Promise.reject(new Error("Cannot find module '" + req + "'."));
+	return __webpack_require__.e(ids[1]).then(function() {
+		return __webpack_require__(ids[0]);
+	});
+};
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
+};
+module.exports = webpackAsyncContext;
+webpackAsyncContext.id = 202;
 
 
 /***/ }),
@@ -75055,6 +75219,7 @@ webpackEmptyContext.id = 202;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_experiences_experiences__ = __webpack_require__(100);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_mock_data_mock_data__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_question_question__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_activity_activity__ = __webpack_require__(273);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -75062,6 +75227,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -75093,11 +75259,16 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_14__pages_question_question__["a" /* QuestionPage */],
             __WEBPACK_IMPORTED_MODULE_10__pages_friends_friends__["a" /* FriendsPage */],
             __WEBPACK_IMPORTED_MODULE_11__pages_profile_profile__["a" /* ProfilePage */],
-            __WEBPACK_IMPORTED_MODULE_12__pages_experiences_experiences__["a" /* ExperiencesPage */]
+            __WEBPACK_IMPORTED_MODULE_12__pages_experiences_experiences__["a" /* ExperiencesPage */],
+            __WEBPACK_IMPORTED_MODULE_15__pages_activity_activity__["a" /* ActivityPage */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */])
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
+                links: [
+                    { loadChildren: '../pages/activity/activity.module#ActivityPageModule', name: 'ActivityPage', segment: 'activity', priority: 'low', defaultHistory: [] }
+                ]
+            })
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicApp */]],
         entryComponents: [
@@ -75109,7 +75280,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_14__pages_question_question__["a" /* QuestionPage */],
             __WEBPACK_IMPORTED_MODULE_10__pages_friends_friends__["a" /* FriendsPage */],
             __WEBPACK_IMPORTED_MODULE_11__pages_profile_profile__["a" /* ProfilePage */],
-            __WEBPACK_IMPORTED_MODULE_12__pages_experiences_experiences__["a" /* ExperiencesPage */]
+            __WEBPACK_IMPORTED_MODULE_12__pages_experiences_experiences__["a" /* ExperiencesPage */],
+            __WEBPACK_IMPORTED_MODULE_15__pages_activity_activity__["a" /* ActivityPage */]
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__["a" /* StatusBar */],
@@ -75346,9 +75518,9 @@ var MyApp = (function () {
     return MyApp;
 }());
 MyApp = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({template:/*ion-inline-start:"E:\projects\TechForGoodHack\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"E:\projects\TechForGoodHack\src\app\app.html"*/
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({template:/*ion-inline-start:"/Users/helmi/Documents/Personal Projects/TechForGoodHack/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/helmi/Documents/Personal Projects/TechForGoodHack/src/app/app.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
 ], MyApp);
 
 //# sourceMappingURL=app.component.js.map
@@ -75413,7 +75585,7 @@ var DATA = {
             {
                 backgroundImage: 'assets/images/question_images/PublicSpeaking.jpg',
                 title: 'Presentations',
-                description: 'Have you done any presentations?',
+                description: 'Have you given any presentations before?',
                 skill: 10,
                 yes: false,
                 button: 'Next',
@@ -75432,8 +75604,8 @@ var DATA = {
             {
                 backgroundImage: 'assets/images/question_images/Education.jpg',
                 title: 'Education',
-                description: 'Do you have a GCSE certification or above? (specify highest qualification)',
-                skill: 9,
+                description: 'Do you have GCSE English & Maths?',
+                skill: 11,
                 yes: false,
                 no: false,
                 button: 'Next',
@@ -75508,7 +75680,7 @@ var DATA = {
                         "skillId": 2
                     },
                     {
-                        "skills": 3
+                        "skillId": 3
                     }
                 ]
             },
@@ -75542,7 +75714,7 @@ var DATA = {
                         "skillId": 1
                     },
                     {
-                        "skills": 3
+                        "skillId": 3
                     }
                 ]
             },
@@ -75589,19 +75761,81 @@ var DATA = {
         {
             "id": 10,
             "name": "Presentation"
+        },
+        {
+            "id": 11,
+            "name": "Literacy & Numeracy"
+        },
+        {
+            "id": 12,
+            "name": "Technical"
+        },
+        {
+            "id": 13,
+            "name": "Social Responsibility"
         }
     ],
     "activities": [
         {
             "id": 1,
-            "name": "Belfast Sports Club",
-            "url": "someRandomLink",
+            "name": "BCSDN",
+            "url": "http://www.bcsdn.org/",
+            "preview": "BCSDN is the main community sports development organisation in Belfast...",
+            "description": "Belfast Community Sports Development Network (BCSDN) is the main community sports development organisation in Belfast and has successfully been delivering physical activity programmes for the past ten years. BCSDN is a registered charity using sport to inspire and educate people to make a positive change in their lives.",
             "skillsGained": [
                 {
-                    "id": 2
+                    "id": 1,
+                    "experience": "Played the role of an effective unit in the team, and tailored my responsibilities to match the teams need through sport at BCSDN"
                 },
                 {
-                    "id": 3
+                    "id": 4,
+                    "experience": "Overcoming physical challenges while managing a healthy lifestyle from various types of sport at BDCSN"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Belfast Metropolitan College",
+            "url": "https://www.belfastmet.ac.uk/part-time/essential-skills/",
+            "preview": "It costs nothing to get your Maths, English and ICT qualifications at Belfast Met...",
+            "description": "It costs nothing to get your Maths, English and ICT qualifications at Belfast Met.\n Essential Skills are the most important and useful skills we all need to succeed in education, work and everyday life. At Belfast Met, you can get qualifications in English, Maths and ICT while you are completing your course. \n Our Essential Skills programme means that learning in these key areas takes place alongside your full-time study. We offer Essential Skills in Literacy and Numeracy from Entry Level 1 through to Level 2, and ICT at Levels 1 and 2.",
+            "skillsGained": [
+                {
+                    "id": 2,
+                    "experience": "Meeting new people from various backgrounds and sharing knowledge with others throughout the courses offered at Belfast Metropolitan college."
+                },
+                {
+                    "id": 11,
+                    "experience": "Gain qualification for Essential skills in literacy at Belfast Metropolitan college"
+                },
+                {
+                    "id": 11,
+                    "experience": "Gain qualification for Essential skills in Numeracy at Belfast Metropolitan college"
+                },
+                {
+                    "id": 12,
+                    "experience": "Learning how to use a computer and gaining essential ICT skills at Belfast Metropolitan college"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Include youth",
+            "url": "http://youngcitizens.volunteernow.co.uk/why-volunteer/what-can-i-do",
+            "preview": "BelfastVolunteering is not only about what you can give back to your community, but also what you get out of it...",
+            "description": "BelfastVolunteering is not only about what you can give back to your community, but also what you get out of it, including building great skills and training that you can use on your CV as well as for job and UCAS applications. \n Volunteering is also fun, and you can choose to do the things that interest you, and meet new people in the process or volunteer with your friends. You can do anything from helping run a local sport club to being a DJ or film maker; you can help clean up our beeches or represent the views of other young people in your local forum; you can even volunteer to help run some of your favourite music and arts festivals and venues!",
+            "skillsGained": [
+                {
+                    "id": 5,
+                    "experience": "Going out of your way to reach out to and help those in need through volunteer now"
+                },
+                {
+                    "id": 7,
+                    "experience": "Dealing with any unexpected situations that can occur when dealing with members of the public in a professional manner through volunteer now."
+                },
+                {
+                    "id": 13,
+                    "experience": "Acknowledging the importance of giving back to society through volunteer now"
                 }
             ]
         }
@@ -75624,6 +75858,12 @@ var DATA = {
                 },
                 {
                     "skillId": 10
+                },
+                {
+                    "skillId": 11
+                },
+                {
+                    "skillId": 13
                 }
             ]
         }
@@ -109306,7 +109546,7 @@ function PanRecognizer_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_120__components_virtual_scroll_virtual_item__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_121__components_virtual_scroll_virtual_scroll__ = __webpack_require__(175);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IonicModule; });
-/* unused harmony export IonicPageModule */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return IonicPageModule; });
 /* unused harmony export provideLocationStrategy */
 /**
  * Import Angular
@@ -109855,7 +110095,7 @@ function provideLocationStrategy(platformLocationStrategy, baseHref, config) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export IonicPage */
+/* harmony export (immutable) */ __webpack_exports__["a"] = IonicPage;
 /**
  * \@name IonicPage
  * \@description
@@ -113013,6 +113253,112 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
 //# sourceMappingURL=main.js.map
+
+/***/ }),
+/* 272 */,
+/* 273 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_mock_data_mock_data__ = __webpack_require__(38);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActivityPage; });
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * Generated class for the ActivityPage page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
+var ActivityPage = (function () {
+    function ActivityPage(navCtrl, navParams, data, alertCtrl, toastCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.data = data;
+        this.alertCtrl = alertCtrl;
+        this.toastCtrl = toastCtrl;
+        this.activities = this.data.getActivities(this.navParams.data.skillId);
+        this.userId = this.navParams.data.userId;
+        console.log(this.activities);
+    }
+    ActivityPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ActivityPage');
+    };
+    ActivityPage.prototype.ReadMore = function (activity) {
+        var alert = this.alertCtrl.create({
+            title: activity.name,
+            subTitle: activity.description,
+            buttons: ['OK']
+        });
+        alert.present();
+    };
+    ActivityPage.prototype.Share = function () {
+        var _this = this;
+        var alert = this.alertCtrl.create();
+        alert.setTitle('Who do you want to share to?');
+        alert.addInput({
+            type: 'checkbox',
+            label: 'David Blaine',
+            value: 'value1',
+            checked: true
+        });
+        alert.addInput({
+            type: 'checkbox',
+            label: 'Thomas Wayne',
+            value: 'value2'
+        });
+        alert.addButton('Cancel');
+        alert.addButton({
+            text: 'Share!',
+            handler: function (data) {
+                _this.SuccessfullySent();
+            }
+        });
+        alert.present();
+    };
+    ActivityPage.prototype.AddActivity = function (activityId) {
+        var toast = this.toastCtrl.create({
+            message: 'This activity has now been added to your skills list!',
+            duration: 3000,
+            position: 'top'
+        });
+        toast.onDidDismiss(function () {
+        });
+        this.data.AddActivity(activityId, this.userId);
+        toast.present();
+        this.navCtrl.pop();
+    };
+    ActivityPage.prototype.SuccessfullySent = function () {
+        var alert = this.alertCtrl.create({
+            title: 'Success',
+            subTitle: 'You have sent your friends a request to join this organisation!',
+            buttons: ['OK']
+        });
+        alert.present();
+    };
+    return ActivityPage;
+}());
+ActivityPage = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
+        selector: 'page-activity',template:/*ion-inline-start:"/Users/helmi/Documents/Personal Projects/TechForGoodHack/src/pages/activity/activity.html"*/'<!--\n  Generated template for the ActivityPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Opportunities</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n<ion-card *ngFor="let activity of activities">\n  <ion-card-content>\n    <ion-card-title>\n      <a href={{activity.url}} target="_blank">\n      {{activity.name}}\n      </a>\n      </ion-card-title>\n    <p>\n      {{activity.preview}}<a (click)="ReadMore(activity)">Read More</a>\n    </p>\n\n    <br/>\n    <b>Skills:</b>\n      <ul>\n        <li *ngFor="let skill of activity.skillsGained">{{skill.object.name}}</li>\n      </ul>\n    <ion-grid>\n      <ion-row>\n        <ion-col col-12>\n          <button ion-button clear icon-left (click)="AddActivity(activity.id)">\n            Join Activity\n            <ion-icon name="play"></ion-icon>\n          </button>\n        </ion-col>\n        <ion-col col-12>\n          <button ion-button clear icon-left (click)="SuccessfullySent()">\n            Share with friends\n            <ion-icon name="share"></ion-icon>\n          </button>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </ion-card-content>\n</ion-card>\n\n\n</ion-content>\n'/*ion-inline-end:"/Users/helmi/Documents/Personal Projects/TechForGoodHack/src/pages/activity/activity.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__providers_mock_data_mock_data__["a" /* MockDataProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* AlertController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]])
+], ActivityPage);
+
+//# sourceMappingURL=activity.js.map
 
 /***/ })
 /******/ ]);

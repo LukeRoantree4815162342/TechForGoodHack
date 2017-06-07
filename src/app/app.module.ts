@@ -14,6 +14,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { ExperiencesPage } from '../pages/experiences/experiences';
 import { MockDataProvider } from '../providers/mock-data/mock-data';
 import { QuestionPage } from "../pages/question/question";
+import { ActivityPage } from '../pages/activity/activity';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { QuestionPage } from "../pages/question/question";
     QuestionPage,
     FriendsPage,
     ProfilePage,
-    ExperiencesPage
+    ExperiencesPage,
+    ActivityPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import { QuestionPage } from "../pages/question/question";
     QuestionPage,
     FriendsPage,
     ProfilePage,
-    ExperiencesPage
+    ExperiencesPage,
+    ActivityPage
   ],
   providers: [
     StatusBar,

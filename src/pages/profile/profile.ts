@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams , AlertController} from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
+import { HomePage } from '../home/home';
 /**
  * Generated class for the ProfilePage page.
  *
@@ -16,7 +17,7 @@ export class ProfilePage {
 
   private numberOfExperiences;
   private user; 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
     this.user = this.navParams.data;
     console.log(this.user);
     this.numberOfExperiences = this.GetNumberOfExperiences();
@@ -32,6 +33,30 @@ export class ProfilePage {
       count += skill.experiences.length;
     });
     return count;
+  }
+
+  LogOut(){
+      let alert = this.alertCtrl.create({
+    title: 'Confirm',
+    message: 'Are you sure you want to log out?',
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Log out',
+        handler: () => {
+          this.navCtrl.parent.parent.pop()
+        }
+      }
+    ]
+  });
+  alert.present();
+
   }
 
 

@@ -9,7 +9,7 @@
   <ion-navbar>
     <ion-title>Your Profile</ion-title>
     <ion-buttons end>
-      <button ion-button color="danger">
+      <button ion-button color="danger" (click)="LogOut()">
         Log out
       </button>
     </ion-buttons>
@@ -27,7 +27,6 @@
     </div>
 <br/>
     <div class="stats-content">
-      <h4 item-subtitle>Your Stats</h4>
       <ion-grid text-center>
         <ion-row>
           <ion-col col-6 id="skills">

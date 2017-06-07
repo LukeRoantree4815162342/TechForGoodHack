@@ -18,11 +18,11 @@
 
   <div *ngIf="!user.goal">
     <h3 item-title>Getting Started</h3>
-    <p item-subtitle>Before you get started developing your skills you need to define a goal. So think big and find a job you would like to be working as in the future. Think of your DREAM JOB!</p>
+    <p item-title>Before you get started developing your skills you need to define a goal. So think big and find a job you would like to be working as in the future. Think of your DREAM JOB!</p>
     
     <div> 
       <ion-label>
-        <b item-title>Your dream job</b>
+        <b item-title>What do you want to become?</b>
       </ion-label>
       <ion-item>
         <ion-input placeholder="Enter your dream job" clearInput [(ngModel)]="goalUrl"></ion-input>
@@ -36,22 +36,19 @@
   
   <div *ngIf="user.goal">
     <div text-center>
-      <h2>You are on your way to becoming a {{user.goal.title}}</h2>
-      <p>Curret progress: 3/6 skills obtained</p>
+      <h2 item-title>You are on your way to becoming a {{user.goal.title}}</h2>
+      <p item-title>Curret progress: {{GetRemainingSkillsCount()}}/{{user.goal.skills.length}} skills remaining</p>
       <br/>
     </div>
   
     <ion-list>
-      <ion-list-header>
-        Skills required <i>({{GetRemainingSkillsCount()}} out of {{user.goal.skills.length}} Remaining)</i>
-      </ion-list-header>
       <ion-item icon-right *ngFor="let skill of user.goal.skills">
         <h2>{{skill.object.name}}</h2>
         <p>{{skill.obtained ? "Achieved":"Needed"}}</p> 
-        <button ion-button clear item-end *ngIf="!skill.obtained">
+        <button ion-button clear item-end *ngIf="!skill.obtained" (click)="GetActivities(skill.skillId)">
           Get skill
         </button>
-        <button ion-button clear item-end *ngIf="skill.obtained">
+        <button ion-button clear item-end *ngIf="skill.obtained" (click)="GetActivities(skill.skillId)">
           Develop
         </button>
       </ion-item>

@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Slides } from 'ionic-angular';
 import { MockDataProvider } from "../../providers/mock-data/mock-data";
 
@@ -20,7 +20,7 @@ export class QuestionPage {
   @ViewChild('wizardSlider') slider: Slides;
 
   private userId;
-  constructor(private navCtrl: NavController, private navParams: NavParams,private dataP: MockDataProvider) {
+  constructor(private navCtrl: NavController, private navParams: NavParams,private dataP: MockDataProvider, public loadingCtrl : LoadingController) {
     this.userId = this.navParams.data;
     this.data = this.dataP.getQuestions();
   }
@@ -61,8 +61,18 @@ export class QuestionPage {
   }
   onFinish() {
     console.log('finished');
-    this.dataP.saveQuestions(this.userId,this.data.items);
-    this.navCtrl.pop();
+    let loading = this.loadingCtrl.create({
+      content: 'Calculating results...',
+      duration: 3000
+    });
+
+    loading.onDidDismiss(() => {
+      this.dataP.saveQuestions(this.userId,this.data.items);
+      this.navCtrl.pop();
+    });
+
+    loading.present();
+
   }
   
 }

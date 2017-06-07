@@ -148,7 +148,7 @@ export let DATA = {
                         "skillId": 2
                     },
                     {
-                        "skills": 3
+                        "skillId": 3
                     }
                 ]
             },
@@ -182,7 +182,7 @@ export let DATA = {
                         "skillId": 1
                     },
                     {
-                        "skills": 3
+                        "skillId": 3
                     }
                 ]
             },
@@ -248,6 +248,7 @@ export let DATA = {
             "id": 1,
             "name": "BCSDN",
             "url" : "http://www.bcsdn.org/",
+            "preview": "BCSDN is the main community sports development organisation in Belfast...",
             "description": "Belfast Community Sports Development Network (BCSDN) is the main community sports development organisation in Belfast and has successfully been delivering physical activity programmes for the past ten years. BCSDN is a registered charity using sport to inspire and educate people to make a positive change in their lives.",
             "skillsGained": [
                 {
@@ -256,7 +257,7 @@ export let DATA = {
                 },
                 {
                     "id": 4,
-                    "experience": "Overcoming physical challenges through regular sport sessions while managing a healthy lifestyle at BDCSN"
+                    "experience": "Overcoming physical challenges while managing a healthy lifestyle from various types of sport at BDCSN"
                 }
             ]
         },
@@ -264,6 +265,7 @@ export let DATA = {
             "id": 2,
             "name": "Belfast Metropolitan College",
             "url" : "https://www.belfastmet.ac.uk/part-time/essential-skills/",
+            "preview": "It costs nothing to get your Maths, English and ICT qualifications at Belfast Met...",
             "description": "It costs nothing to get your Maths, English and ICT qualifications at Belfast Met.\n Essential Skills are the most important and useful skills we all need to succeed in education, work and everyday life. At Belfast Met, you can get qualifications in English, Maths and ICT while you are completing your course. \n Our Essential Skills programme means that learning in these key areas takes place alongside your full-time study. We offer Essential Skills in Literacy and Numeracy from Entry Level 1 through to Level 2, and ICT at Levels 1 and 2.",
             "skillsGained": [
                 {
@@ -272,11 +274,11 @@ export let DATA = {
                 },
                 {
                     "id": 11,
-                    "experience": "Gaining qualification for Essential skills in literacy at Belfast Metropolitan college"
+                    "experience": "Gain qualification for Essential skills in literacy at Belfast Metropolitan college"
                 },
                 {
                     "id": 11,
-                    "experience": "Gaining qualification for Essential skills in Numeracy at Belfast Metropolitan college"
+                    "experience": "Gain qualification for Essential skills in Numeracy at Belfast Metropolitan college"
                 },
                 {
                     "id": 12,
@@ -288,6 +290,7 @@ export let DATA = {
             "id": 3,
             "name": "Include youth",
             "url" : "http://youngcitizens.volunteernow.co.uk/why-volunteer/what-can-i-do",
+            "preview": "BelfastVolunteering is not only about what you can give back to your community, but also what you get out of it...",
             "description": "BelfastVolunteering is not only about what you can give back to your community, but also what you get out of it, including building great skills and training that you can use on your CV as well as for job and UCAS applications. \n Volunteering is also fun, and you can choose to do the things that interest you, and meet new people in the process or volunteer with your friends. You can do anything from helping run a local sport club to being a DJ or film maker; you can help clean up our beeches or represent the views of other young people in your local forum; you can even volunteer to help run some of your favourite music and arts festivals and venues!",
             "skillsGained": [
                 {

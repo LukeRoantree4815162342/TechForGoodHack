@@ -41,7 +41,7 @@
 
 
   </ion-list>
-  <a ion-button href="assets/profiles/startercv.docx" download block >
+  <a ion-button href="assets/profiles/startercv.docx" download block *ngIf="user.currentSkills.length >2">
     <ion-icon name="document">Generate CV</ion-icon>
   </a>
 </ion-content>

@@ -19,7 +19,6 @@ export class MockDataProvider {
 
   getUser(userId) {
 
-    console.log('getting latest user!');
     var user = this.data.users.filter(user => user.id == userId)[0];
     user.currentSkills.map(skill => {
       skill.object = this.getSkill(skill.skillId);
@@ -109,7 +108,45 @@ export class MockDataProvider {
     });
   }
 
+  getActivities(skillId){
+    var activities = this.data.activities.filter(activity => {
+      var count = 0;
+      activity.skillsGained.map(skill => {
+        if(skill.id == skillId){
+          count++;
+        }
+      });
+      return count > 0;
+    });
 
+    console.log('at this point');
+    console.log(activities);
+    activities = activities.map(activity => {
+      activity.skillsGained = activity.skillsGained.map(skill => {
+        skill.object = this.getSkill(skill.id);
+        return skill;
+      });
+      return activity;
+    })
+
+
+    return activities;
+
+  }
+
+  AddActivity(activityId, userId){
+    var user = this.data.users.filter(user => user.id == userId)[0];
+
+    var activity = this.data.activities.filter(activity => activity.id == activityId)[0];
+
+    user.activities = user.activities.concat({activityId : activity.id});
+
+    activity.skillsGained.map(skill => {
+      this.addSkill(userId, skill.id, skill.experience);
+    })    
+    
+    this.getUser(userId);
+  }
   
 
 }

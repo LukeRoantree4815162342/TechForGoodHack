@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams , LoadingController} from 'ionic-angular';
 
+import { ActivityPage } from '../activity/activity';
 import { MockDataProvider } from '../../providers/mock-data/mock-data';
 /**
  * Generated class for the ProgressPage page.
@@ -16,7 +17,7 @@ export class ProgressPage {
 
   private goalUrl = "";
   private user;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public data:MockDataProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public data:MockDataProvider, public loadingCtrl: LoadingController) {
     this.user = this.navParams.data;
   }
 
@@ -25,7 +26,18 @@ export class ProgressPage {
   }
 
   SaveGoal(){
+    //Add loader
+
+  let loading = this.loadingCtrl.create({
+    content: 'Finding skills required...',
+    duration: 3000
+  });
+
+  loading.onDidDismiss(() => {
     this.data.saveGoal(this.user.id, this.goalUrl);
+  });
+
+  loading.present();
   }
   GetRemainingSkillsCount(){
     var count = 0;
@@ -36,5 +48,9 @@ export class ProgressPage {
     });
 
     return count;
+  }
+
+  GetActivities(skillId){
+    this.navCtrl.push(ActivityPage,{ skillId: skillId, userId: this.user.id});
   }
 }

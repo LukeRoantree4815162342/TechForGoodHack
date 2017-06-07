@@ -1,0 +1,54 @@
+<!--
+  Generated template for the ActivityPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Opportunities</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+<ion-card *ngFor="let activity of activities">
+  <ion-card-content>
+    <ion-card-title>
+      <a href={{activity.url}} target="_blank">
+      {{activity.name}}
+      </a>
+      </ion-card-title>
+    <p>
+      {{activity.preview}}<a (click)="ReadMore(activity)">Read More</a>
+    </p>
+
+    <br/>
+    <b>Skills:</b>
+      <ul>
+        <li *ngFor="let skill of activity.skillsGained">{{skill.object.name}}</li>
+      </ul>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12>
+          <button ion-button clear icon-left (click)="AddActivity(activity.id)">
+            Join Activity
+            <ion-icon name="play"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col col-12>
+          <button ion-button clear icon-left (click)="SuccessfullySent()">
+            Share with friends
+            <ion-icon name="share"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
+
+</ion-content>
