@@ -1,6 +1,6 @@
 This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
 
-Deploy sub folder to heroku:
+## Deploy sub folder to heroku:
 heroku git:remote -a engagehack
 npm run build:www
 Nav to root folder

@@ -21,24 +21,27 @@
 
 
   <ion-card *ngIf="!user.currentSkills.length">
-      <ion-card-content>
-        <i>You currently do not have any skills listed here, try our skills questionnaire to help you understand what skills you most likely possess!</i>
+    <ion-card-content>
+      <i>You currently do not have any skills listed here, try our skills questionnaire to help you understand what skills you most likely possess!</i>
 
-        <button ion-button block outline (click)="startQuestion()">Start questionnaire</button>
-      </ion-card-content>
-    </ion-card>
+      <button ion-button block outline (click)="startQuestion()">Start questionnaire</button>
+    </ion-card-content>
+  </ion-card>
 
   <ion-list *ngIf="user.currentSkills.length">
     <ion-list-header>
       Skills Obtained
     </ion-list-header>
 
-  <ion-item *ngFor="let skill of user.currentSkills" >
-    <h2>{{skill.object.name}}</h2>
-    <p>Skill level: {{GetSkillLevel(skill.experiences.length)}}</p>
-    <button ion-button clear item-end (click)="ShowExperiences(skill)">Stories</button>
-  </ion-item>
+    <ion-item *ngFor="let skill of user.currentSkills">
+      <h2>{{skill.object.name}}</h2>
+      <p>Skill level: {{GetSkillLevel(skill.experiences.length)}}</p>
+      <button ion-button clear item-end (click)="ShowExperiences(skill)">Stories</button>
+    </ion-item>
 
 
   </ion-list>
+  <a ion-button href="assets/profiles/startercv.docx" download block >
+    <ion-icon name="document">Generate CV</ion-icon>
+  </a>
 </ion-content>
