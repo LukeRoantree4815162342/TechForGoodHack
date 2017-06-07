@@ -28,7 +28,9 @@
         <button ion-button color="secondary" (click)="item.yes=true">Yes</button>
         <button ion-button color="danger" (click)="item.yes=false">No</button>
         <div *ngIf="item.yes">
-          List your experiences..
+          <span wizard-body-text>
+            List your experiences..
+          </span>
           <ion-input wizard-answer [(ngModel)]="item.experience"></ion-input>
         </div>
       </div>
