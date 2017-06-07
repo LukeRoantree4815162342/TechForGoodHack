@@ -9,6 +9,7 @@ export let DATA = {
                 title: 'Team Sports',
                 description: 'Have you played a team sport?',
                 skills:['teamwork'],
+                yes:false,
                 button: 'Next',
                 skip: 'Skip'
             },
@@ -16,6 +17,8 @@ export let DATA = {
                 backgroundImage: 'assets/images/question_images/IndividualSport.jpg',
                 title: 'Individual Sport',
                 description: 'Have you played an individual sport?',
+                skills:['focus'],
+                yes:false,
                 button: 'Next',
                 skip: 'Skip'
             },
@@ -23,6 +26,8 @@ export let DATA = {
                 backgroundImage: 'assets/images/question_images/Volunteering.jpg',
                 title: 'Volunteer',
                 description: 'Have you done any volunteering work?',
+                skills:['volunteering'],
+                yes:false,
                 button: 'Next',
                 skip: 'Skip'
             },
@@ -30,6 +35,8 @@ export let DATA = {
                 backgroundImage: 'assets/images/question_images/WorkExperience.jpg',
                 title: 'Work Experience',
                 description: 'Do you have any work experience?',
+                skills:['teamwork'],
+                yes:false,
                 button: 'Next',
                 skip: 'Skip'
             },
@@ -37,6 +44,8 @@ export let DATA = {
                 backgroundImage: 'assets/images/question_images/ForeignLanguage.jpg',
                 title: 'Languages',
                 description: 'Do you know any other languages?',
+                skills:['languages'],
+                yes: false,
                 button: 'Next',
                 skip: 'Skip'
             },
@@ -44,6 +53,9 @@ export let DATA = {
                 backgroundImage: 'assets/images/question_images/PublicSpeaking.jpg',
                 title: 'Presentations',
                 description: 'Have you done any presentations?',
+                skills:['presentation'],
+                yes:false,
+                no: false,
                 button: 'Next',
                 skip: 'Skip'
             },
@@ -51,6 +63,9 @@ export let DATA = {
                 backgroundImage: 'assets/images/question_images/Hobbies.jpg',
                 title: 'Hobbies?',
                 description: 'Do you have any hobbies?',
+                skills:['teamwork'],
+                yes:false,
+                no: false,
                 button: 'Next',
                 skip: 'Skip'
             }   
