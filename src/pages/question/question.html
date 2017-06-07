@@ -11,8 +11,6 @@
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content>
   <!--Theme Wizard Big Image -->
 
@@ -27,7 +25,7 @@
         <h1 wizard-title>{{item.title}}</h1>
         <h3 wizard-body-text>{{item.description}}</h3>
         <!--<ion-input wizard-answer required type="text" [(ngModel)]="item.answer"></ion-input>-->
-        <ion-list  radio-group [(ngModel)]="item.answer">
+        <ion-list radio-group [(ngModel)]="item.answer">
           <button ion-item (click)="changeSlide(1)">
             <ion-label>Disagree</ion-label>
             <ion-radio value="0" checked></ion-radio>
@@ -56,7 +54,7 @@
   <button navigation text-center button-clear clear ion-button (click)="changeSlide(1)" *ngIf="show('next')">
     {{data.btnNext}}
 </button>
-  <button navigation text-center button-clear clear ion-button (click)="onEvent('onFinish')" *ngIf="show('finish')">
+  <button navigation text-center button-clear clear ion-button (click)="onFinish()" *ngIf="show('finish')">
     {{data.btnFinish}}
 </button>
 

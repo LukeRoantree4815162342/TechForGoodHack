@@ -94,18 +94,15 @@ export class QuestionPage {
   @Input() events: any;
   @ViewChild('wizardSlider') slider: Slides;
 
-  constructor() { }
-init: boolean;
-ngOnInit(){
-  this.init=true;
-}
+  constructor(private navCtrl: NavController) { }
+  ngOnInit() {
+
+  }
   changeSlide(index: number): void {
-    if(this.init){
     if (index > 0) {
       this.slider.slideNext(300);
     } else {
       this.slider.slidePrev(300);
-    }
     }
   }
 
@@ -132,6 +129,10 @@ ngOnInit(){
       this.events[event]();
     }
     console.log(event);
+  }
+  onFinish(){
+    console.log('finished');
+    this.navCtrl.pop();
   }
 
 }
