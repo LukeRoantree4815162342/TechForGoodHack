@@ -55,7 +55,6 @@ export let DATA = {
                 description: 'Have you done any presentations?',
                 skills:['presentation'],
                 yes:false,
-                no: false,
                 button: 'Next',
                 skip: 'Skip'
             },

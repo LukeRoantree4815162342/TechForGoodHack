@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>question</ion-title>
+    <ion-title>Question</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -25,34 +25,12 @@
         <h1 wizard-title>{{item.title}}</h1>
         <h3 wizard-body-text>{{item.description}}</h3>
         <!--<ion-input wizard-answer required type="text" [(ngModel)]="item.answer"></ion-input>-->
-        <button ion-button  color="secondary"  (click)="item.yes=true">Yes</button>
-        <button ion-button  color="danger" (click)="item.yes=false">No</button>
+        <button ion-button color="secondary" (click)="item.yes=true">Yes</button>
+        <button ion-button color="danger" (click)="item.yes=false">No</button>
         <div *ngIf="item.yes">
           List your experiences..
           <ion-input wizard-answer [(ngModel)]="item.experience"></ion-input>
         </div>
-        <!--<ion-list radio-group [(ngModel)]="item.answer">
-          <button ion-item (click)="changeSlide(1)">
-            <ion-label>Disagree</ion-label>
-            <ion-radio value="0" checked></ion-radio>
-          </button>
-          <button ion-item (click)="changeSlide(1)">
-            <ion-label>Neutral</ion-label>
-            <ion-radio value="1"></ion-radio>
-          </button>
-          <button ion-item (click)="changeSlide(1)">
-            <ion-label>Agree A Little</ion-label>
-            <ion-radio value="2"></ion-radio>
-          </button>
-          <button ion-item (click)="changeSlide(1)">
-            <ion-label>Agree Moderately</ion-label>
-            <ion-radio value="3"></ion-radio>
-          </button>
-          <button ion-item (click)="changeSlide(1)">
-            <ion-label>Strongly Agree</ion-label>
-            <ion-radio value="4"></ion-radio>
-          </button>
-        </ion-list>-->
       </div>
     </ion-slide>
   </ion-slides>
