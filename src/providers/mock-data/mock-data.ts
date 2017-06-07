@@ -34,4 +34,8 @@ export class MockDataProvider {
     return this.data.activities.filter(activity => activity.id == activityId)[0];
   }
 
+  getQuestions(){
+    return this.data.questions;
+  }
+
 }

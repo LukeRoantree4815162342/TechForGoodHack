@@ -1,6 +1,7 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { Slides } from 'ionic-angular';
+import { MockDataProvider } from "../../providers/mock-data/mock-data";
 
 /**
  * Generated class for the QuestionPage page.
@@ -14,87 +15,13 @@ import { Slides } from 'ionic-angular';
 })
 export class QuestionPage {
 
-  @Input() data: any = {
-    'btnNext': 'Next',
-    'btnFinish': 'Finish',
-    'btnSkip': 'Skip',
-    'items': [
-      {
-        backgroundImage: 'assets/images/avatar-large/5.jpg',
-        title: 'Express Yourself',
-        description: 'I find it easy to express myself in writing',
-        button: 'Next',
-        skip: 'Skip'
-      },
-      {
-        backgroundImage: 'assets/images/avatar-large/6.jpg',
-        title: 'Data',
-        description: 'I am good at collecting, collating, classifying and summarising data',
-        button: 'Next',
-        skip: 'Skip'
-      },
-      {
-        backgroundImage: 'assets/images/avatar-large/7.jpg',
-        title: 'Motivation',
-        description: 'I am able to motivate and direct others',
-        button: 'Next',
-        skip: 'Skip'
-      },
-      {
-        backgroundImage: 'assets/images/avatar-large/7.jpg',
-        title: 'Tasks',
-        description: 'I have a methodical approach to tasks',
-        button: 'Next',
-        skip: 'Skip'
-      },
-      {
-        backgroundImage: 'assets/images/avatar-large/7.jpg',
-        title: 'Complexity',
-        description: 'I am able to assess and summarise complex, detailed information',
-        button: 'Next',
-        skip: 'Skip'
-      },
-      {
-        backgroundImage: 'assets/images/avatar-large/7.jpg',
-        title: 'Speaking',
-        description: 'I find it easy to express my views when speaking',
-        button: 'Next',
-        skip: 'Skip'
-      },
-      {
-        backgroundImage: 'assets/images/avatar-large/7.jpg',
-        title: 'Discuss',
-        description: 'I am able to discuss issues and reach agreement when disagreeing',
-        button: 'Next',
-        skip: 'Skip'
-      },
-      {
-        backgroundImage: 'assets/images/avatar-large/7.jpg',
-        title: 'Leadership',
-        description: 'People tend to look to me for leadership.',
-        button: 'Next',
-        skip: 'Skip'
-      },
-      {
-        backgroundImage: 'assets/images/avatar-large/7.jpg',
-        title: 'Numbers',
-        description: 'I do not have problems understanding numerical data. ',
-        button: 'Next',
-        skip: 'Skip'
-      },
-      {
-        backgroundImage: 'assets/images/avatar-large/7.jpg',
-        title: 'Articulate?',
-        description: 'People think of me as articulate',
-        button: 'Finish',
-        skip: 'Skip'
-      }
-    ]
-  };
+  @Input() data: any;
   @Input() events: any;
   @ViewChild('wizardSlider') slider: Slides;
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController, private dataP: MockDataProvider) {
+    this.data = this.dataP.getQuestions();
+   }
   ngOnInit() {
 
   }
