@@ -37,11 +37,21 @@
   <div *ngIf="user.goal">
     <div text-center>
       <h2 item-title>You are on your way to becoming a {{user.goal.title}}</h2>
+<<<<<<< HEAD
       <p item-title>Curret progress: {{GetRemainingSkillsCount()}}/{{user.goal.skills.length}} skills remaining</p>
+=======
+      <p item-subtitle>Curret progress: 3/6 skills obtained</p>
+>>>>>>> 1476b4e8cd26ae57d61c0b251f82331d7ecb0e46
       <br/>
     </div>
   
     <ion-list>
+<<<<<<< HEAD
+=======
+      <ion-list-header item-subtitle>
+        Skills required <i>({{GetRemainingSkillsCount()}} out of {{user.goal.skills.length}} Remaining)</i>
+      </ion-list-header>
+>>>>>>> 1476b4e8cd26ae57d61c0b251f82331d7ecb0e46
       <ion-item icon-right *ngFor="let skill of user.goal.skills">
         <h2>{{skill.object.name}}</h2>
         <p>{{skill.obtained ? "Achieved":"Needed"}}</p> 
