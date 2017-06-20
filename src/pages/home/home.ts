@@ -11,7 +11,8 @@ import * as firebase from 'firebase/app';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+  private username: string;
+  private password: string;
   constructor(public navCtrl: NavController, private afAuth: AngularFireAuth) {
     afAuth.authState.subscribe(user => {
       if (!user) {
@@ -33,7 +34,12 @@ export class HomePage {
     this.afAuth.auth.signOut();
   }
   Login() {
-    this.navCtrl.push(MainPage, 1);
+    console.log(this.password + this.username);
+    this.afAuth.auth
+      .signInWithEmailAndPassword(this.username, this.password)
+      .then(res => {
+        console.log(res);
+        this.navCtrl.push(MainPage, 1);
+      });
   }
-
 }
