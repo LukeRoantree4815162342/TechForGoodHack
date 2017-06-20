@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 
-import { DATA } from './mock-data-store';
+import { AngularFireDatabase } from 'angularfire2/database';
+
 /*
   Generated class for the MockDataProvider provider.
 
@@ -13,26 +14,35 @@ import { DATA } from './mock-data-store';
 export class MockDataProvider {
 
   private data;
-  constructor() {
-    this.data = DATA;
+  constructor(private db: AngularFireDatabase) {
+    // this.getData('/');
+  }
+
+  getData(path: string) {
+    return this.db.object(path).map(data => {
+      this.data = data;
+    });
   }
 
   getUser(userId) {
 
     var user = this.data.users.filter(user => user.id == userId)[0];
-    user.currentSkills.map(skill => {
-      skill.object = this.getSkill(skill.skillId);
-      return skill;
-    });
-    user.friends.map(friend => {
-      friend.object = this.getFriend(friend.friendId);
-      return friend;
-    });
-
-    if(user.goal != null){
+    if (user.currentskills) {
+      user.currentskills.map(skill => {
+        skill.object = this.getSkill(skill.skillId);
+        return skill;
+      });
+    }
+    if (user.friends) {
+      user.friends.map(friend => {
+        friend.object = this.getFriend(friend.friendId);
+        return friend;
+      });
+    }
+    if (user.goal != null) {
       user.goal.skills.map(skill => {
         skill.object = this.getSkill(skill.skillId);
-        skill.obtained = user.currentSkills.filter(currentskill => currentskill.skillId == skill.skillId).length != 0;
+        skill.obtained = user.currentskills.filter(currentskill => currentskill.skillId == skill.skillId).length != 0;
         return skill;
       });
     }
@@ -41,7 +51,7 @@ export class MockDataProvider {
   }
 
   //the reason I am not using getUser instead is that if i use getUser when finding a friend, i will end up in an infinite loop
-  getFriend(userId){
+  getFriend(userId) {
     return this.data.users.filter(user => user.id == userId)[0];
   }
 
@@ -60,59 +70,59 @@ export class MockDataProvider {
 
 
     answeredQuestions.filter(q => q.yes).map(q => {
-      this.addSkill(userId,q.skill,q.experience);
+      this.addSkill(userId, q.skill, q.experience);
     });
     this.getUser(userId);//dont remove line, breaks the method (for some crazy reason...)
   }
 
-  addSkill(userId, skillId, story){
+  addSkill(userId, skillId, story) {
     var user = this.getUser(userId);
 
-    if(user.currentSkills.filter(skill => skill.skillId == skillId).length == 0){
+    if (user.currentskills.filter(skill => skill.skillId == skillId).length == 0) {
       console.log("if was true");
-      user.currentSkills = user.currentSkills.concat({skillId: skillId, experiences: [{ story: story }]});
+      user.currentskills = user.currentskills.concat({ skillId: skillId, experiences: [{ story: story }] });
     }
-    else{
+    else {
       console.log("if was false");
 
-      user.currentSkills = user.currentSkills.map(skill => {
-        if(skill.skillId == skillId){
-          skill.experiences = skill.experiences.concat({story:story});
+      user.currentskills = user.currentskills.map(skill => {
+        if (skill.skillId == skillId) {
+          skill.experiences = skill.experiences.concat({ story: story });
         }
         return skill;
       })
     }
 
-    this.updateUser(userId,user);
+    this.updateUser(userId, user);
   }
 
-  updateUser(userId,newUser){
+  updateUser(userId, newUser) {
     this.data.users = this.data.users.map(user => {
-      if(user.id == userId){
+      if (user.id == userId) {
         user = newUser;
       }
       return user;
     });
   }
 
-  saveGoal(userId, newGoal){
-    this.getUser(userId).goal = this.data.goals.filter(goal => goal.title==newGoal)[0];
+  saveGoal(userId, newGoal) {
+    this.getUser(userId).goal = this.data.goals.filter(goal => goal.title == newGoal)[0];
 
     console.log(this.getUser(userId));
     var user = this.data.users.filter(user => user.id == userId)[0];
 
     user.goal.skills.map(skill => {
       skill.object = this.getSkill(skill.skillId);
-      skill.obtained = this.getUser(userId).currentSkills.filter(currentskill => currentskill.skillId == skill.skillId).length != 0;
+      skill.obtained = this.getUser(userId).currentskills.filter(currentskill => currentskill.skillId == skill.skillId).length != 0;
       return skill;
     });
   }
 
-  getActivities(skillId){
+  getActivities(skillId) {
     var activities = this.data.activities.filter(activity => {
       var count = 0;
       activity.skillsGained.map(skill => {
-        if(skill.id == skillId){
+        if (skill.id == skillId) {
           count++;
         }
       });
@@ -134,19 +144,19 @@ export class MockDataProvider {
 
   }
 
-  AddActivity(activityId, userId){
+  AddActivity(activityId, userId) {
     var user = this.data.users.filter(user => user.id == userId)[0];
 
     var activity = this.data.activities.filter(activity => activity.id == activityId)[0];
 
-    user.activities = user.activities.concat({activityId : activity.id});
+    user.activities = user.activities.concat({ activityId: activity.id });
 
     activity.skillsGained.map(skill => {
       this.addSkill(userId, skill.id, skill.experience);
-    })    
-    
+    })
+
     this.getUser(userId);
   }
-  
+
 
 }

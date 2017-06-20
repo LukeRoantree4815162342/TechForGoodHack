@@ -28,7 +28,7 @@ export class ProfilePage {
 
   GetNumberOfExperiences() {
     var count = 0;
-    this.user.currentSkills.map(skill => {
+    this.user.currentskills.map(skill => {
       count += skill.experiences.length;
     });
     return count;
