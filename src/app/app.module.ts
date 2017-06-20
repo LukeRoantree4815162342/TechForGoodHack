@@ -16,6 +16,19 @@ import { MockDataProvider } from '../providers/mock-data/mock-data';
 import { QuestionPage } from "../pages/question/question";
 import { ActivityPage } from '../pages/activity/activity';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyDX6My3ivHiHDudgOVsQ6AOkIRhLPdr53Q",
+  authDomain: "mypotential-7afbb.firebaseapp.com",
+  databaseURL: "https://mypotential-7afbb.firebaseio.com",
+  projectId: "mypotential-7afbb",
+  storageBucket: "mypotential-7afbb.appspot.com",
+  messagingSenderId: "552620084220"
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -31,7 +44,10 @@ import { ActivityPage } from '../pages/activity/activity';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -49,8 +65,8 @@ import { ActivityPage } from '../pages/activity/activity';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     MockDataProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }
