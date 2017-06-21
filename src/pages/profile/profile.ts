@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams , AlertController} from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 
-import { HomePage } from '../home/home';
 /**
  * Generated class for the ProfilePage page.
  *
@@ -16,7 +15,7 @@ import { HomePage } from '../home/home';
 export class ProfilePage {
 
   private numberOfExperiences;
-  private user; 
+  private user;
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
     this.user = this.navParams.data;
     console.log(this.user);
@@ -27,7 +26,7 @@ export class ProfilePage {
     console.log('ionViewDidLoad ProfilePage');
   }
 
-  GetNumberOfExperiences(){
+  GetNumberOfExperiences() {
     var count = 0;
     this.user.currentSkills.map(skill => {
       count += skill.experiences.length;
@@ -35,27 +34,27 @@ export class ProfilePage {
     return count;
   }
 
-  LogOut(){
-      let alert = this.alertCtrl.create({
-    title: 'Confirm',
-    message: 'Are you sure you want to log out?',
-    buttons: [
-      {
-        text: 'Cancel',
-        role: 'cancel',
-        handler: () => {
-          console.log('Cancel clicked');
+  LogOut() {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm',
+      message: 'Are you sure you want to log out?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Log out',
+          handler: () => {
+            this.navCtrl.parent.parent.pop()
+          }
         }
-      },
-      {
-        text: 'Log out',
-        handler: () => {
-          this.navCtrl.parent.parent.pop()
-        }
-      }
-    ]
-  });
-  alert.present();
+      ]
+    });
+    alert.present();
 
   }
 

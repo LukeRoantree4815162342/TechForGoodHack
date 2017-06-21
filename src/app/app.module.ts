@@ -16,6 +16,14 @@ import { MockDataProvider } from '../providers/mock-data/mock-data';
 import { QuestionPage } from "../pages/question/question";
 import { ActivityPage } from '../pages/activity/activity';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import * as config from '../secrets';
+
+const firebaseConfig = config.default.firebaseConfig;
+
 @NgModule({
   declarations: [
     MyApp,
@@ -31,7 +39,10 @@ import { ActivityPage } from '../pages/activity/activity';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -49,8 +60,8 @@ import { ActivityPage } from '../pages/activity/activity';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     MockDataProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }
