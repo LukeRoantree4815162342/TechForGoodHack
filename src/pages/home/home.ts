@@ -19,30 +19,29 @@ export class HomePage {
       if (!user) {
         return;
       }
-      this.showMainPage();
+      this.showMainPage(0);
     });
   }
-  showMainPage() {
+  showMainPage(userId : number) {
     this.mock.getData('/').subscribe(res => {
-      this.navCtrl.push(MainPage, 1);
+      this.navCtrl.push(MainPage, userId);
     })
   }
   signInWithGoogle() {
     this.afAuth.auth
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(res => {
-        this.showMainPage();
+        this.showMainPage(0);
       });
   }
   signOut() {
     this.afAuth.auth.signOut();
   }
   Login() {
-    console.log(this.password + this.username);
     this.afAuth.auth
       .signInWithEmailAndPassword(this.username, this.password)
       .then(res => {
-        this.showMainPage();
+        this.showMainPage(0);
       });
   }
 }

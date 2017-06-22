@@ -27,8 +27,9 @@ export class MainPage {
   profileRoot = ProfilePage;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public data : MockDataProvider ) {
-    this.user = this.data.getUser(this.navParams.data);
+  constructor(public navCtrl: NavController, public navParams: NavParams, public data: MockDataProvider) {
+    console.log('current user ' + this.navParams.data);
+    this.data.getUser(this.navParams.data).subscribe(user => this.user = user);
   }
 
 }
