@@ -5,6 +5,7 @@ import { MainPage } from '../main/main';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import { MockDataProvider } from '../../providers/mock-data/mock-data';
 
 @Component({
   selector: 'page-home',
@@ -13,21 +14,24 @@ import * as firebase from 'firebase/app';
 export class HomePage {
   private username: string;
   private password: string;
-  constructor(public navCtrl: NavController, private afAuth: AngularFireAuth) {
+  constructor(public navCtrl: NavController, private afAuth: AngularFireAuth, private mock: MockDataProvider) {
     afAuth.authState.subscribe(user => {
       if (!user) {
         return;
       }
-      this.navCtrl.push(MainPage, 1);
+      this.showMainPage();
     });
   }
-
+  showMainPage() {
+    this.mock.getData('/').subscribe(res => {
+      this.navCtrl.push(MainPage, 1);
+    })
+  }
   signInWithGoogle() {
     this.afAuth.auth
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(res => {
-        console.log(res);
-        this.navCtrl.push(MainPage, 1);
+        this.showMainPage();
       });
   }
   signOut() {
@@ -38,8 +42,7 @@ export class HomePage {
     this.afAuth.auth
       .signInWithEmailAndPassword(this.username, this.password)
       .then(res => {
-        console.log(res);
-        this.navCtrl.push(MainPage, 1);
+        this.showMainPage();
       });
   }
 }
