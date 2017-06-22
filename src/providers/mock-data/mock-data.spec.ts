@@ -4,6 +4,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from "rxjs/Observable";
+import * as config from '../../secrets';
 let service: MockDataProvider;
 let auth: AngularFireAuth;
 describe('dataservice', () => {
@@ -26,19 +27,14 @@ describe('dataservice', () => {
     }).compileComponents().then(fin => {
       //get the injected instances
       service = TestBed.get(MockDataProvider);
-      console.log('getting auth');
       auth = TestBed.get(AngularFireAuth);
-
-      auth.auth.signInWithEmailAndPassword('test@test.com', 'testtest').then(data => {
+      auth.auth.signInWithEmailAndPassword(config.default.testuser.username, config.default.testuser.password).then(data => {
         done();
       });
     });
-
-    console.log('after auth');
   });
   it('should get first user', done => {
     service.getData('/users/0').subscribe(data => {
-      console.log(data.currentskills);
       expect(data.name).toEqual('Simon Mcgregor');
       done();
     });
