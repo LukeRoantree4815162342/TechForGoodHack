@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/filter';
 
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
+import { Observable } from "rxjs/Observable";
 
 /*
   Generated class for the MockDataProvider provider.
@@ -18,36 +19,35 @@ export class MockDataProvider {
     // this.getData('/');
   }
 
-  getData(path: string) {
-    return this.db.object(path).map(data => {
-      this.data = data;
-    });
+  getData(path: string): Observable<any> {
+    return this.db.object(path);
   }
 
-  getUser(userId) {
+  getUser(userId): Observable<any> {
+    return this.getData(`/users/${userId}`).map(user => {
 
-    var user = this.data.users.filter(user => user.id == userId)[0];
-    if (user.currentskills) {
-      user.currentskills.map(skill => {
-        skill.object = this.getSkill(skill.skillId);
-        return skill;
-      });
-    }
-    if (user.friends) {
-      user.friends.map(friend => {
-        friend.object = this.getFriend(friend.friendId);
-        return friend;
-      });
-    }
-    if (user.goal != null) {
-      user.goal.skills.map(skill => {
-        skill.object = this.getSkill(skill.skillId);
-        skill.obtained = user.currentskills.filter(currentskill => currentskill.skillId == skill.skillId).length != 0;
-        return skill;
-      });
-    }
-
-    return user;
+      // var user = this.data.users.filter(user => user.id == userId)[0];
+      if (user.currentskills) {
+        user.currentskills.map(skill => {
+          skill.object = this.getSkill(skill.skillId);
+          return skill;
+        });
+      }
+      if (user.friends) {
+        user.friends.map(friend => {
+          friend.object = this.getFriend(friend.friendId);
+          return friend;
+        });
+      }
+      if (user.goal != null) {
+        user.goal.skills.map(skill => {
+          skill.object = this.getSkill(skill.skillId);
+          skill.obtained = user.currentskills.filter(currentskill => currentskill.skillId == skill.skillId).length != 0;
+          return skill;
+        });
+      }
+      return user;
+    });
   }
 
   //the reason I am not using getUser instead is that if i use getUser when finding a friend, i will end up in an infinite loop
