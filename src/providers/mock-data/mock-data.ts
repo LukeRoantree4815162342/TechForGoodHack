@@ -102,8 +102,7 @@ export class MockDataProvider {
       answeredQuestions.filter(q => q.yes).map(q => {
         this.addSkill(user, q.skill, q.experience);
       });
-      //user.update(user);
-      this.updateUser(userId, user);
+      this.db.object(`/users/${userId}`).$ref.child('currentskills').update(user.currentskills);
     });
   }
 
@@ -128,14 +127,14 @@ export class MockDataProvider {
   }
 
   saveGoal(userId, newGoal) {
-    this.getUser(userId).subscribe(user => {
+    this.getUser(userId).take(1).subscribe(user => {
       user.goal = this.goals.filter(goal => goal.title == newGoal)[0];
-      console.log(this.getUser(userId));
       user.goal.skills.map(skill => {
         skill.object = this.getSkill(skill.skillId);
         skill.obtained = user.currentskills.filter(currentskill => currentskill.skillId == skill.skillId).length != 0;
         return skill;
       });
+      this.db.object(`/users/${userId}`).$ref.child('goal').update(user.goal);
     })
   }
 
