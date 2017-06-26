@@ -133,11 +133,8 @@ export class MockDataProvider {
 
   saveGoal(userId, newGoal) {
     this.getUser(userId).subscribe(user => {
-      user.goal = this.data.goals.filter(goal => goal.title == newGoal)[0];
-
+      user.goal = this.goals.filter(goal => goal.title == newGoal)[0];
       console.log(this.getUser(userId));
-      var user = this.data.users.filter(user => user.id == userId)[0];
-
       user.goal.skills.map(skill => {
         skill.object = this.getSkill(skill.skillId);
         skill.obtained = user.currentskills.filter(currentskill => currentskill.skillId == skill.skillId).length != 0;

@@ -1,9 +1,8 @@
 import { MockDataProvider } from './mock-data';
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
-import { Observable } from "rxjs/Observable";
 import * as config from '../../secrets';
 let service: MockDataProvider;
 let auth: AngularFireAuth;
