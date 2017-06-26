@@ -20,7 +20,7 @@ export class QuestionPage {
   @ViewChild('wizardSlider') slider: Slides;
 
   private userId;
-  constructor(private navCtrl: NavController, private navParams: NavParams,private dataP: MockDataProvider, public loadingCtrl : LoadingController) {
+  constructor(private navCtrl: NavController, private navParams: NavParams, private dataP: MockDataProvider, public loadingCtrl: LoadingController) {
     this.userId = this.navParams.data;
     this.data = this.dataP.getQuestions();
   }
@@ -67,12 +67,12 @@ export class QuestionPage {
     });
 
     loading.onDidDismiss(() => {
-      this.dataP.saveQuestions(this.userId,this.data.items);
+      this.dataP.saveQuestions(this.userId, this.data.items);
       this.navCtrl.pop();
     });
 
     loading.present();
 
   }
-  
+
 }

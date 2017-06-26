@@ -59,6 +59,9 @@ export class MockDataProvider {
           return skill;
         });
       }
+      else {
+        user.currentskills = [];
+      }
       // if (user.friends) {
       //   user.friends.map(friend => {
       //     this.getFriend(friend.friendId).subscribe(friend => {
@@ -95,41 +98,34 @@ export class MockDataProvider {
     return this.questions;
   }
   saveQuestions(userId, answeredQuestions) {
-    answeredQuestions.filter(q => q.yes).map(q => {
-      this.addSkill(userId, q.skill, q.experience);
-    });
-    this.getUser(userId);//dont remove line, breaks the method (for some crazy reason...)
-  }
-
-  addSkill(userId, skillId, story) {
-    this.getUser(userId).subscribe(user => {
-      if (user.currentskills.filter(skill => skill.skillId == skillId).length == 0) {
-        console.log("if was true");
-        user.currentskills = user.currentskills.concat({ skillId: skillId, experiences: [{ story: story }] });
-      }
-      else {
-        console.log("if was false");
-
-        user.currentskills = user.currentskills.map(skill => {
-          if (skill.skillId == skillId) {
-            skill.experiences = skill.experiences.concat({ story: story });
-          }
-          return skill;
-        })
-      }
-
-      //this.updateUser(userId, user);
+    this.getUser(userId).take(1).subscribe(user => {
+      answeredQuestions.filter(q => q.yes).map(q => {
+        this.addSkill(user, q.skill, q.experience);
+      });
+      //user.update(user);
+      this.updateUser(userId, user);
     });
   }
 
-  // updateUser(userId, newUser) {
-  //   this.data.users = this.data.users.map(user => {
-  //     if (user.id == userId) {
-  //       user = newUser;
-  //     }
-  //     return user;
-  //   });
-  // }
+  addSkill(user, skillId, story) {
+    if (user.currentskills.filter(skill => skill.skillId == skillId).length == 0) {
+      console.log("if was true");
+      user.currentskills = user.currentskills.concat({ skillId: skillId, experiences: [{ story: story }] });
+    }
+    else {
+      console.log("if was false");
+      user.currentskills = user.currentskills.map(skill => {
+        if (skill.skillId == skillId) {
+          skill.experiences = skill.experiences.concat({ story: story });
+        }
+        return skill;
+      })
+    }
+  }
+
+  updateUser(userId, newUser) {
+    this.db.object(`/users/${userId}`).update(newUser);
+  }
 
   saveGoal(userId, newGoal) {
     this.getUser(userId).subscribe(user => {

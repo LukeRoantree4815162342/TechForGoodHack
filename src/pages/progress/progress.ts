@@ -34,7 +34,7 @@ export class ProgressPage {
   });
 
   loading.onDidDismiss(() => {
-    this.data.saveGoal(this.user.id, this.goalUrl);
+    this.data.saveGoal(this.user.$key, this.goalUrl);
   });
 
   loading.present();
@@ -51,6 +51,6 @@ export class ProgressPage {
   }
 
   GetActivities(skillId){
-    this.navCtrl.push(ActivityPage,{ skillId: skillId, userId: this.user.id});
+    this.navCtrl.push(ActivityPage,{ skillId: skillId, userId: this.user.$key});
   }
 }

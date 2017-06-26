@@ -32,7 +32,7 @@ export class SkillsPage {
          text: 'Skills questionnaire',
          icon: 'list-box',
          handler: () => {
-          this.navCtrl.push(QuestionPage, this.user.id);
+          this.navCtrl.push(QuestionPage, this.user.$key);
          }
        },
        {
@@ -66,7 +66,7 @@ export class SkillsPage {
   }
 
   startQuestion(){
-    this.navCtrl.push(QuestionPage, this.user.id);
+    this.navCtrl.push(QuestionPage, this.user.$key);
   }
 
   GetSkillLevel(level){
