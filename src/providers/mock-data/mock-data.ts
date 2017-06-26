@@ -52,7 +52,7 @@ export class MockDataProvider {
     return this.getData(`/users/${userId}`).map(user => {
       console.log(user);
 
-      // var user = this.data.users.filter(user => user.id == userId)[0];
+      // var user = this.data.users.filter(user => user.$key == userId)[0];
       if (user.currentskills) {
         user.currentskills.map(skill => {
           skill.object = this.getSkill(skill.skillId);
