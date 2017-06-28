@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { MockDataProvider } from '../../providers/mock-data/mock-data';
+import { DataProvider } from '../../providers/mock-data/mock-data';
 
 /**
  * Generated class for the FriendsPage page.
@@ -17,7 +17,7 @@ export class FriendsPage {
 
   private user;
   private friends;
-  constructor(private ds: MockDataProvider, private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController) {
+  constructor(private ds: DataProvider, private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController) {
     this.user = this.navParams.data;
     ds.getFriends(this.user.friends.map(friend => friend.friendId)).subscribe(friends => {
       this.friends = friends;

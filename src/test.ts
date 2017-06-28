@@ -12,7 +12,7 @@ import { getTestBed, TestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { App, Config, Form, IonicModule, Keyboard, DomController, MenuController, NavController, Platform } from 'ionic-angular';
 import { ConfigMock, PlatformMock } from './mock';
-import { MockDataProvider } from './providers/mock-data/mock-data';
+import { DataProvider } from './providers/mock-data/mock-data';
 
 // Unfortunately there's no typing for the `__karma__` variable. Just declare it as any.
 declare var __karma__: any;
@@ -57,7 +57,7 @@ __karma__.start();
 //         ...components,
 //       ],
 //       providers: [
-//         App, Form, Keyboard, DomController, MenuController, NavController,MockDataProvider 
+//         App, Form, Keyboard, DomController, MenuController, NavController,DataProvider 
 //         {provide: Platform, useClass: PlatformMock},
 //         {provide: Config, useClass: ConfigMock},
 //       ],

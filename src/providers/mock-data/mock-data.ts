@@ -7,13 +7,13 @@ import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/data
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/take";
 /*
-  Generated class for the MockDataProvider provider.
+  Generated class for the DataProvider provider.
 
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular 2 DI.
 */
 @Injectable()
-export class MockDataProvider {
+export class DataProvider {
 
   private data;
   public skills;
@@ -26,6 +26,7 @@ export class MockDataProvider {
     });
   }
   getSharedData() {
+    // use take(1) to only get once and do not watch
     return Observable.forkJoin(
       this.getData('/skills').map(data => {
         this.skills = data;
@@ -51,8 +52,6 @@ export class MockDataProvider {
   getUser(userId): Observable<any> {
     return this.getData(`/users/${userId}`).map(user => {
       console.log(user);
-
-      // var user = this.data.users.filter(user => user.$key == userId)[0];
       if (user.currentskills) {
         user.currentskills.map(skill => {
           skill.object = this.getSkill(skill.skillId);
@@ -62,14 +61,6 @@ export class MockDataProvider {
       else {
         user.currentskills = [];
       }
-      // if (user.friends) {
-      //   user.friends.map(friend => {
-      //     this.getFriend(friend.friendId).subscribe(friend => {
-      //       friend.object = friend;
-      //       return friend;
-      //     });
-      //   });
-      // }
       if (user.goal != null) {
         user.goal.skills.map(skill => {
           skill.object = this.getSkill(skill.skillId);

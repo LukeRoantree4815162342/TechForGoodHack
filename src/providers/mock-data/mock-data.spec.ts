@@ -1,10 +1,10 @@
-import { MockDataProvider } from './mock-data';
+import { DataProvider } from './mock-data';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 import * as config from '../../secrets';
-let service: MockDataProvider;
+let service: DataProvider;
 let auth: AngularFireAuth;
 describe('dataservice', () => {
   beforeEach(done => {
@@ -15,10 +15,10 @@ describe('dataservice', () => {
         AngularFireDatabaseModule,
         AngularFireAuthModule
       ],
-      providers: [MockDataProvider]
+      providers: [DataProvider]
     }).compileComponents().then(fin => {
       //get the injected instances
-      service = TestBed.get(MockDataProvider);
+      service = TestBed.get(DataProvider);
       auth = TestBed.get(AngularFireAuth);
       auth.auth.signInWithEmailAndPassword(config.default.testuser.username, config.default.testuser.password).then(data => {
         done();
