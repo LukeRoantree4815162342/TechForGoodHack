@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {  NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 
-import { DataProvider } from '../../providers/mock-data/mock-data';
+import { DataProvider } from '../../providers/data/data';
 
 /**
  * Generated class for the ActivityPage page.

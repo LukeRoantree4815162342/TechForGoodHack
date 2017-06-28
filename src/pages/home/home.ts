@@ -5,7 +5,7 @@ import { MainPage } from '../main/main';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { DataProvider } from '../../providers/mock-data/mock-data';
+import { DataProvider } from '../../providers/data/data';
 
 @Component({
   selector: 'page-home',

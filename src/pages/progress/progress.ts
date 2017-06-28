@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams , LoadingController} from 'ionic-angular';
 
 import { ActivityPage } from '../activity/activity';
-import { DataProvider } from '../../providers/mock-data/mock-data';
+import { DataProvider } from '../../providers/data/data';
 /**
  * Generated class for the ProgressPage page.
  *

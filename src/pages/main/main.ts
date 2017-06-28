@@ -6,7 +6,7 @@ import { ProgressPage } from '../progress/progress';
 import { FriendsPage } from '../friends/friends';
 import { ProfilePage } from '../profile/profile';
 
-import { DataProvider } from '../../providers/mock-data/mock-data';
+import { DataProvider } from '../../providers/data/data';
 /**
  * Generated class for the MainPage tabs.
  *

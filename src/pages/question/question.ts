@@ -1,7 +1,7 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Slides } from 'ionic-angular';
-import { DataProvider } from "../../providers/mock-data/mock-data";
+import { DataProvider } from "../../providers/data/data";
 
 /**
  * Generated class for the QuestionPage page.
