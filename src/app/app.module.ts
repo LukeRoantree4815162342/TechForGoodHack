@@ -21,6 +21,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import * as config from '../secrets';
+import { AuthService } from '../providers/auth/auth.service';
 
 const firebaseConfig = config.default.firebaseConfig;
 
@@ -61,7 +62,7 @@ const firebaseConfig = config.default.firebaseConfig;
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    DataProvider
+    DataProvider, AuthService
   ]
 })
 export class AppModule { }

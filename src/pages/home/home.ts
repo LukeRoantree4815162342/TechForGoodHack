@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
 import { MainPage } from '../main/main';
-
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
 import { DataProvider } from '../../providers/data/data';
+import { AuthService } from '../../providers/auth/auth.service';
 
 @Component({
   selector: 'page-home',
@@ -14,7 +11,7 @@ import { DataProvider } from '../../providers/data/data';
 export class HomePage {
   private username: string;
   private password: string;
-  constructor(public navCtrl: NavController, private afAuth: AngularFireAuth, private mock: DataProvider) {
+  constructor(public navCtrl: NavController, private afAuth: AuthService, private mock: DataProvider) {
     afAuth.authState.subscribe(user => {
       if (!user) {
         return;
@@ -22,24 +19,23 @@ export class HomePage {
       this.showMainPage(0);
     });
   }
-  showMainPage(userId : number) {
+  showMainPage(userId: number) {
     this.mock.getData('/').subscribe(res => {
       this.navCtrl.push(MainPage, userId);
     })
   }
   signInWithGoogle() {
-    this.afAuth.auth
-      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+    this.afAuth.loginGoogle()
       .then(res => {
         this.showMainPage(0);
       });
   }
   signOut() {
-    this.afAuth.auth.signOut();
+    this.afAuth.logout();
   }
   Login() {
-    this.afAuth.auth
-      .signInWithEmailAndPassword(this.username, this.password)
+    this.afAuth
+      .login(this.username, this.password)
       .then(res => {
         this.showMainPage(0);
       });
