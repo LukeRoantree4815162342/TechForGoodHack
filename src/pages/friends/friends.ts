@@ -19,9 +19,11 @@ export class FriendsPage {
   private friends;
   constructor(private ds: DataProvider, private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController) {
     this.user = ds.currentUser;
-    ds.getFriends(this.user.friends.map(friend => friend.friendId)).subscribe(friends => {
-      this.friends = friends;
-    }, err => console.log(err));
+    if (this.user.friends) {
+      ds.getFriends(this.user.friends.map(friend => friend.friendId)).subscribe(friends => {
+        this.friends = friends;
+      }, err => console.log(err));
+    }
   }
 
   ionViewDidLoad() {
