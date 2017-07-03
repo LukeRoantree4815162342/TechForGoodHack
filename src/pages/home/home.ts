@@ -16,7 +16,7 @@ export class HomePage {
       if (!user) {
         return;
       }
-      this.showMainPage(0);
+      this.showMainPage(user.uid);
     });
   }
   showMainPage(userId: number) {
@@ -27,7 +27,7 @@ export class HomePage {
   signInWithGoogle() {
     this.afAuth.loginGoogle()
       .then(res => {
-        this.showMainPage(0);
+        this.showMainPage(res.uid);
       });
   }
   signOut() {
@@ -37,7 +37,7 @@ export class HomePage {
     this.afAuth
       .login(this.username, this.password)
       .then(res => {
-        this.showMainPage(0);
+        this.showMainPage(res.uid);
       });
   }
 }
