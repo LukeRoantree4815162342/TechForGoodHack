@@ -5,6 +5,7 @@ import "rxjs/add/operator/take";
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import { DataProvider } from '../data/data';
+import { Logger } from '../analytics/logger';
 @Injectable()
 export class AuthService {
   private userRef: firebase.User;
@@ -42,7 +43,7 @@ export class AuthService {
     })
   }
   loginGoogle() {
-    return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    return this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
   }
   logout() {
     return this.afAuth.auth.signOut();
