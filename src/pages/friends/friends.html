@@ -26,7 +26,7 @@
         <img src={{friend.src}}>
       </ion-thumbnail>
       <h2>{{friend.name}}</h2>
-      <p>Has {{friend.currentskills.length}} skills</p>
+      <p>Has {{friend.currentskills? friend.currentskills.length: 0}} skills</p>
           <button ion-button clear item-end (click)="endorse()">Endorse</button>
     </ion-item>
   </ion-list>

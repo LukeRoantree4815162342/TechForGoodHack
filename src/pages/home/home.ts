@@ -11,7 +11,7 @@ import { AuthService } from '../../providers/auth/auth.service';
 export class HomePage {
   private username: string;
   private password: string;
-  constructor(public navCtrl: NavController, private afAuth: AuthService, private mock: DataProvider) {
+  constructor(public navCtrl: NavController, private afAuth: AuthService, private dataProvider: DataProvider) {
     afAuth.authState.subscribe(user => {
       if (!user) {
         return;
@@ -20,7 +20,7 @@ export class HomePage {
     });
   }
   showMainPage(userId: number) {
-    this.mock.getData('/').subscribe(res => {
+    this.dataProvider.getSharedData().subscribe(res => {
       this.navCtrl.push(MainPage, userId);
     })
   }

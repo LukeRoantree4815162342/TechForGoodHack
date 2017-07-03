@@ -13,6 +13,11 @@ export class AuthService {
   constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase) {
     this.authState = afAuth.authState;
     afAuth.authState.subscribe(usr => {
+      if(!usr){
+        this.userRef = null;
+        this.memberRef = null;
+        return;
+      }
       this.userRef = usr;
       this.memberRef = this.db.object(`users/${this.userRef.uid}`);
       this.memberRef.take(1)

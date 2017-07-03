@@ -21,9 +21,6 @@ export class DataProvider {
   public goals;
   public questions;
   constructor(private db: AngularFireDatabase) {
-    this.getSharedData().subscribe(data => {
-      console.log(data);
-    });
   }
   getSharedData() {
     // use take(1) to only get once and do not watch
