@@ -18,7 +18,7 @@ export class ProgressPage {
   private goalUrl = "";
   private user;
   constructor(public navCtrl: NavController, public navParams: NavParams, public data:DataProvider, public loadingCtrl: LoadingController) {
-    this.user = this.navParams.data;
+    this.user = this.data.currentUser;
   }
 
   ionViewDidLoad() {

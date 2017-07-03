@@ -3,6 +3,7 @@ import { NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { QuestionPage } from "../question/question";
 
 import { ExperiencesPage } from '../experiences/experiences';
+import { DataProvider } from '../../providers/data/data';
 /**
  * Generated class for the SkillsPage page.
  *
@@ -16,8 +17,8 @@ import { ExperiencesPage } from '../experiences/experiences';
 export class SkillsPage {
 
   private user;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController) {
-    this.user = this.navParams.data;
+  constructor(private data: DataProvider, public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController) {
+    this.user = this.data.currentUser
   }
 
   ionViewDidLoad() {

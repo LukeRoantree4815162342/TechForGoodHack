@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
+import { AuthService } from '../../providers/auth/auth.service';
+import { HomePage } from '../home/home';
+import { DataProvider } from '../../providers/data/data';
 
 /**
  * Generated class for the ProfilePage page.
@@ -16,8 +19,8 @@ export class ProfilePage {
 
   private numberOfExperiences;
   private user;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
-    this.user = this.navParams.data;
+  constructor(private data: DataProvider, private auth: AuthService, private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController) {
+    this.user = data.currentUser;
     console.log(this.user);
     this.numberOfExperiences = this.GetNumberOfExperiences();
   }
@@ -49,7 +52,11 @@ export class ProfilePage {
         {
           text: 'Log out',
           handler: () => {
-            this.navCtrl.parent.parent.pop()
+            this.auth.logout();
+            this.navCtrl.setRoot(HomePage);
+            this.navCtrl.popToRoot();
+
+
           }
         }
       ]
