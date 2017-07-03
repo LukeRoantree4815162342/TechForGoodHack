@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { DataProvider } from '../../providers/data/data';
 
 /**
  * Generated class for the FriendsPage page.
@@ -15,16 +16,18 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 export class FriendsPage {
 
   private user;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  private friends;
+  constructor(private ds: DataProvider, private navCtrl: NavController, private navParams: NavParams, private alertCtrl: AlertController) {
     this.user = this.navParams.data;
-
-    console.log(this.user);
+    ds.getFriends(this.user.friends.map(friend => friend.friendId)).subscribe(friends => {
+      this.friends = friends;
+    }, err => console.log(err));
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FriendsPage');
   }
-  confirmSkillEndorsed(skillEndorsed:string) {
+  confirmSkillEndorsed(skillEndorsed: string) {
     let alert = this.alertCtrl.create({
       title: 'Success',
       subTitle: 'You endorsed them for their skill in ' + skillEndorsed,

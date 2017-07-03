@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams , LoadingController} from 'ionic-angular';
 
 import { ActivityPage } from '../activity/activity';
-import { MockDataProvider } from '../../providers/mock-data/mock-data';
+import { DataProvider } from '../../providers/data/data';
 /**
  * Generated class for the ProgressPage page.
  *
@@ -17,7 +17,7 @@ export class ProgressPage {
 
   private goalUrl = "";
   private user;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public data:MockDataProvider, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public data:DataProvider, public loadingCtrl: LoadingController) {
     this.user = this.navParams.data;
   }
 
@@ -34,7 +34,7 @@ export class ProgressPage {
   });
 
   loading.onDidDismiss(() => {
-    this.data.saveGoal(this.user.id, this.goalUrl);
+    this.data.saveGoal(this.user.$key, this.goalUrl);
   });
 
   loading.present();
@@ -51,6 +51,6 @@ export class ProgressPage {
   }
 
   GetActivities(skillId){
-    this.navCtrl.push(ActivityPage,{ skillId: skillId, userId: this.user.id});
+    this.navCtrl.push(ActivityPage,{ skillId: skillId, userId: this.user.$key});
   }
 }

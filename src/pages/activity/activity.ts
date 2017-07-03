@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {  NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 
-import { MockDataProvider } from '../../providers/mock-data/mock-data';
+import { DataProvider } from '../../providers/data/data';
 
 /**
  * Generated class for the ActivityPage page.
@@ -17,7 +17,7 @@ export class ActivityPage {
 
   private activities;
   private userId;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public data: MockDataProvider, public alertCtrl: AlertController, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public data: DataProvider, public alertCtrl: AlertController, public toastCtrl: ToastController) {
     this.activities = this.data.getActivities(this.navParams.data.skillId);
     this.userId = this.navParams.data.userId;
     console.log(this.activities);

@@ -5,7 +5,7 @@ import { MainPage } from '../main/main';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import { MockDataProvider } from '../../providers/mock-data/mock-data';
+import { DataProvider } from '../../providers/data/data';
 
 @Component({
   selector: 'page-home',
@@ -14,35 +14,34 @@ import { MockDataProvider } from '../../providers/mock-data/mock-data';
 export class HomePage {
   private username: string;
   private password: string;
-  constructor(public navCtrl: NavController, private afAuth: AngularFireAuth, private mock: MockDataProvider) {
+  constructor(public navCtrl: NavController, private afAuth: AngularFireAuth, private mock: DataProvider) {
     afAuth.authState.subscribe(user => {
       if (!user) {
         return;
       }
-      this.showMainPage();
+      this.showMainPage(0);
     });
   }
-  showMainPage() {
+  showMainPage(userId : number) {
     this.mock.getData('/').subscribe(res => {
-      this.navCtrl.push(MainPage, 1);
+      this.navCtrl.push(MainPage, userId);
     })
   }
   signInWithGoogle() {
     this.afAuth.auth
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(res => {
-        this.showMainPage();
+        this.showMainPage(0);
       });
   }
   signOut() {
     this.afAuth.auth.signOut();
   }
   Login() {
-    console.log(this.password + this.username);
     this.afAuth.auth
       .signInWithEmailAndPassword(this.username, this.password)
       .then(res => {
-        this.showMainPage();
+        this.showMainPage(0);
       });
   }
 }

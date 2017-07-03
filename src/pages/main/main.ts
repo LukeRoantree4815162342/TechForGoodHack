@@ -6,7 +6,7 @@ import { ProgressPage } from '../progress/progress';
 import { FriendsPage } from '../friends/friends';
 import { ProfilePage } from '../profile/profile';
 
-import { MockDataProvider } from '../../providers/mock-data/mock-data';
+import { DataProvider } from '../../providers/data/data';
 /**
  * Generated class for the MainPage tabs.
  *
@@ -27,8 +27,9 @@ export class MainPage {
   profileRoot = ProfilePage;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public data : MockDataProvider ) {
-    this.user = this.data.getUser(this.navParams.data);
+  constructor(public navCtrl: NavController, public navParams: NavParams, public data: DataProvider) {
+    console.log('current user ' + this.navParams.data);
+    this.data.getUser(this.navParams.data).subscribe(user => this.user = user);
   }
 
 }
