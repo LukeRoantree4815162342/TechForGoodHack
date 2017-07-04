@@ -19,8 +19,10 @@ import { ActivityPage } from '../pages/activity/activity';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
 import * as config from '../secrets';
+import { AuthService } from '../providers/auth/auth.service';
+import { Logger } from '../providers/analytics/logger';
 
 const firebaseConfig = config.default.firebaseConfig;
 
@@ -60,8 +62,9 @@ const firebaseConfig = config.default.firebaseConfig;
   providers: [
     StatusBar,
     SplashScreen,
+    FirebaseAnalytics,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    DataProvider
+    DataProvider, AuthService, Logger
   ]
 })
 export class AppModule { }

@@ -6,6 +6,7 @@ import 'rxjs/add/operator/filter';
 import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/take";
+import { AuthService } from '../auth/auth.service';
 /*
   Generated class for the DataProvider provider.
 
@@ -15,15 +16,22 @@ import "rxjs/add/operator/take";
 @Injectable()
 export class DataProvider {
 
-  private data;
   public skills;
   public activities;
   public goals;
   public questions;
-  constructor(private db: AngularFireDatabase) {
-    this.getSharedData().subscribe(data => {
-      console.log(data);
+  public currentUser;
+  private userRef;
+
+  constructor(private db: AngularFireDatabase, private auth: AuthService) {
+    this.auth.authState.subscribe(state => {
+      // if unauth then destroy watchers
+      console.log(state);
+      if (!state && this.userRef) {
+        this.userRef.unsubscribe();
+      }
     });
+
   }
   getSharedData() {
     // use take(1) to only get once and do not watch
@@ -49,9 +57,12 @@ export class DataProvider {
     return Observable.forkJoin(
       users.map(id => this.db.object(`/users/${id}`).take(1)));
   }
-  getUser(userId): Observable<any> {
+  public setCurrentUserId(uid: string) {
+    this.userRef =  this.getUser(uid).subscribe();
+  }
+  private getUser(userId): Observable<any> {
     return this.getData(`/users/${userId}`).map(user => {
-      console.log(user);
+      this.currentUser = user;
       if (user.currentskills) {
         user.currentskills.map(skill => {
           skill.object = this.getSkill(skill.skillId);
@@ -154,7 +165,7 @@ export class DataProvider {
 
   AddActivity(activityId, userId) {
     this.getUser(userId).subscribe(user => {
-      var activity = this.data.activities.filter(activity => activity.id == activityId)[0];
+      var activity = this.activities.filter(activity => activity.id == activityId)[0];
 
       user.activities = user.activities.concat({ activityId: activity.id });
 

@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
 import { MainPage } from '../main/main';
-
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
 import { DataProvider } from '../../providers/data/data';
+import { AuthService } from '../../providers/auth/auth.service';
+import { Logger } from '../../providers/analytics/logger';
 
 @Component({
   selector: 'page-home',
@@ -14,34 +12,31 @@ import { DataProvider } from '../../providers/data/data';
 export class HomePage {
   private username: string;
   private password: string;
-  constructor(public navCtrl: NavController, private afAuth: AngularFireAuth, private mock: DataProvider) {
+  private loadingMain : boolean;
+  constructor(private logger:Logger,private navCtrl: NavController, private afAuth: AuthService, private dataProvider: DataProvider) {
     afAuth.authState.subscribe(user => {
       if (!user) {
         return;
       }
-      this.showMainPage(0);
+      this.showMainPage(user.uid);
     });
   }
-  showMainPage(userId : number) {
-    this.mock.getData('/').subscribe(res => {
+  showMainPage(userId: any) {
+    if(this.loadingMain){
+      return;
+    }
+    this.loadingMain = true;
+    this.dataProvider.setCurrentUserId(userId);
+    this.logger.logUserLoggedIn(userId);
+    this.dataProvider.getSharedData().subscribe(res => {
       this.navCtrl.push(MainPage, userId);
     })
   }
   signInWithGoogle() {
-    this.afAuth.auth
-      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then(res => {
-        this.showMainPage(0);
-      });
-  }
-  signOut() {
-    this.afAuth.auth.signOut();
+    this.afAuth.loginGoogle();
   }
   Login() {
-    this.afAuth.auth
-      .signInWithEmailAndPassword(this.username, this.password)
-      .then(res => {
-        this.showMainPage(0);
-      });
+    this.afAuth
+      .login(this.username, this.password);
   }
 }
