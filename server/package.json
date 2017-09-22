@@ -1,0 +1,21 @@
+{
+  "name": "Engage",
+  "author": "Conor Woods",
+  "homepage": "https://productiveprogrammer.io",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.15.2",
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.0",
+    "method-override": "^2.3.6",
+    "traitify": "^2.1.0",
+    "typescript-require":"^0.2.9-1"
+  },
+  "devDependencies": {
+    "typescript": "2.0.9"
+  },
+  "description": "Engage"
+}
