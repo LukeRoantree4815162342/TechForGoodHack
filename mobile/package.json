@@ -9,7 +9,7 @@
         "build": "ionic-app-scripts build --dev",
         "lint": "ionic-app-scripts lint",
         "test": "ng test",
-        "build:www": "rm -rf www && ionic-app-scripts build -aot --prod && cp src/package.json www/ && cp src/server.js www/",
+        "build:www": "rm -rf www && ionic-app-scripts build -aot --prod && cp ../server/package.json www/ && cp ../server/server.js www/ && cp ../server/secrets.js www/",
         "ionic:build": "ionic-app-scripts build",
         "ionic:serve": "ionic-app-scripts serve"
     },

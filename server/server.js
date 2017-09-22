@@ -32,7 +32,7 @@ app.get('/api/assessment', function (req, res) {
         res.json(assessment);
     });
 });
-
+app.use(express.static(__dirname));
 app.listen(process.env.PORT || 5009, ()=>{
     console.log(`Example app listening on port ${process.env.PORT || 5009}!`)
 });
