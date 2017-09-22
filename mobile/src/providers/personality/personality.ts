@@ -14,7 +14,7 @@ export class PersonalityProvider {
 
   }
   generateAssessment() {
-    return this.http.get("http://localhost:5009/api/assessment").map(res=>res.json());
+    return this.http.get("/api/assessment").map(res=>res.json());
   }
 
 }
