@@ -4,7 +4,7 @@ This is a starter template for [Ionic](http://ionicframework.com/docs/) projects
 heroku git:remote -a engagehack
 npm run build:www
 Nav to root folder
-git subtree push --prefix www heroku master
+git subtree push --prefix mobile/www heroku master
 
 ## How to use this template
 
