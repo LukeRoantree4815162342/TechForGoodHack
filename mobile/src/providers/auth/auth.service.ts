@@ -15,7 +15,7 @@ export class AuthService {
   constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase) {
     this.authState = afAuth.authState;
     afAuth.authState.subscribe(usr => {
-      if(!usr){
+      if (!usr) {
         this.userRef = null;
         this.memberRef = null;
         return;
@@ -43,7 +43,8 @@ export class AuthService {
     })
   }
   loginGoogle() {
-    return this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
+    return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    //return this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
   }
   logout() {
     return this.afAuth.auth.signOut();
