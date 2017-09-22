@@ -1,0 +1,17 @@
+{
+  "name": "Engage",
+  "author": "Conor Woods",
+  "homepage": "https://productiveprogrammer.io",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.15.2"
+  },
+  "devDependencies": {
+    "@ionic/app-scripts": "1.0.0",
+    "typescript": "2.0.9"
+  },
+  "description": "Engage"
+}

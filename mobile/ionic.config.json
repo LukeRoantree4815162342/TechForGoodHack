@@ -1,0 +1,8 @@
+{
+  "name": "SkillsAnalyser",
+  "app_id": "1fcbe961",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
