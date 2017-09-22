@@ -58,7 +58,7 @@ export class DataProvider {
       users.map(id => this.db.object(`/users/${id}`).take(1)));
   }
   public setCurrentUserId(uid: string) {
-    this.userRef =  this.getUser(uid).subscribe();
+    this.userRef = this.getUser(uid).subscribe();
   }
   private getUser(userId): Observable<any> {
     return this.getData(`/users/${userId}`).map(user => {
@@ -123,7 +123,11 @@ export class DataProvider {
       })
     }
   }
-
+  addAssessment(userId, assessment) {
+    this.getUser(userId).take(1).subscribe(user => {
+      this.db.object(`/users/${userId}`).$ref.child('personality').update(assessment);
+    });
+  }
   updateUser(userId, newUser) {
     this.db.object(`/users/${userId}`).update(newUser);
   }

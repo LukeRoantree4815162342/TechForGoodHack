@@ -24,6 +24,8 @@ import * as config from '../secrets';
 import { AuthService } from '../providers/auth/auth.service';
 import { Logger } from '../providers/analytics/logger';
 import { PersonalityProvider } from '../providers/personality/personality';
+import { PersonalityPage } from '../pages/personality/personality';
+import { Http, HttpModule } from '@angular/http';
 
 const firebaseConfig = config.default.firebaseConfig;
 
@@ -35,6 +37,7 @@ const firebaseConfig = config.default.firebaseConfig;
     SkillsPage,
     ProgressPage,
     QuestionPage,
+    PersonalityPage,
     FriendsPage,
     ProfilePage,
     ExperiencesPage,
@@ -42,6 +45,7 @@ const firebaseConfig = config.default.firebaseConfig;
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
@@ -55,6 +59,7 @@ const firebaseConfig = config.default.firebaseConfig;
     SkillsPage,
     ProgressPage,
     QuestionPage,
+    PersonalityPage,
     FriendsPage,
     ProfilePage,
     ExperiencesPage,

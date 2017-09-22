@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import * as config from '../../secrets';
 /*
   Generated class for the PersonalityProvider provider.
 
@@ -14,7 +13,8 @@ export class PersonalityProvider {
   constructor(private http: Http) {
 
   }
-  generateAssessment(){
+  generateAssessment() {
+    return this.http.get("http://localhost:5009/api/assessment").map(res=>res.json());
   }
 
 }

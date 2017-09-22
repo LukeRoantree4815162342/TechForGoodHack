@@ -4,6 +4,7 @@ import { QuestionPage } from "../question/question";
 
 import { ExperiencesPage } from '../experiences/experiences';
 import { DataProvider } from '../../providers/data/data';
+import { PersonalityPage } from '../personality/personality';
 /**
  * Generated class for the SkillsPage page.
  *
@@ -33,7 +34,7 @@ export class SkillsPage {
          text: 'Skills questionnaire',
          icon: 'list-box',
          handler: () => {
-          this.navCtrl.push(QuestionPage, this.user.$key);
+          this.navCtrl.push(PersonalityPage, this.user.$key);
          }
        },
        {
@@ -67,7 +68,7 @@ export class SkillsPage {
   }
 
   startQuestion(){
-    this.navCtrl.push(QuestionPage, this.user.$key);
+    this.navCtrl.push(PersonalityPage, this.user.$key);
   }
 
   GetSkillLevel(level){
