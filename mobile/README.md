@@ -7,6 +7,12 @@ Nav to root folder
 git subtree push --prefix mobile/www heroku master
 or id theres an issue
 git push heroku `git subtree split --prefix mobile/www master`:master --force
+
+## Issues
+promise polyfill
+https://github.com/ionic-team/ionic-app-scripts/issues/1001
+npm install promise-polyfill --save-exact
+
 ## How to use this template
 
 *This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
