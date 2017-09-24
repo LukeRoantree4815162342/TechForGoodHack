@@ -32,7 +32,7 @@ export class CareerPage {
     Traitify.setVersion("v1"); // Example Version
     this.traitify = Traitify.ui.load("careers", id, ".careers", {
       careers: {
-        experience_levels: "1,2,3", // Comma deliminated list
+        experience_levels: "1,2,3,4,5", // Comma deliminated list
         number_of_matches: 10, // max 100
         columns: 2
       }
