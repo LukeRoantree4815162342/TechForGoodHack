@@ -3,6 +3,7 @@ import { NavController, NavParams , LoadingController} from 'ionic-angular';
 
 import { ActivityPage } from '../activity/activity';
 import { DataProvider } from '../../providers/data/data';
+import { PersonalityPage } from "../personality/personality";
 /**
  * Generated class for the ProgressPage page.
  *
@@ -21,6 +22,9 @@ export class ProgressPage {
     this.user = this.data.currentUser;
   }
 
+  startQuestion(){
+    this.navCtrl.push(PersonalityPage, this.user.$key);
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProgressPage');
   }

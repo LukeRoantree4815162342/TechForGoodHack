@@ -53985,6 +53985,10 @@ page-personality .your-class.slide-deck {
   max-height: 90%;
 }
 
+page-personality .scroll-content {
+  background-color: unset !important;
+}
+
 page-profile {
   margin: 0;
   padding: 0;
