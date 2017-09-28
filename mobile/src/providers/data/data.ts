@@ -17,6 +17,13 @@ import { AuthService } from '../auth/auth.service';
 export class DataProvider {
 
   public skills;
+
+  saveQualifications(userId, qualifications): any {
+    this.getUser(userId).take(1).subscribe(user => {
+      this.db.object(`/users/${userId}`).$ref.child('qualifications').update(qualifications);
+    });
+  }
+
   public activities;
   public goals;
   public questions;

@@ -23,7 +23,7 @@
       </ion-card-content>
     </ion-card>
     <ion-card>
-      <ion-card-content>
+      <ion-card-content  (click)="openQualifications()">
         <ion-icon *ngIf="user.qualifications" name="checkmark-circle" color="favorite" item-start></ion-icon>
         <ion-icon *ngIf="!user.qualifications" name="checkmark-circle" color="primary" item-start></ion-icon>2. Qualifications
       </ion-card-content>

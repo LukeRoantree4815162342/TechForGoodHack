@@ -5,6 +5,7 @@ import { ActivityPage } from '../activity/activity';
 import { DataProvider } from '../../providers/data/data';
 import { PersonalityPage } from "../personality/personality";
 import { CareerPage } from "../career/career";
+import { QualificationsPage } from "../qualifications/qualifications";
 /**
  * Generated class for the ProgressPage page.
  *
@@ -25,6 +26,9 @@ export class ProgressPage {
 
   startQuestion() {
     this.navCtrl.push(PersonalityPage, this.user.$key);
+  }
+  openQualifications() {
+    this.navCtrl.push(QualificationsPage, this.user.$key);
   }
 
   showCareers() {
