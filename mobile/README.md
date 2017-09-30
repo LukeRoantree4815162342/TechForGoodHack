@@ -1,7 +1,8 @@
 This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
 
 ## Deploy sub folder to heroku:
-heroku git:remote -a engagehack
+cd to mobile
+#heroku git:remote -a engagehack
 npm run build:www
 Nav to root folder
 git subtree push --prefix mobile/www heroku master
