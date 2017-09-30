@@ -16,7 +16,7 @@ export class ExperiencesPage {
   private skill;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.skill = this.navParams.data;
-    console.log(this.skill);  
+    console.log(this.skill);
   }
 
   ionViewDidLoad() {

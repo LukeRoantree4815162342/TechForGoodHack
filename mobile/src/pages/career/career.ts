@@ -15,7 +15,7 @@ declare var Traitify;
 export class CareerPage {
   user: any;
   private traitify: any;
-  constructor(private data: DataProvider,private navCtrl: NavController, private navParams: NavParams) {
+  constructor(private data: DataProvider, private navCtrl: NavController, private navParams: NavParams) {
     this.user = this.data.currentUser
   }
 
@@ -23,16 +23,20 @@ export class CareerPage {
     console.log('ionViewDidLoad CareerPage');
   }
   ngAfterViewInit() {
-    this.showCareer(this.user.personality.id);
+    let ranges = "1,2,3,4,5";
+    if (this.user.qualifications) {
+      ranges = this.user.qualifications.ranges;
+    }
+    this.showCareer(this.user.personality.id, ranges);
   }
-  showCareer(id: string) {
+  showCareer(id: string, ranges: string) {
     // inject js
     Traitify.setPublicKey("44840894d82172785e20f8814a"); // Example Public Key
     Traitify.setHost("api.traitify.com"); // Example host url (Defaults to api.traitify.com)
     Traitify.setVersion("v1"); // Example Version
     this.traitify = Traitify.ui.load("careers", id, ".careers", {
       careers: {
-        experience_levels: "1,2,3,4,5", // Comma deliminated list
+        experience_levels: ranges, // Comma deliminated list
         number_of_matches: 10, // max 100
         columns: 2
       }
