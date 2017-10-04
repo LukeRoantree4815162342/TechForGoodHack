@@ -18,6 +18,12 @@ export class DataProvider {
 
   public skills;
 
+  saveCareer(userId, career): any {
+    return this.getUser(userId).take(1).subscribe(user => {
+      return this.db.object(`/users/${userId}`).$ref.child('career').update(career);
+    });
+  }
+
   saveQualifications(userId, qualifications): any {
     // work out the ranges
     const allRanges = [1, 2, 3, 4, 5];

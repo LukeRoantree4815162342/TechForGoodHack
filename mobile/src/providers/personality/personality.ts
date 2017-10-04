@@ -21,6 +21,6 @@ export class PersonalityProvider {
     const myHeaders = new Headers();
     myHeaders.append('Authorization', `Basic ${this.PUBLIC_KEY}:x`);
     const options = new RequestOptions({ headers: myHeaders });
-    return this.http.get(`https://api.traitify.com/v1/assessments/${assessment}/matches/careers?number_of_matches=${maxResults},experience_levels=${experienceRange}`,options).map(res => res.json());
+    return this.http.get(`https://api.traitify.com/v1/assessments/${assessment}/matches/careers?number_of_matches=${maxResults}&experience_levels=${experienceRange}`,options).map(res => res.json());
   }
 }

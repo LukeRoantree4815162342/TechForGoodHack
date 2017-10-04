@@ -34,10 +34,10 @@
         <ion-icon *ngIf="!user.experience" name="checkmark-circle" color="primary" item-start></ion-icon>3. Experience & Skills
       </ion-card-content>
     </ion-card>
-    <ion-card disabled="!user.careers">
+    <ion-card disabled="!user.career">
       <ion-card-content (click)="showCareers()">
-        <ion-icon *ngIf="user.careers" name="checkmark-circle" color="favorite" item-start></ion-icon>
-        <ion-icon *ngIf="!user.careers" name="checkmark-circle" color="primary" item-start></ion-icon>4. Career Pathway
+        <ion-icon *ngIf="user.career" name="checkmark-circle" color="favorite" item-start></ion-icon>
+        <ion-icon *ngIf="!user.career" name="checkmark-circle" color="primary" item-start></ion-icon>4. Career Pathway
       </ion-card-content>
     </ion-card>
 
