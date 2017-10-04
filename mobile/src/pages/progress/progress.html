@@ -23,18 +23,18 @@
       </ion-card-content>
     </ion-card>
     <ion-card>
-      <ion-card-content  (click)="openQualifications()">
+      <ion-card-content disabled="!user.personality" (click)="openQualifications()">
         <ion-icon *ngIf="user.qualifications" name="checkmark-circle" color="favorite" item-start></ion-icon>
         <ion-icon *ngIf="!user.qualifications" name="checkmark-circle" color="primary" item-start></ion-icon>2. Qualifications
       </ion-card-content>
     </ion-card>
-    <ion-card>
+    <ion-card disabled="!user.qualifications">
       <ion-card-content>
         <ion-icon *ngIf="user.experience" name="checkmark-circle" color="favorite" item-start></ion-icon>
         <ion-icon *ngIf="!user.experience" name="checkmark-circle" color="primary" item-start></ion-icon>3. Experience & Skills
       </ion-card-content>
     </ion-card>
-    <ion-card>
+    <ion-card disabled="!user.careers">
       <ion-card-content (click)="showCareers()">
         <ion-icon *ngIf="user.careers" name="checkmark-circle" color="favorite" item-start></ion-icon>
         <ion-icon *ngIf="!user.careers" name="checkmark-circle" color="primary" item-start></ion-icon>4. Career Pathway

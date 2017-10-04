@@ -21,6 +21,8 @@ export class DataProvider {
   saveQualifications(userId, qualifications): any {
     // work out the ranges
     const allRanges = [1, 2, 3, 4, 5];
+    // assumes user wants to know about careers and jobs at their current attainment and above
+    // in future we could make this configurable
     qualifications.ranges = allRanges.filter(num => num >= qualifications.attainment).join();
     this.getUser(userId).take(1).subscribe(user => {
       this.db.object(`/users/${userId}`).$ref.child('qualifications').update(qualifications);
