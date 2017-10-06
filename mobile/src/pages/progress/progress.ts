@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams , LoadingController} from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 
 import { ActivityPage } from '../activity/activity';
 import { DataProvider } from '../../providers/data/data';
+import { PersonalityPage } from "../personality/personality";
+import { CareerPage } from "../career/career";
+import { QualificationsPage } from "../qualifications/qualifications";
 /**
  * Generated class for the ProgressPage page.
  *
@@ -17,32 +20,42 @@ export class ProgressPage {
 
   private goalUrl = "";
   private user;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public data:DataProvider, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public data: DataProvider, public loadingCtrl: LoadingController) {
     this.user = this.data.currentUser;
   }
 
+  startQuestion() {
+    this.navCtrl.push(PersonalityPage, this.user.$key);
+  }
+  openQualifications() {
+    this.navCtrl.push(QualificationsPage, this.user.$key);
+  }
+
+  showCareers() {
+    this.navCtrl.push(CareerPage, this.user.$key);
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProgressPage');
   }
 
-  SaveGoal(){
+  SaveGoal() {
     //Add loader
 
-  let loading = this.loadingCtrl.create({
-    content: 'Finding skills required...',
-    duration: 3000
-  });
+    let loading = this.loadingCtrl.create({
+      content: 'Finding skills required...',
+      duration: 3000
+    });
 
-  loading.onDidDismiss(() => {
-    this.data.saveGoal(this.user.$key, this.goalUrl);
-  });
+    loading.onDidDismiss(() => {
+      this.data.saveGoal(this.user.$key, this.goalUrl);
+    });
 
-  loading.present();
+    loading.present();
   }
-  GetRemainingSkillsCount(){
+  GetRemainingSkillsCount() {
     var count = 0;
     this.user.goal.skills.map(skill => {
-      if(!skill.obtained){
+      if (!skill.obtained) {
         count++;
       }
     });
@@ -50,7 +63,7 @@ export class ProgressPage {
     return count;
   }
 
-  GetActivities(skillId){
-    this.navCtrl.push(ActivityPage,{ skillId: skillId, userId: this.user.$key});
+  GetActivities(skillId) {
+    this.navCtrl.push(ActivityPage, { skillId: skillId, userId: this.user.$key });
   }
 }

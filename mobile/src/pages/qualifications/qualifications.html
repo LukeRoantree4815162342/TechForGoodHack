@@ -1,0 +1,67 @@
+<!--
+  Generated template for the QualificationsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Qualifications</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+
+    <ion-item text-wrap (click)="activeItem=0" [ngClass]="{active: activeItem===0}">
+      <h3>
+        Manually Add Qualification Level
+        <ion-icon color="success" item-end [name]="activeItem===0 ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+      </h3>
+      
+      <div *ngIf="activeItem===0">
+        <ion-row>
+          <ion-col width-20 text-left>
+            GCSE
+          </ion-col>
+          <ion-col width-20 text-center>
+            A-Level
+          </ion-col>
+          <ion-col width-20 text-center>
+            HND
+          </ion-col>
+          <ion-col width-20 text-center>
+            Degree
+          </ion-col>
+          <ion-col width-20 text-right>
+            Masters/Phd
+          </ion-col>
+        </ion-row>
+        <ion-range (ionChange)="save()" min="1" max="5" step="1" snaps="true" color="secondary" [(ngModel)]="user.qualifications.attainment"></ion-range>
+
+      </div>
+    </ion-item>
+    <ion-item disabled text-wrap (click)="activeItem=1" [ngClass]="{active: activeItem===1}">
+      <h3>
+        Connect To Your PLR
+        <ion-icon color="success" item-right [name]="activeItem===1 ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+      </h3>
+      <div item-content *ngIf="activeItem===1">
+
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <!-- <ion-list>
+    <ion-list-header>Educational Attainment</ion-list-header>
+    <ion-list-header>
+      
+
+    </ion-list-header>
+    <ion-item> -->
+  <!-- </ion-item>
+  </ion-list> -->
+</ion-content>

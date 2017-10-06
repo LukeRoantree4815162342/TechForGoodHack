@@ -15,8 +15,46 @@
 
 <ion-content padding>
 
+  <ion-list>
+    <ion-card>
+      <ion-card-content (click)="startQuestion()">
+        <ion-icon *ngIf="user.personality" name="checkmark-circle" color="favorite" item-start></ion-icon>
+        <ion-icon *ngIf="!user.personality" name="checkmark-circle" color="primary" item-start></ion-icon>1. Personality
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-content disabled="!user.personality" (click)="openQualifications()">
+        <ion-icon *ngIf="user.qualifications" name="checkmark-circle" color="favorite" item-start></ion-icon>
+        <ion-icon *ngIf="!user.qualifications" name="checkmark-circle" color="primary" item-start></ion-icon>2. Qualifications
+      </ion-card-content>
+    </ion-card>
+    <ion-card disabled="!user.qualifications">
+      <ion-card-content>
+        <ion-icon *ngIf="user.experience" name="checkmark-circle" color="favorite" item-start></ion-icon>
+        <ion-icon *ngIf="!user.experience" name="checkmark-circle" color="primary" item-start></ion-icon>3. Experience & Skills
+      </ion-card-content>
+    </ion-card>
+    <ion-card disabled="!user.career">
+      <ion-card-content (click)="showCareers()">
+        <ion-icon *ngIf="user.career" name="checkmark-circle" color="favorite" item-start></ion-icon>
+        <ion-icon *ngIf="!user.career" name="checkmark-circle" color="primary" item-start></ion-icon>4. Career Pathway
+      </ion-card-content>
+    </ion-card>
 
-  <div *ngIf="!user.goal">
+  </ion-list>
+  <ion-list>
+    <ion-card disabled="true">
+      <ion-card-content>
+        Courses
+      </ion-card-content>
+    </ion-card>
+    <ion-card disabled="true">
+      <ion-card-content>
+        Jobs
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  <!-- <div *ngIf="!user.goal">
     <h3 item-title>Getting Started</h3>
     <p item-title>Before you get started developing your skills you need to define a goal. So think big and find a job you would like to be working as in the future. Think of your DREAM JOB!</p>
     
@@ -53,6 +91,6 @@
         </button>
       </ion-item>
     </ion-list>
-  </div>
-  
+  </div> -->
+
 </ion-content>

@@ -17,6 +17,24 @@ import { AuthService } from '../auth/auth.service';
 export class DataProvider {
 
   public skills;
+
+  saveCareer(userId, career): any {
+    return this.getUser(userId).take(1).subscribe(user => {
+      return this.db.object(`/users/${userId}`).$ref.child('career').update(career);
+    });
+  }
+
+  saveQualifications(userId, qualifications): any {
+    // work out the ranges
+    const allRanges = [1, 2, 3, 4, 5];
+    // assumes user wants to know about careers and jobs at their current attainment and above
+    // in future we could make this configurable
+    qualifications.ranges = allRanges.filter(num => num >= qualifications.attainment).join();
+    this.getUser(userId).take(1).subscribe(user => {
+      this.db.object(`/users/${userId}`).$ref.child('qualifications').update(qualifications);
+    });
+  }
+
   public activities;
   public goals;
   public questions;

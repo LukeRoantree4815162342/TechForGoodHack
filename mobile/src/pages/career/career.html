@@ -1,0 +1,110 @@
+<!--
+  Generated template for the CareerPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Choose Career Pathway</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-grid no-padding>
+    <ion-row>
+      <ion-col col-12 no-padding no-margin>
+        <ion-list>
+          <ul no-margin no-padding class="collapsible">
+            <li no-margin *ngFor="let d of careers; let i=index">
+              <!-- Expandable Full image with CTA Header-->
+              <div class="collapsible-header">
+                <ion-item no-margin no-padding no-lines background-size item-bcg [ngStyle]="{'background-image': 'url(' + d.career.picture + ')'}">
+                  <!-- <img src="{{d.career.picture}}"> -->
+                  <ion-badge style="z-index:1000" color="secondary" item-start>{{d.score | number:'2.1-1'}}%</ion-badge>
+                  <ion-icon style="z-index:1000" item-end *ngIf="user.career && user.career.career.id === d.career.id" name="checkmark-circle"
+                    color="favorite" item-start></ion-icon>
+                  <h3 item-title>{{d.career.title}}</h3>
+                  <button ion-button right default-button (click)="selected===i?selected=-1:selected=i">
+                          ...
+                    </button>
+                </ion-item>
+              </div>
+              <!-- Expandable Full image with CTA Body -->
+              <div id="moreinfo" class="item-accordion" text-wrap [ngClass]="{'active': selected===i }" [hidden]="!selected===i">
+                <!-- <ion-thumbnail item-thumbnail-left item-left>
+                  <img [src]="d.career.picture">
+                </ion-thumbnail> -->
+                <div>
+                  <p>{{d.career.description}}</p>
+                  <ion-row>
+                    <ion-col col-5>
+                      <ion-label>Experience Level</ion-label>
+                    </ion-col>
+                    <ion-col col-7>
+                      <ion-range disabled [ngModel]="d.career.experience_level.id" min="0" max="5" step="1" snaps="true"></ion-range>
+                    </ion-col>
+                  </ion-row>
+
+                  <ion-row>
+                    <ion-col col-5>
+                      <ion-label>Experience</ion-label>
+                    </ion-col>
+                    <ion-col col-7>
+                      {{d.career.experience_level.experience}}
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col col-5>
+                      <ion-label>Degree</ion-label>
+                    </ion-col>
+                    <ion-col col-7>
+                      {{d.career.experience_level.degree}}
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                      <ion-col col-5>
+                        <ion-label>Training</ion-label>
+                      </ion-col>
+                      <ion-col col-7>
+                        {{d.career.experience_level.job_training}}
+                      </ion-col>
+                    </ion-row>
+                  <button ion-button block (click)="choose(d)">Choose This Career Path</button>
+                </div>
+              </div>
+              <!--end-->
+            </li>
+          </ul>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- <div class="careers"></div> -->
+  <!-- <ion-list>
+    <ion-item *ngFor="let d of careers; let i=index" (click)="selected=i" [ngClass]="{active: i===selected}">
+      <h3>
+
+        <ion-icon *ngIf="user.career && user.career.career.id === d.career.id" name="checkmark-circle" color="favorite" item-start></ion-icon>
+        <ion-badge color="secondary" item-start>{{d.score | number:'2.1-1'}}%</ion-badge>
+        {{d.career.title}}
+        <ion-icon color="success" item-end [name]="i===selected ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+      </h3>
+      <ion-item *ngIf="i===selected" text-wrap>
+        <ion-thumbnail item-thumbnail-left item-left>
+          <img [src]="d.career.picture">
+        </ion-thumbnail>
+        <div>{{d.career.description}}</div>
+        <div>Experience Level:
+          <ion-range disabled [ngModel]="d.career.experience_level.id" min="0" max="5" step="1" snaps="true"></ion-range>
+        </div>
+        <button ion-button block (click)="choose(d)">Choose This Career Path</button>
+      </ion-item>
+    </ion-item>
+  </ion-list> -->
+</ion-content>

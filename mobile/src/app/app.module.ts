@@ -26,6 +26,8 @@ import { Logger } from '../providers/analytics/logger';
 import { PersonalityProvider } from '../providers/personality/personality';
 import { PersonalityPage } from '../pages/personality/personality';
 import { Http, HttpModule } from '@angular/http';
+import { CareerPage } from "../pages/career/career";
+import { QualificationsPage } from "../pages/qualifications/qualifications";
 
 const firebaseConfig = config.default.firebaseConfig;
 
@@ -36,6 +38,8 @@ const firebaseConfig = config.default.firebaseConfig;
     MainPage,
     SkillsPage,
     ProgressPage,
+    CareerPage,
+    QualificationsPage,
     QuestionPage,
     PersonalityPage,
     FriendsPage,
@@ -56,10 +60,12 @@ const firebaseConfig = config.default.firebaseConfig;
     MyApp,
     HomePage,
     MainPage,
+    QualificationsPage,
     SkillsPage,
     ProgressPage,
     QuestionPage,
     PersonalityPage,
+    CareerPage,
     FriendsPage,
     ProfilePage,
     ExperiencesPage,
