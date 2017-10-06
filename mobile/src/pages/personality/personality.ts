@@ -30,6 +30,12 @@ export class PersonalityPage {
       personalityTypes: { target: ".personality-types" },
       personalityTraits: { target: ".personality-traits" }
     }); // Example selector for widget target
+    this.traitify.slideDeck.onFinished(details => {
+      console.log(details);
+      console.log(this.traitify);
+      //alert("Finished");
+      //this.ds.addAssessment(this.user.personality, ass);
+    })
   }
   retake() {
     this.personality.generateAssessment().subscribe(ass => {
