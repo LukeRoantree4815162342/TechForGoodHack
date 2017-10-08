@@ -18,19 +18,19 @@
   <ion-list>
     <button ion-item (click)="startQuestion()">
         <ion-icon *ngIf="user.personality" name="checkmark-circle" color="favorite" item-start></ion-icon>
-        <ion-icon *ngIf="!user.personality" name="checkmark-circle" color="primary" item-start></ion-icon>1. Personality <ion-badge item-end>{{user.personality.personality_blend.name}}</ion-badge>
+        <ion-icon *ngIf="!user.personality" name="checkmark-circle" color="primary" item-start></ion-icon>1. Personality <div><ion-badge item-end>{{user.personality.personality_blend.name}}</ion-badge></div>
     </button>
-    <button ion-item  [disabled]="!user.personality" (click)="openQualifications()">
+    <button ion-item [disabled]="!user.personality" (click)="openQualifications()">
         <ion-icon *ngIf="user.qualifications" name="checkmark-circle" color="favorite" item-start></ion-icon>
         <ion-icon *ngIf="!user.qualifications" name="checkmark-circle" color="primary" item-start></ion-icon>2. Qualifications
     </button>
-    <button ion-item  [disabled]="!user.personality" (click)="showSkills()">
+    <button ion-item [disabled]="!user.personality" (click)="showSkills()">
         <ion-icon *ngIf="user.experience" name="checkmark-circle" color="favorite" item-start></ion-icon>
         <ion-icon *ngIf="!user.experience" name="checkmark-circle" color="primary" item-start></ion-icon>3. Experience & Skills
     </button>
-    <button ion-item  [disabled]="!user.personality" (click)="showCareers()">
+    <button ion-item [disabled]="!user.personality" (click)="showCareers()">
         <ion-icon *ngIf="user.career" name="checkmark-circle" color="favorite" item-start></ion-icon>
-        <ion-icon *ngIf="!user.career" name="checkmark-circle" color="primary" item-start></ion-icon>4. Career Pathway
+        <ion-icon *ngIf="!user.career" name="checkmark-circle" color="primary" item-start></ion-icon>4. Career Pathway <div><ion-badge item-end>{{user.career.career.title}}</ion-badge></div>
     </button>
 
   </ion-list>
