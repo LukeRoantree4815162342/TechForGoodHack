@@ -6,6 +6,7 @@ import { DataProvider } from '../../providers/data/data';
 import { PersonalityPage } from "../personality/personality";
 import { CareerPage } from "../career/career";
 import { QualificationsPage } from "../qualifications/qualifications";
+import { SkillsPage } from '../skills/skills';
 /**
  * Generated class for the ProgressPage page.
  *
@@ -33,6 +34,9 @@ export class ProgressPage {
 
   showCareers() {
     this.navCtrl.push(CareerPage, this.user.$key);
+  }
+  showSkills() {
+    this.navCtrl.push(SkillsPage, this.user.$key);
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProgressPage');
