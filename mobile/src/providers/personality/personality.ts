@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import {EmptyObservable} from 'rxjs/observable/EmptyObservable'
 /*
   Generated class for the PersonalityProvider provider.
 
@@ -16,7 +17,15 @@ export class PersonalityProvider {
   generateAssessment() {
     return this.http.get("api/assessment").map(res => res.json());
   }
-
+  getPersonalityResults(id: any) {
+    if(id){
+      const myHeaders = new Headers();
+      myHeaders.append('Authorization', `Basic ${this.PUBLIC_KEY}:x`);
+      const options = new RequestOptions({ headers: myHeaders });
+      return this.http.get(`https://api.traitify.com/v1/assessments/${id}?data=blend`,options).map(res => res.json());
+    }
+    return new EmptyObservable();
+  }
   careerOptions(assessment: string, experienceRange: string, maxResults: number = 10) {
     const myHeaders = new Headers();
     myHeaders.append('Authorization', `Basic ${this.PUBLIC_KEY}:x`);

@@ -18,7 +18,7 @@
   <ion-list>
     <button ion-item (click)="startQuestion()">
         <ion-icon *ngIf="user.personality" name="checkmark-circle" color="favorite" item-start></ion-icon>
-        <ion-icon *ngIf="!user.personality" name="checkmark-circle" color="primary" item-start></ion-icon>1. Personality <ion-badge item-end>{{user.personality}}</ion-badge>
+        <ion-icon *ngIf="!user.personality" name="checkmark-circle" color="primary" item-start></ion-icon>1. Personality <ion-badge item-end>{{user.personality.personality_blend.name}}</ion-badge>
     </button>
     <button ion-item  [disabled]="!user.personality" (click)="openQualifications()">
         <ion-icon *ngIf="user.qualifications" name="checkmark-circle" color="favorite" item-start></ion-icon>

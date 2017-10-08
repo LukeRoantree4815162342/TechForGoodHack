@@ -33,6 +33,10 @@ export class PersonalityPage {
     this.traitify.slideDeck.onFinished(details => {
       console.log(details);
       console.log(this.traitify);
+      // get the results
+      this.personality.getPersonalityResults(id).subscribe(res => {
+        this.ds.addAssessment(this.userId, res);
+      });
       //alert("Finished");
       //this.ds.addAssessment(this.user.personality, ass);
     })
@@ -40,7 +44,6 @@ export class PersonalityPage {
   retake() {
     this.personality.generateAssessment().subscribe(ass => {
       this.assessment = ass;
-      this.ds.addAssessment(this.userId, ass);
       this.showAssessment(ass.id);
     });
   }
