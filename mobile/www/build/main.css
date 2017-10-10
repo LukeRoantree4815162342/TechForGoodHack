@@ -53989,7 +53989,7 @@ page-career li[margin] {
 
 page-career [item-bcg] {
   background-color: white;
-  background-blend-mode: luminosity;
+  background-blend-mode: hard-light;
   height: 130px;
   position: relative;
   margin-bottom: 5px !important;
@@ -54017,7 +54017,7 @@ page-career [item-bcg] [default-button] {
   height: 3.6rem;
   position: absolute;
   right: 10px;
-  bottom: 10px;
+  top: 10px;
 }
 
 page-career [item-bcg] [item-title] {
@@ -54037,7 +54037,7 @@ page-career .item-accordion {
   display: block !important;
   transition: all 100ms;
   overflow: hidden;
-  background-color: #fcd736;
+  background-color: whitesmoke;
 }
 
 page-career .item-accordion.active {
@@ -54147,7 +54147,7 @@ page-question .swiper-slide {
   position: relative;
   overflow: hidden;
   background-color: white;
-  background-blend-mode: luminosity;
+  background-blend-mode: hard-light;
 }
 
 page-question .swiper-slide::before {

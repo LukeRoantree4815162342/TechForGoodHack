@@ -161,7 +161,7 @@ $global-opacity: (
 // Changing Background Images in Black&White Mode
 @mixin black-white-mode {
   background-color: theme-colors('blendModes', 'primary');
-  background-blend-mode: luminosity;
+  background-blend-mode: hard-light;
 }
 // Darkening and Black&White Blend Mode
 @mixin darkening-blend-mode {
