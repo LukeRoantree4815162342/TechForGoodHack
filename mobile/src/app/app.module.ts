@@ -28,6 +28,7 @@ import { PersonalityPage } from '../pages/personality/personality';
 import { Http, HttpModule } from '@angular/http';
 import { CareerPage } from "../pages/career/career";
 import { QualificationsPage } from "../pages/qualifications/qualifications";
+import { AttainmentPipe } from '../pipes/attainment/attainment';
 
 const firebaseConfig = config.default.firebaseConfig;
 
@@ -45,7 +46,8 @@ const firebaseConfig = config.default.firebaseConfig;
     FriendsPage,
     ProfilePage,
     ExperiencesPage,
-    ActivityPage
+    ActivityPage,
+    AttainmentPipe
   ],
   imports: [
     BrowserModule,
