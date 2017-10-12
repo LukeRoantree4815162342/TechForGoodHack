@@ -54123,6 +54123,60 @@ page-profile .stats-content ion-grid ion-row ion-col {
   height: 50%;
 }
 
+page-qualifications li[margin] {
+  margin: 5px 10px;
+}
+
+page-qualifications [item-bcg] {
+  position: relative;
+  background-color: #f9f4d6 !important;
+}
+
+page-qualifications [item-bcg] .item-inner {
+  padding: 0;
+}
+
+page-qualifications [item-bcg] [default-button] {
+  padding: 0 1.1em;
+  height: 3.6rem;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+page-qualifications [icon-small] {
+  font-size: 20px !important;
+  color: #202020 !important;
+}
+
+page-qualifications .item-accordion {
+  width: 100%;
+  height: 0;
+  display: block !important;
+  transition: all 100ms;
+  overflow: hidden;
+  background-color: #f9f4d6 !important;
+}
+
+page-qualifications .item-accordion.active {
+  height: 100% !important;
+}
+
+page-qualifications .item-accordion #moreinfo {
+  background-color: #fcd736 !important;
+}
+
+page-qualifications .item-accordion ion-item {
+  border-radius: 4px !important;
+  margin-bottom: 5px;
+  min-height: 35px;
+  display: block;
+}
+
+page-qualifications .item-accordion ion-label {
+  margin: 0;
+}
+
 page-question {
   /*  #Style Wizard Big image
 ===========================================*/

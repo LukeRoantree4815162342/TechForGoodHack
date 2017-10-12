@@ -14,52 +14,59 @@
 
 
 <ion-content padding>
+
   <ion-list>
+    <ul no-margin no-padding class="collapsible">
+      <li>
+        <div class="collapsible-header" (click)="selected===0?selected=-1:selected=0;false">
+          <ion-item no-margin no-padding no-lines background-size item-bcg>
+            Manually Add Qualification Level
+            <ion-icon color="success" item-end [name]="selected===0 ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+          </ion-item>
+        </div>
+        <!-- Expandable Full image with CTA Body -->
+        <div id="moreinfo" class="item-accordion" text-wrap [ngClass]="{'active': selected===0 }" [hidden]="!selected===0">
+          <!-- <ion-thumbnail item-thumbnail-left item-left>
+              <img [src]="d.career.picture">
+            </ion-thumbnail> -->
+          <div>
+            <ion-row>
+              <ion-col width-20 text-left>
+                <small>GCSE</small>
+              </ion-col>
+              <ion-col width-20 text-center>
+                <small>A-Level</small>
+              </ion-col>
+              <ion-col width-20 text-center>
+                <small>HND</small>
+              </ion-col>
+              <ion-col width-20 text-center>
+                <small>Degree</small>
+              </ion-col>
+              <ion-col width-20 text-right>
+                <small>Masters/Phd</small>
+              </ion-col>
+            </ion-row>
+            <ion-range (ionChange)="save()" min="1" max="5" step="1" snaps="true" color="secondary" [(ngModel)]="data.currentUser.qualifications.attainment"></ion-range>
+          </div>
+        </div>
 
-    <ion-item text-wrap (click)="activeItem=0" [ngClass]="{active: activeItem===0}">
-      <h3>
-        Manually Add Qualification Level
-        <ion-icon color="success" item-end [name]="activeItem===0 ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
-      </h3>
-      
-      <div *ngIf="activeItem===0">
-        <ion-row>
-          <ion-col width-20 text-left>
-            GCSE
-          </ion-col>
-          <ion-col width-20 text-center>
-            A-Level
-          </ion-col>
-          <ion-col width-20 text-center>
-            HND
-          </ion-col>
-          <ion-col width-20 text-center>
-            Degree
-          </ion-col>
-          <ion-col width-20 text-right>
-            Masters/Phd
-          </ion-col>
-        </ion-row>
-        <ion-range (ionChange)="save()" min="1" max="5" step="1" snaps="true" color="secondary" [(ngModel)]="user.qualifications.attainment"></ion-range>
-
-      </div>
-    </ion-item>
-    <ion-item disabled text-wrap (click)="activeItem=1" [ngClass]="{active: activeItem===1}">
-      <h3>
-        Connect To Your PLR
-        <ion-icon color="success" item-right [name]="activeItem===1 ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
-      </h3>
-      <div item-content *ngIf="activeItem===1">
-
-      </div>
-    </ion-item>
+      </li>
+      <li>
+        <div class="collapsible-header" (click)="selected===1?selected=-1:selected=1;false">
+          <ion-item no-margin no-padding no-lines background-size item-bcg>
+            Connect To Your PLR
+            <ion-icon color="success" item-end [name]="selected===1 ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+          </ion-item>
+        </div>
+      </li>
+    </ul>
   </ion-list>
 
   <!-- <ion-list>
     <ion-list-header>Educational Attainment</ion-list-header>
     <ion-list-header>
-      
-
+    
     </ion-list-header>
     <ion-item> -->
   <!-- </ion-item>

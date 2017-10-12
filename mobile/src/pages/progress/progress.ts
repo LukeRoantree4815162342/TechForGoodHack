@@ -38,6 +38,11 @@ export class ProgressPage {
   showSkills() {
     this.navCtrl.push(SkillsPage, this.user.$key);
   }
+  ionViewDidEnter() {
+    console.log('entering progress page..');
+    //set the user again to refresh
+    this.user = this.data.currentUser;
+}
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProgressPage');
   }

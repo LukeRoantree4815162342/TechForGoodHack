@@ -13,12 +13,12 @@ import { DataProvider } from "../../providers/data/data";
   templateUrl: 'qualifications.html',
 })
 export class QualificationsPage {
-  user: any;
+
 
   constructor(private data: DataProvider, public navCtrl: NavController, public navParams: NavParams) {
-    this.user = this.data.currentUser
-    if (!this.user.qualifications) {
-      this.user.qualifications = {};
+    this.data.currentUser
+    if (!this.data.currentUser.qualifications) {
+      this.data.currentUser.qualifications = {};
     }
   }
 
@@ -26,6 +26,7 @@ export class QualificationsPage {
     console.log('ionViewDidLoad QualificationsPage');
   }
   save() {
-    this.data.saveQualifications(this.user.$key, this.user.qualifications);
+    console.log('saving qualification...');
+    this.data.saveQualifications(this.data.currentUser.$key, this.data.currentUser.qualifications);
   }
 }
