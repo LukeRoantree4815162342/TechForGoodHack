@@ -25,10 +25,9 @@
               <div class="collapsible-header" (click)="selected===i?selected=-1:selected=i;false">
                 <ion-item no-margin no-padding no-lines background-size item-bcg [ngStyle]="{'background-image': 'url(' + d.career.picture + ')'}">
                   <!-- <img src="{{d.career.picture}}"> -->
-                  <ion-badge style="z-index:1000" color="secondary" item-start>{{d.score | number:'2.1-1'}}%</ion-badge>
                   <ion-icon style="z-index:1000" item-end *ngIf="user.career && user.career.career.id === d.career.id" name="checkmark-circle"
                     color="favorite" item-start></ion-icon>
-                  <h3 item-title>{{d.career.title}}</h3>
+                  <h3 item-title text-wrap><ion-badge style="z-index:1000" color="secondary" item-start>{{d.score | number:'2.1-1'}}%</ion-badge>{{d.career.title}}</h3>
                   <button ion-button default-button (click)="selected===i?selected=-1:selected=i;$event.stopPropagation()">
                       <ion-icon name="{{selected===i? 'arrow-up':'arrow-down'}}"></ion-icon>     
                     <span class="icon" [ngClass]=""></span>
@@ -47,6 +46,7 @@
                       <ion-label>Experience Level</ion-label>
                     </ion-col>
                     <ion-col col-7>
+                      {{d.career.experience_level.id | attainment}}
                       <ion-range disabled [ngModel]="d.career.experience_level.id" min="0" max="5" step="1" snaps="true"></ion-range>
                     </ion-col>
                   </ion-row>

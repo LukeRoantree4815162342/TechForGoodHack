@@ -15,15 +15,15 @@ export class AttainmentPipe implements PipeTransform {
    */
   transform(value: number, ...args) {
     switch (value) {
-      case 0:
-        return 'GCSE';
       case 1:
-        return 'A-Level';
+        return 'GCSE';
       case 2:
-        return 'HND'
+        return 'A-Level';
       case 3:
-        return 'Degreee';
+        return 'HND'
       case 4:
+        return 'Degreee';
+      case 5:
         return 'Masters/Phd'
       default:
         return 'None';
